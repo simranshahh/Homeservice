@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:homeservice/Bottomnavbar/BottomNabBar.dart';
 import 'package:homeservice/View/Bookings/scheduled_booking.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -28,7 +29,7 @@ class _BookingsState extends ConsumerState<Bookings> {
               leading: IconButton(
                   onPressed: () {
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (BuildContext context) => Homepage()));
+                        builder: (BuildContext context) => BottomNavScreen()));
                   },
                   icon: Icon(Icons.arrow_back_ios)),
               backgroundColor: Color.fromARGB(255, 90, 36, 165),

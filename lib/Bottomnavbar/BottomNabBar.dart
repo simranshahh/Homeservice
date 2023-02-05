@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:homeservice/View/Home/Homepage.dart';
-import 'package:homeservice/View/Home/Search.dart';
-import 'package:homeservice/View/Home/Settings/setting_page.dart';
+import 'package:homeservice/View/Notifications/notification.dart';
+import 'package:homeservice/View/Settings/setting_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../View/Bookings/Bookings.dart';
@@ -20,7 +20,7 @@ class _BottomNavScreenState extends ConsumerState<BottomNavScreen> {
   final screens = [
     const Homepage(),
     const Bookings(),
-    const Notifications(),
+    const Notification_page(),
     const Settings_Page()
   ];
 

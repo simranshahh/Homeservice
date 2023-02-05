@@ -2,6 +2,8 @@
 
 import "package:flutter/material.dart";
 import 'package:homeservice/Bottomnavbar/BottomNabBar.dart';
+import 'package:homeservice/View/Hire/Hirepage.dart';
+import 'package:homeservice/View/Profile/Serviceman_Profile.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nb_utils/nb_utils.dart';
 
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(primarySwatch: Colors.amber),
             darkTheme: ThemeData.dark(),
             themeMode: currentMode,
-            home: const BottomNavScreen(),
+            home: BottomNavScreen(),
           );
         });
   }

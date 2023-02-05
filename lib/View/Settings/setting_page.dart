@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../main.dart';
+import '../../main.dart';
 
 class Settings_Page extends ConsumerStatefulWidget {
   const Settings_Page({super.key});
