@@ -6,15 +6,17 @@ import 'package:homeservice/View/Settings/Edit_Profile.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../main.dart';
+import 'Edit_servicemanProfilePage.dart';
 
-class Settings_Page extends ConsumerStatefulWidget {
-  const Settings_Page({super.key});
+class Serviceman_setting extends ConsumerStatefulWidget {
+  const Serviceman_setting({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _Settings_PageState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _Serviceman_settingState();
 }
 
-class _Settings_PageState extends ConsumerState<Settings_Page> {
+class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
   bool isDarkModeEnabled = false;
 
   @override
@@ -109,7 +111,7 @@ class _Settings_PageState extends ConsumerState<Settings_Page> {
                           width: 40,
                         ),
                         Text(
-                          '   Sandhya Shrestha',
+                          '   Ram Shrestha',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         )
                       ],
@@ -125,7 +127,7 @@ class _Settings_PageState extends ConsumerState<Settings_Page> {
                           width: 35,
                         ),
                         Text(
-                          '   sandy123@gmail.com',
+                          '   rammma123@gmail.com',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         )
                       ],
@@ -142,6 +144,22 @@ class _Settings_PageState extends ConsumerState<Settings_Page> {
                         ),
                         Text(
                           '   9805367848',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      children: [
+                        Image.asset(
+                          'assets/job.png',
+                          height: 35,
+                          width: 35,
+                        ),
+                        Text(
+                          '   Carpenter',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         )
                       ],
@@ -182,7 +200,7 @@ class _Settings_PageState extends ConsumerState<Settings_Page> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (BuildContext context) =>
-                                        Edit_ProfilePage()));
+                                        EditServiceman_setting()));
                           },
                         )
                       ],

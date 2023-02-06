@@ -84,50 +84,50 @@ class SigninState extends ConsumerState<Signin> {
                       padding: const EdgeInsets.fromLTRB(20.0, 90, 20, 20),
                       child: Column(
                         children: [
-                          Container(
-                            height: 50,
-                            width: 250,
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 90, 36, 165),
-                                borderRadius: BorderRadius.circular(15)),
-                            child: Center(
-                              child: InkWell(
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          CustomerSignin()));
+                            },
+                            child: Container(
+                              height: 50,
+                              width: 250,
+                              decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 90, 36, 165),
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: Center(
                                 child: Text(
                                   'Sign In As Customer',
                                   style: TextStyle(color: Colors.white),
                                 ),
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              CustomerSignin()));
-                                },
                               ),
                             ),
                           ),
                           SizedBox(
                             height: 25,
                           ),
-                          Container(
-                            height: 50,
-                            width: 250,
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 90, 36, 165),
-                                borderRadius: BorderRadius.circular(15)),
-                            child: Center(
-                              child: InkWell(
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          ServicemanSignin()));
+                            },
+                            child: Container(
+                              height: 50,
+                              width: 250,
+                              decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 90, 36, 165),
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: Center(
                                 child: Text(
                                   'Sign In As Service Provider',
                                   style: TextStyle(color: Colors.white),
                                 ),
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              ServicemanSignin()));
-                                },
                               ),
                             ),
                           ),

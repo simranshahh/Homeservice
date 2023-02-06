@@ -1,8 +1,9 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables, avoid_print, no_leading_underscores_for_local_identifiers
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables, avoid_print, no_leading_underscores_for_local_identifiers, file_names
 
 import 'package:flutter/material.dart';
 import 'package:homeservice/Model/Home/usermodel.dart';
 import 'package:homeservice/View/SignIn/customersignin.dart';
+import 'package:homeservice/View/Signup/Customersignup.dart';
 
 import 'package:homeservice/View/Signup/ServicemanSignup.dart';
 import 'package:homeservice/View/StartScreen.dart/Welcome.dart';
@@ -85,50 +86,50 @@ class SignUpState extends ConsumerState<SignUp> {
                       padding: const EdgeInsets.fromLTRB(20.0, 90, 20, 20),
                       child: Column(
                         children: [
-                          Container(
-                            height: 50,
-                            width: 250,
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 90, 36, 165),
-                                borderRadius: BorderRadius.circular(15)),
-                            child: Center(
-                              child: InkWell(
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          CustomerSignup()));
+                            },
+                            child: Container(
+                              height: 50,
+                              width: 250,
+                              decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 90, 36, 165),
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: Center(
                                 child: Text(
                                   'Sign up As Customer',
                                   style: TextStyle(color: Colors.white),
                                 ),
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              CustomerSignin()));
-                                },
                               ),
                             ),
                           ),
                           SizedBox(
                             height: 25,
                           ),
-                          Container(
-                            height: 50,
-                            width: 250,
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 90, 36, 165),
-                                borderRadius: BorderRadius.circular(15)),
-                            child: Center(
-                              child: InkWell(
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          ServicemanSignup()));
+                            },
+                            child: Container(
+                              height: 50,
+                              width: 250,
+                              decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 90, 36, 165),
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: Center(
                                 child: Text(
                                   'Sign up As Service Provider',
                                   style: TextStyle(color: Colors.white),
                                 ),
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              ServicemanSignup()));
-                                },
                               ),
                             ),
                           ),

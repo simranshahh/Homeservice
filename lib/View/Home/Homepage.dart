@@ -94,13 +94,13 @@ class _HomepageState extends State<Homepage> {
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15)),
                                 suffixIcon: IconButton(
-                                    onPressed: () {},
-                                    //  // // method to show the search bar
-                                    //   showSearch(
-                                    //       context: context,
-                                    //       // delegate to customize the search bar
-                                    //       delegate: CustomSearchDelegate());
-                                    // },
+                                    onPressed: () {
+                                      // // method to show the search bar
+                                      showSearch(
+                                          context: context,
+                                          // delegate to customize the search bar
+                                          delegate: CustomSearchDelegate());
+                                    },
                                     icon: const Icon(Icons.search))),
                           ),
                         ),
@@ -439,5 +439,71 @@ class _HomepageState extends State<Homepage> {
         ),
       ),
     );
+  }
+}
+
+class CustomSearchDelegate extends SearchDelegate {
+  List<String> categories = [
+    'Carpenter',
+    'Plumber',
+    'Laundary',
+    'Cleaner',
+  ];
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+          onPressed: () {
+            query = '';
+          },
+          icon: Icon(Icons.clear))
+    ];
+  } // for clearing the query use hunxa
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(
+        onPressed: () {
+          close(context, null);
+        },
+        icon: Icon(Icons.arrow_back));
+  } //used for leave and close the search bar
+
+  @override
+  Widget buildResults(BuildContext context) {
+    List<String> matchquery = [];
+    for (var works in categories) {
+      if (works.toLowerCase().contains(query.toLowerCase())) {
+        matchquery.add(works);
+      }
+    }
+
+    return ListView.builder(
+        itemCount: matchquery.length,
+        itemBuilder: (context, index) {
+          var result = matchquery[index];
+          return ListTile(
+            title: Text(result),
+          );
+        });
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> matchquery = [];
+    for (var works in categories) {
+      if (works.toLowerCase().contains(query.toLowerCase())) {
+        matchquery.add(works);
+      }
+    }
+
+    return ListView.builder(
+        itemCount: matchquery.length,
+        itemBuilder: (context, index) {
+          var result = matchquery[index];
+          return ListTile(
+            title: Text(result),
+          );
+        });
   }
 }

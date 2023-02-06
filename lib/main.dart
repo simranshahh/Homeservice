@@ -12,10 +12,13 @@ import 'package:homeservice/View/SignIn/customersignin.dart';
 import 'package:homeservice/View/SignIn/signin.dart';
 import 'package:homeservice/View/Signup/signup.dart';
 import 'package:homeservice/View/StartScreen.dart/Welcome.dart';
+import 'package:homeservice/View/StartScreen.dart/onboarding_example.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import 'View/ForgetPassword.dart';
+import 'View/Settings/Serviceman_Profile.dart';
+import 'View/Settings/customerprofile.dart';
 import 'View/Signup/Customersignup.dart';
 import 'View/Signup/ServicemanSignup.dart';
 
@@ -46,7 +49,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(primarySwatch: Colors.amber),
             darkTheme: ThemeData.dark(),
             themeMode: currentMode,
-            home: BottomNavScreen(),
+            home: Serviceman_setting(),
           );
         });
   }

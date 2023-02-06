@@ -1,18 +1,20 @@
 // ignore_for_file: camel_case_types, file_names, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:homeservice/View/Settings/Serviceman_Profile.dart';
 import 'package:homeservice/View/Settings/customerprofile.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class Edit_ProfilePage extends ConsumerStatefulWidget {
-  const Edit_ProfilePage({super.key});
+class EditServiceman_setting extends ConsumerStatefulWidget {
+  const EditServiceman_setting({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      _Edit_ProfilePageState();
+      _EditServiceman_settingState();
 }
 
-class _Edit_ProfilePageState extends ConsumerState<Edit_ProfilePage> {
+class _EditServiceman_settingState
+    extends ConsumerState<EditServiceman_setting> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -156,7 +158,7 @@ class _Edit_ProfilePageState extends ConsumerState<Edit_ProfilePage> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (BuildContext context) =>
-                                                  Customer_setting()));
+                                                  Serviceman_setting()));
                                     },
                                     style: ButtonStyle(
                                       backgroundColor:

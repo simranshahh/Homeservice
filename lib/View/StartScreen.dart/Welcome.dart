@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables, file_names
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables, file_names, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:homeservice/View/SignIn/customersignin.dart';
@@ -73,53 +73,51 @@ class _WelcomeState extends State<Welcome> {
                       SizedBox(
                         height: 60,
                       ),
-                      Container(
-                        height: 40,
-                        width: 250,
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 90, 36, 165),
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Center(
-                          child: InkWell(
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => Signin()));
+                        },
+                        child: Container(
+                          height: 40,
+                          width: 250,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 90, 36, 165),
+                              borderRadius: BorderRadius.circular(15)),
+                          child: Center(
                             child: Text(
                               'Sign In',
                               style: TextStyle(color: Colors.white),
                             ),
-                            onTap: () {
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          Signin()));
-                            },
                           ),
                         ),
                       ),
                       SizedBox(
                         height: 20,
                       ),
-                      Container(
-                        height: 40,
-                        width: 250,
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 255, 255, 255),
-                            border: Border.all(
-                              color: Color.fromARGB(255, 90, 36, 165),
-                            ),
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Center(
-                          child: InkWell(
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => SignUp()));
+                        },
+                        child: Container(
+                          height: 40,
+                          width: 250,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              border: Border.all(
+                                color: Color.fromARGB(255, 90, 36, 165),
+                              ),
+                              borderRadius: BorderRadius.circular(15)),
+                          child: Center(
                             child: Text(
                               'Sign Up',
                               style: TextStyle(
                                 color: Color.fromARGB(255, 90, 36, 165),
                               ),
                             ),
-                            onTap: () {
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          SignUp()));
-                            },
                           ),
                         ),
                       ),

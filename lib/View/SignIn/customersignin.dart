@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:homeservice/Model/Home/usermodel.dart';
 import 'package:homeservice/View/ForgetPassword.dart';
+import 'package:homeservice/View/SignIn/signin.dart';
 import 'package:homeservice/View/StartScreen.dart/Welcome.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -86,7 +87,7 @@ class CustomerSigninState extends ConsumerState<CustomerSignin> {
                       icon: Icon(Icons.arrow_back_ios),
                       onPressed: () {
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (BuildContext context) => Welcome()));
+                            builder: (BuildContext context) => Signin()));
                       },
                     ),
                     SizedBox(

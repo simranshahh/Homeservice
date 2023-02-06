@@ -1,8 +1,9 @@
-// ignore_for_file: prefer_const_constructors, file_names, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors, file_names, non_constant_identifier_names, prefer_const_literals_to_create_immutables, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:homeservice/View/SignIn/customersignin.dart';
+import 'package:homeservice/View/Signup/Signup.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../StartScreen.dart/Welcome.dart';
@@ -41,7 +42,7 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
                     icon: Icon(Icons.arrow_back_ios),
                     onPressed: () {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (BuildContext context) => Welcome()));
+                          builder: (BuildContext context) => SignUp()));
                     },
                   ),
                   SizedBox(

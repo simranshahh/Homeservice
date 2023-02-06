@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:homeservice/View/Home/Homepage.dart';
 import 'package:homeservice/View/Notifications/notification.dart';
-import 'package:homeservice/View/Settings/setting_page.dart';
+import 'package:homeservice/View/Settings/customerprofile.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../View/Bookings/Bookings.dart';
@@ -21,7 +21,7 @@ class _BottomNavScreenState extends ConsumerState<BottomNavScreen> {
     const Homepage(),
     const Bookings(),
     const Notification_page(),
-    const Settings_Page()
+    const Customer_setting()
   ];
 
   void _onItemTapped(int index) {
