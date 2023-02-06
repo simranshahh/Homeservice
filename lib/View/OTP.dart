@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_interpolation_to_compose_strings, avoid_print, file_names
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -79,8 +81,8 @@ class _OTPState extends State<OTP> {
                 child: Column(
                   children: [
                     ElevatedButton(
-                      child: Text('Resend Code'),
                       onPressed: enableResend ? _resendCode : null,
+                      child: Text('Resend Code'),
                     ),
                     Text(
                       'after $secondsRemaining seconds',

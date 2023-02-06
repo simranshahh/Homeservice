@@ -1,10 +1,8 @@
-// ignore_for_file: unused_local_variable
+// ignore_for_file: unused_local_variable, non_constant_identifier_names, prefer_const_constructors, camel_case_types
 
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart' as http;
 
 class httpdemo {
@@ -57,10 +55,8 @@ class _LearnState extends State<Learn> {
           future: hello(),
           builder: (BuildContext ctx, AsyncSnapshot snapshot) {
             if (snapshot.data == null) {
-              return Container(
-                child: Center(
-                  child: CircularProgressIndicator(),
-                ),
+              return Center(
+                child: CircularProgressIndicator(),
               );
             } else {
               return ListView.builder(

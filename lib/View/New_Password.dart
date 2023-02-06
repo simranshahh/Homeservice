@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, file_names, prefer_const_literals_to_create_immutables, unused_field
+
 import 'package:flutter/material.dart';
 
 class NewPassword extends StatefulWidget {
@@ -60,7 +62,7 @@ class _NewPasswordState extends State<NewPassword> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(18, 18, 18, 0),
-              child: Container(
+              child: SizedBox(
                 height: 45,
                 child: TextField(
                   decoration: InputDecoration(
@@ -74,7 +76,7 @@ class _NewPasswordState extends State<NewPassword> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(18.0, 18, 18, 5),
-              child: Container(
+              child: SizedBox(
                 height: 45,
                 child: TextField(
                   decoration: InputDecoration(
@@ -156,14 +158,14 @@ class _NewPasswordState extends State<NewPassword> {
                               height: 15,
                             ),
                             CircleAvatar(
+                                backgroundColor:
+                                    Color.fromARGB(255, 90, 36, 165),
                                 child: IconButton(
                                     icon:
                                         Center(child: Icon(Icons.done_rounded)),
                                     onPressed: () {
                                       Navigator.pop(context);
-                                    }),
-                                backgroundColor:
-                                    Color.fromARGB(255, 90, 36, 165)),
+                                    })),
                           ],
                         ),
                       );

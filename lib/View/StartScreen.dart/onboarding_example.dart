@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
 import 'package:homeservice/View/SignIn.dart';
 import 'package:homeservice/View/Login.dart';
-import 'package:homeservice/View/SignIn/signin.dart';
+import 'package:homeservice/View/SignIn/customersignin.dart';
 import 'package:homeservice/View/StartScreen.dart/Welcome.dart';
 
 class OnBoard extends StatefulWidget {
@@ -51,7 +51,7 @@ class _OnBoardState extends State<OnBoard> {
         Navigator.push(
           context,
           CupertinoPageRoute(
-            builder: (context) => SignInpageScreen(),
+            builder: (context) => CustomerSignin(),
           ),
         );
       },

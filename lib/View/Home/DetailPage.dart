@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -19,7 +21,7 @@ class _DetailPageState extends ConsumerState<DetailPage> {
         children: [
           SizedBox(height: 50),
           Center(
-            child: Container(
+            child: SizedBox(
               height: 100,
               child: Image.asset(widget.service.image),
             ),

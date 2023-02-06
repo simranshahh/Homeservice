@@ -1,6 +1,4 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last, unnecessary_import
-
-import 'dart:ui';
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, unnecessary_import, file_names, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -16,9 +14,9 @@ class _SignState extends State<Sign> {
   googleLogin() async {
     print("googleLogin method Called");
 
-    GoogleSignIn _googleSignIn = GoogleSignIn();
+    GoogleSignIn googleSignIn = GoogleSignIn();
     try {
-      var result = await _googleSignIn.signIn();
+      var result = await googleSignIn.signIn();
 
       print(result);
     } catch (error) {

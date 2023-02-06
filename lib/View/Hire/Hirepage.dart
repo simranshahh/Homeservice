@@ -1,8 +1,8 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, file_names
 
 import 'package:flutter/material.dart';
 import 'package:homeservice/View/Bookings/Bookings.dart';
-import 'package:homeservice/View/Profile/Serviceman_Profile.dart';
+import 'package:homeservice/View/Serviceman_Profile/Serviceman_Profile.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HirePage extends ConsumerStatefulWidget {
@@ -213,13 +213,13 @@ class _HirePageState extends ConsumerState<HirePage> {
                                             builder: (BuildContext context) =>
                                                 Bookings()));
                                   },
-                                  child: Text(
-                                    'See My Order',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
                                   style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
                                         Colors.deepPurpleAccent),
+                                  ),
+                                  child: Text(
+                                    'See My Order',
+                                    style: TextStyle(color: Colors.white),
                                   ),
                                 )
                               ],

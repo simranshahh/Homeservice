@@ -1,15 +1,25 @@
-// ignore_for_file: prefer_const_constructors,
+// ignore_for_file: prefer_const_constructors,, unused_import
 
 import "package:flutter/material.dart";
 import 'package:homeservice/Bottomnavbar/BottomNabBar.dart';
-import 'package:homeservice/View/Hire/Hirepage.dart';
-import 'package:homeservice/View/Profile/Serviceman_Profile.dart';
+import 'package:homeservice/View/Bookings/scheduled_booking.dart';
+import 'package:homeservice/View/Home/Homepage.dart';
+import 'package:homeservice/View/Notifications/notification.dart';
+import 'package:homeservice/View/Notifications/notification_detail.dart';
+import 'package:homeservice/View/Serviceman_Profile/Serviceman_Profile.dart';
+import 'package:homeservice/View/Settings/Edit_Profile.dart';
+import 'package:homeservice/View/SignIn/customersignin.dart';
+import 'package:homeservice/View/SignIn/signin.dart';
+import 'package:homeservice/View/Signup/signup.dart';
+import 'package:homeservice/View/StartScreen.dart/Welcome.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-// import 'package:easy_localization/easy_localization.dart';
+import 'View/ForgetPassword.dart';
+import 'View/Signup/Customersignup.dart';
+import 'View/Signup/ServicemanSignup.dart';
 
-import 'services/app_navigator_service.dart';
+// import 'package:easy_localization/easy_localization.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

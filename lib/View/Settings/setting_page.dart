@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:homeservice/Bottomnavbar/BottomNabBar.dart';
+import 'package:homeservice/View/Settings/Edit_Profile.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../main.dart';
@@ -42,7 +44,13 @@ class _Settings_PageState extends ConsumerState<Settings_Page> {
             child: Row(
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                BottomNavScreen()));
+                  },
                   icon: Icon(Icons.arrow_back_ios),
                   color: Colors.white,
                 ),
@@ -164,9 +172,18 @@ class _Settings_PageState extends ConsumerState<Settings_Page> {
                           height: 35,
                           width: 35,
                         ),
-                        Text(
-                          '   Edit Profile',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        InkWell(
+                          child: Text(
+                            '   Edit Profile',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        Edit_ProfilePage()));
+                          },
                         )
                       ],
                     ),

@@ -1,8 +1,7 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, file_names
 
 import 'package:flutter/material.dart';
 import 'package:homeservice/View/Carpenter/workers.dart';
-import 'package:homeservice/View/StartScreen.dart/Welcome.dart';
 
 import '../../Model/Home/Featuredservices.dart';
 import '../../Model/Ourservices.dart';
@@ -23,16 +22,6 @@ class _HomepageState extends State<Homepage> {
     Services(text: 'Painter'),
   ];
 
-  // List<String> searchTerms = [
-  //   "Carpenter",
-  //   "Plumber",
-  //   "Painter",
-  //   "Teacher",
-  //   "Beautician",
-  //   "Electician",
-  //   "Tutor",
-  //   "Laundary"
-  // ];
   @override
   Widget build(BuildContext context) {
     List<FeaturedServices> product = [
@@ -310,7 +299,7 @@ class _HomepageState extends State<Homepage> {
                       ),
                     ),
                     Text('Featured Services'),
-                    Container(
+                    SizedBox(
                       height: 195,
                       // width: 90,
                       child: ListView.builder(
@@ -381,7 +370,7 @@ class _HomepageState extends State<Homepage> {
                     ),
                     SizedBox(height: 10),
                     Text('Advertisments'),
-                    Container(
+                    SizedBox(
                       height: 200,
                       child: ListView(
                         scrollDirection: Axis.horizontal,
@@ -414,7 +403,7 @@ class _HomepageState extends State<Homepage> {
                       height: 20,
                     ),
                     Text('Offers & Discounts'),
-                    Container(
+                    SizedBox(
                       height: 200,
                       child: ListView(
                         scrollDirection: Axis.horizontal,

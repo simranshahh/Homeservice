@@ -1,7 +1,8 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, camel_case_types, non_constant_identifier_names, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:homeservice/View/Serviceman_Profile/Serviceman_Profile.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../Model/Carpenter/workers.dart';
@@ -70,14 +71,23 @@ class _New_OrderState extends ConsumerState<New_Order> {
             itemCount: Details.length,
             itemBuilder: (BuildContext context, index) {
               return Stack(children: [
-                Card(
-                  elevation: 5.0,
-                  child: Container(
-                    height: 100,
-                    width: 400,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.white),
+                InkWell(
+                  onTap: (() {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                Serviceman_Profile()));
+                  }),
+                  child: Card(
+                    elevation: 5.0,
+                    child: Container(
+                      height: 100,
+                      width: 400,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.white),
+                    ),
                   ),
                 ),
                 Padding(
@@ -101,7 +111,6 @@ class _New_OrderState extends ConsumerState<New_Order> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // ignore: prefer_const_constructors
                             Text(
                               Details[index].name,
                               style: TextStyle(fontWeight: FontWeight.bold),

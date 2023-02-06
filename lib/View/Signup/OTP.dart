@@ -1,7 +1,9 @@
+// ignore_for_file: prefer_const_constructors, prefer_interpolation_to_compose_strings, avoid_print, file_names
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:homeservice/View/Signup/Signup.dart';
+import 'package:homeservice/View/Signup/Customersignup.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
@@ -56,7 +58,7 @@ class _ConfirmOTPState extends ConsumerState<ConfirmOTP> {
                     icon: Icon(Icons.arrow_back_ios),
                     onPressed: () {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (BuildContext context) => Signup()));
+                          builder: (BuildContext context) => CustomerSignup()));
                     },
                   ),
                   SizedBox(
@@ -113,8 +115,8 @@ class _ConfirmOTPState extends ConsumerState<ConfirmOTP> {
                           child: Column(
                             children: [
                               ElevatedButton(
-                                child: Text('Resend Code'),
                                 onPressed: enableResend ? _resendCode : null,
+                                child: Text('Resend Code'),
                               ),
                               Text(
                                 'after $secondsRemaining seconds',

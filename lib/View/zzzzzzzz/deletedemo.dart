@@ -19,6 +19,8 @@ class Demo {
 }
 
 class Deletedemo extends StatefulWidget {
+  const Deletedemo({super.key});
+
   @override
   State<Deletedemo> createState() => _DeletedemoState();
 }

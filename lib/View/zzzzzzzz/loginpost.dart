@@ -1,4 +1,4 @@
-// ignore_for_file: empty_constructor_bodies, dead_code
+// ignore_for_file: empty_constructor_bodies, dead_code, prefer_const_constructors, non_constant_identifier_names, avoid_print, unused_field, unused_local_variable
 
 import 'dart:convert';
 import 'package:flutter/material.dart';

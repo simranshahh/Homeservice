@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -66,10 +68,8 @@ class _SandyState extends State<Sandy> {
             future: getRequest(),
             builder: (BuildContext ctx, AsyncSnapshot snapshot) {
               if (snapshot.data == null) {
-                return Container(
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
+                return Center(
+                  child: CircularProgressIndicator(),
                 );
               } else {
                 return ListView.builder(

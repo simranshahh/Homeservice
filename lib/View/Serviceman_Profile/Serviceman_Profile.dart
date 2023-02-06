@@ -1,10 +1,10 @@
-// ignore_for_file: camel_case_types, prefer_const_constructors, sized_box_for_whitespace
+// ignore_for_file: camel_case_types, prefer_const_constructors, sized_box_for_whitespace, file_names, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:homeservice/View/Hire/Hirepage.dart';
-import 'package:homeservice/View/Profile/Calendar.dart';
-import 'package:homeservice/View/Profile/Map.dart/map.dart';
+import 'package:homeservice/View/Serviceman_Profile/Calendar.dart';
+import 'package:homeservice/View/Serviceman_Profile/Map.dart/map.dart';
 import 'package:homeservice/View/Carpenter/workers.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:time_picker_sheet/widget/sheet.dart';
@@ -200,27 +200,32 @@ class _Serviceman_ProfileState extends ConsumerState<Serviceman_Profile> {
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(top: 18.0),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                ElevatedButton(
-                                  style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                        Color.fromARGB(255, 90, 36, 165),
-                                      ),
-                                      // padding: MaterialStateProperty.all(
-                                      //     EdgeInsets.all(50)),
-                                      textStyle: MaterialStateProperty.all(
-                                          TextStyle(fontSize: 20))),
-                                  onPressed: () =>
-                                      _openTimePickerSheet(context),
-                                  child: Text(
-                                    'Time ${dateTimeSelected.hour}:${dateTimeSelected.minute}',
-                                    style: TextStyle(fontSize: 19),
+                                Container(
+                                  height: 40,
+                                  child: ElevatedButton(
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                          Color.fromARGB(255, 90, 36, 165),
+                                        ),
+                                        // padding: MaterialStateProperty.all(
+                                        //     EdgeInsets.all(50)),
+                                        textStyle: MaterialStateProperty.all(
+                                            TextStyle(fontSize: 20))),
+                                    onPressed: () =>
+                                        _openTimePickerSheet(context),
+                                    child: Text(
+                                      'Time ${dateTimeSelected.hour}:${dateTimeSelected.minute}',
+                                      style: TextStyle(
+                                          fontSize: 19, color: Colors.white),
+                                    ),
                                   ),
                                 ),
                                 SizedBox(

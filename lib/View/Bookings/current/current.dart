@@ -1,17 +1,17 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: file_names, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:homeservice/View/Bookings/Cancel_Booking/Cancel_booking.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class Completed extends ConsumerStatefulWidget {
-  const Completed({super.key});
+class Current extends ConsumerStatefulWidget {
+  const Current({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _CompletedState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _CurrentState();
 }
 
-class _CompletedState extends ConsumerState<Completed> {
+class _CurrentState extends ConsumerState<Current> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +72,7 @@ class _CompletedState extends ConsumerState<Completed> {
                       height: 5,
                     ),
                     Text(
-                      'Scheduled time: 02-02-2022  4.00PM',
+                      'Scheduled for: 02-02-2022  4.00PM',
                       style: TextStyle(color: Colors.grey),
                     ),
                   ],

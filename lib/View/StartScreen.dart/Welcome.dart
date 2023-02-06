@@ -1,7 +1,9 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables, file_names
 
 import 'package:flutter/material.dart';
+import 'package:homeservice/View/SignIn/customersignin.dart';
 import 'package:homeservice/View/SignIn/signin.dart';
+import 'package:homeservice/View/Signup/Customersignup.dart';
 import 'package:homeservice/View/Signup/Signup.dart';
 import 'package:homeservice/View/StartScreen.dart/onboarding_example.dart';
 
@@ -87,7 +89,7 @@ class _WelcomeState extends State<Welcome> {
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                       builder: (BuildContext context) =>
-                                          SignInpageScreen()));
+                                          Signin()));
                             },
                           ),
                         ),
@@ -116,7 +118,7 @@ class _WelcomeState extends State<Welcome> {
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                       builder: (BuildContext context) =>
-                                          Signup()));
+                                          SignUp()));
                             },
                           ),
                         ),

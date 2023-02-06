@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, file_names, non_constant_identifier_names, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -101,7 +101,6 @@ class _RepairState extends ConsumerState<Repair> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // ignore: prefer_const_constructors
                             Text(
                               Details[index].name,
                               style: TextStyle(fontWeight: FontWeight.bold),

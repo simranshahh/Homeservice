@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, prefer_const_constructors, file_names
 
 import 'package:flutter/material.dart';
 
@@ -89,7 +89,7 @@ class _CalendarState extends State<Calendar> with RestorationMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         height: 40,
         width: 120,
         child: OutlinedButton(

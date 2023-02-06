@@ -1,11 +1,11 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, file_names
 
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:homeservice/View/OTP.dart';
 import 'package:homeservice/View/SignIn.dart';
-import 'package:homeservice/View/SignIn/signin.dart';
+import 'package:homeservice/View/SignIn/customersignin.dart';
 
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({super.key});
@@ -68,7 +68,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(15.0, 8, 15, 20),
-              child: Container(
+              child: SizedBox(
                 height: 45,
                 child: TextField(
                   decoration: InputDecoration(
@@ -98,8 +98,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     ),
                     onTap: () {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              SignInpageScreen()));
+                          builder: (BuildContext context) => CustomerSignin()));
                     },
                   )
                 ],
