@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors,, unused_import
 
+import 'package:firebase_core/firebase_core.dart';
 import "package:flutter/material.dart";
 import 'package:homeservice/Bottomnavbar/BottomNabBar.dart';
 import 'package:homeservice/View/Bookings/scheduled_booking.dart';
@@ -9,6 +10,7 @@ import 'package:homeservice/View/Notifications/notification_detail.dart';
 import 'package:homeservice/View/Serviceman_Profile/Serviceman_Profile.dart';
 import 'package:homeservice/View/Settings/Edit_Profile.dart';
 import 'package:homeservice/View/SignIn/customersignin.dart';
+import 'package:homeservice/View/SignIn/servicemansignin.dart';
 import 'package:homeservice/View/SignIn/signin.dart';
 import 'package:homeservice/View/Signup/signup.dart';
 import 'package:homeservice/View/StartScreen.dart/Welcome.dart';
@@ -27,7 +29,9 @@ import 'View/Signup/ServicemanSignup.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await EasyLocalization.ensureInitialized();
-
+  await Firebase.initializeApp(
+      //  options: DefaultFirebaseOptions.currentPlatform,
+      );
   await initialize();
 
   runApp(ProviderScope(child: MyApp()));
@@ -49,7 +53,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(primarySwatch: Colors.amber),
             darkTheme: ThemeData.dark(),
             themeMode: currentMode,
-            home: Serviceman_setting(),
+            home: ServicemanSignin(),
           );
         });
   }

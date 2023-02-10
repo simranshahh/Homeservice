@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "984170069552",
+    "project_id": "login-2e10a",
+    "storage_bucket": "login-2e10a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984170069552:android:311062fffc3a10b01af7f5",
+        "android_client_info": {
+          "package_name": "com.example.homeservice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "984170069552-akcf9geebn36r0m0f0dcbs6hfj61vln8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjiZFX7C__Fakv4HgS_NHLWIv-gLTLYPE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "984170069552-akcf9geebn36r0m0f0dcbs6hfj61vln8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
