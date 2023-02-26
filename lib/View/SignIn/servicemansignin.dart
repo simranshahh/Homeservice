@@ -1,9 +1,11 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, avoid_print, use_build_context_synchronously, sort_child_properties_last, unused_import
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:homeservice/Bottomnavbar/BottomNabBar.dart';
+import 'package:homeservice/View/SignIn/signin.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../Home/Homepage.dart';
@@ -62,96 +64,110 @@ class _ServicemanSigninState extends ConsumerState<ServicemanSignin> {
   Widget build(BuildContext context) {
     final emailctrl = TextEditingController();
     final passwordctrl = TextEditingController();
-    return Scaffold(
-        backgroundColor: Colors.white,
-        body: Stack(
-          children: [
-            Container(
-              height: 300,
-              width: 400,
-              decoration: BoxDecoration(
-                  color: Colors.deepPurpleAccent,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10))),
-            ),
-            Center(
-              child: Card(
-                child: Container(
-                  height: 350,
-                  width: 300,
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.all(25.0),
-                    child: Column(
-                      children: [
-                        Text(
-                          'Login Page',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          textInputAction: TextInputAction.next,
-                          // onSaved: (input) => user!.email = input,
-                          controller: emailctrl,
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.mail),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15)),
-                            labelText: 'Email',
+    return SafeArea(
+      child: Scaffold(
+          backgroundColor: Colors.white,
+          body: Stack(
+            children: [
+              Container(
+                height: 300,
+                width: 400,
+                decoration: BoxDecoration(
+                    color: Colors.deepPurpleAccent,
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10))),
+              ),
+              IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => Signin()));
+                  },
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.white,
+                  )),
+              Center(
+                child: Card(
+                  child: Container(
+                    height: 350,
+                    width: 300,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(25.0),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Login Page',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
                           ),
-                          validator: FormBuilderValidators.compose(
-                              [FormBuilderValidators.required()]),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          textInputAction: TextInputAction.next,
-                          // onSaved: (input) => user!.email = input,
-                          controller: passwordctrl,
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.mail),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15)),
-                            labelText: 'Password',
+                          SizedBox(
+                            height: 20,
                           ),
-                          validator: FormBuilderValidators.compose(
-                              [FormBuilderValidators.required()]),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        ElevatedButton(
-                          onPressed: () async {
-                            User? user = await loginUsingEmailPassword(
-                                email: emailctrl.text,
-                                password: passwordctrl.text,
-                                context: context);
-                            print(user);
-                            if (user != null) {
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: (context) => Homepage()));
-                            }
-                          },
-                          child: Text('Login'),
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                              Colors.deepPurpleAccent,
+                          TextFormField(
+                            textInputAction: TextInputAction.next,
+                            // onSaved: (input) => user!.email = input,
+                            controller: emailctrl,
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.mail),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15)),
+                              labelText: 'Email',
                             ),
+                            validator: FormBuilderValidators.compose(
+                                [FormBuilderValidators.required()]),
                           ),
-                        )
-                      ],
+                          SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            textInputAction: TextInputAction.next,
+                            // onSaved: (input) => user!.email = input,
+                            controller: passwordctrl,
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.mail),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15)),
+                              labelText: 'Password',
+                            ),
+                            validator: FormBuilderValidators.compose(
+                                [FormBuilderValidators.required()]),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          ElevatedButton(
+                            onPressed: () async {
+                              User? user = await loginUsingEmailPassword(
+                                  email: emailctrl.text,
+                                  password: passwordctrl.text,
+                                  context: context);
+                              print(user);
+                              if (user != null) {
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            BottomNavScreen()));
+                              }
+                            },
+                            child: Text('Login'),
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                Colors.deepPurpleAccent,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            )
-          ],
-        ));
+              )
+            ],
+          )),
+    );
   }
 }

@@ -63,10 +63,6 @@ class CustomerSigninState extends ConsumerState<CustomerSignin> {
 
   late Logininfo user;
 
-
-
-  
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(

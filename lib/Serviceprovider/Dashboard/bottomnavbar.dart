@@ -1,27 +1,24 @@
 // ignore_for_file: file_names, prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_local_variable
 
 import 'package:flutter/material.dart';
+import 'package:homeservice/Serviceprovider/Dashboard/Book/Book.dart';
+import 'package:homeservice/Serviceprovider/Dashboard/Dashboard/dashboard.dart';
 import 'package:homeservice/Serviceprovider/Dashboard/profile.dart';
-import 'package:homeservice/View/Home/Homepage.dart';
-import 'package:homeservice/View/Notifications/notification.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../View/Bookings/Bookings.dart';
-
-class BottomNavScreen extends ConsumerStatefulWidget {
-  const BottomNavScreen({super.key});
+class Bottomnavbar extends ConsumerStatefulWidget {
+  const Bottomnavbar({super.key});
 
   @override
-  ConsumerState<BottomNavScreen> createState() => _BottomNavScreenState();
+  ConsumerState<Bottomnavbar> createState() => _BottomnavbarState();
 }
 
-class _BottomNavScreenState extends ConsumerState<BottomNavScreen> {
+class _BottomnavbarState extends ConsumerState<Bottomnavbar> {
   int _currentIndex = 0;
   final screens = [
-    const Homepage(),
-    const Bookings(),
-    const Notification_page(),
-    const Serviceman_setting()
+    const Dashboard(),
+    const Serviceman_Notification(),
+    const Serviceman_setting(),
   ];
 
   void _onItemTapped(int index) {
@@ -42,18 +39,14 @@ class _BottomNavScreenState extends ConsumerState<BottomNavScreen> {
             items: [
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
-                label: 'Home',
+                label: 'Dashboard',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.bookmark_outlined),
-                label: 'Bookings',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.notifications),
                 label: 'Notifications',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.settings),
+                icon: Icon(Icons.notifications),
                 label: 'Profile',
               ),
             ],

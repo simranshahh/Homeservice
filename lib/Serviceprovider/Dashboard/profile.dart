@@ -1,12 +1,16 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, unused_import, file_names
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:homeservice/Bottomnavbar/BottomNabBar.dart';
+import 'package:homeservice/Serviceprovider/Dashboard/edit_profile.dart';
 import 'package:homeservice/View/Settings/Edit_Profile.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../main.dart';
-import 'Edit_servicemanProfilePage.dart';
+import 'bottomnavbar.dart';
 
 class Serviceman_setting extends ConsumerStatefulWidget {
   const Serviceman_setting({super.key});
@@ -18,6 +22,11 @@ class Serviceman_setting extends ConsumerStatefulWidget {
 
 class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
   bool isDarkModeEnabled = false;
+
+  ImagePicker picker = ImagePicker();
+  XFile? image;
+
+  String imageUrl = '';
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +59,7 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                BottomNavScreen()));
+                            builder: (BuildContext context) => Bottomnavbar()));
                   },
                   icon: Icon(Icons.arrow_back_ios),
                   color: Colors.white,
@@ -87,6 +95,17 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
             child: CircleAvatar(
               radius: 50,
               backgroundImage: AssetImage('assets/worker.jpg'),
+              child: Padding(
+                padding: const EdgeInsets.all(65.0),
+                child: IconButton(
+                  icon: Icon(Icons.camera),
+                  onPressed: (() async {
+                    image = await picker.pickImage(source: ImageSource.gallery);
+                    setState(() {});
+                    // image == null ? Container() : Image.file(File(image!.path));
+                  }),
+                ),
+              ),
             ),
           ),
           Padding(

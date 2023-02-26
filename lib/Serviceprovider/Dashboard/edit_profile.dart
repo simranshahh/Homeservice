@@ -1,8 +1,7 @@
 // ignore_for_file: camel_case_types, file_names, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:homeservice/View/Settings/Serviceman_Profile.dart';
-import 'package:homeservice/View/Settings/customerprofile.dart';
+import 'package:homeservice/Serviceprovider/Dashboard/profile.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class EditServiceman_setting extends ConsumerStatefulWidget {
@@ -47,7 +46,7 @@ class _EditServiceman_settingState
                       context,
                       MaterialPageRoute(
                           builder: (BuildContext context) =>
-                              Customer_setting()));
+                              Serviceman_setting()));
                 },
                 icon: Icon(Icons.arrow_back_ios),
                 color: Colors.white,
@@ -110,6 +109,7 @@ class _EditServiceman_settingState
                       height: 10,
                     ),
                     TextField(
+                      textInputAction: TextInputAction.next,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.email),
                         border: OutlineInputBorder(
@@ -127,6 +127,7 @@ class _EditServiceman_settingState
                             borderRadius: BorderRadius.circular(5)),
                         labelText: 'Mobile Number',
                       ),
+                      textInputAction: TextInputAction.next,
                     ),
                     SizedBox(
                       height: 10,
@@ -158,7 +159,7 @@ class _EditServiceman_settingState
                                           context,
                                           MaterialPageRoute(
                                               builder: (BuildContext context) =>
-                                                  Serviceman_setting()));
+                                                  EditServiceman_setting()));
                                     },
                                     style: ButtonStyle(
                                       backgroundColor:

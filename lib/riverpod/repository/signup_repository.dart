@@ -56,3 +56,22 @@ class SignupRepository implements ISignupRepository {
     return null;
   }
 }
+
+
+
+
+
+
+
+// import 'package:firebase_auth/firebase_auth.dart';
+
+// class ServicemanSignup{
+//   AuthRepository( required this.auth);
+
+//   final FirebaseAuth _auth;
+
+//   Future<User?> signInWithEmailAndPassword{
+//     String? name;
+//   S
+//   }
+// }

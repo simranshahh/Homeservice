@@ -124,7 +124,7 @@ class _CustomerSignupState extends ConsumerState<CustomerSignup> {
                           //autovalidateMode: AutovalidateMode.always,
                           controller: usernameCtrl,
                           textInputAction: TextInputAction.next,
-                          onSaved: (input) => user.username = input,
+                          //onSaved: (input) => user.username = input,
                           decoration: InputDecoration(
                             prefixIcon: Icon(Icons.mail),
                             border: OutlineInputBorder(
@@ -142,7 +142,7 @@ class _CustomerSignupState extends ConsumerState<CustomerSignup> {
                           controller: emailCtrl,
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.emailAddress,
-                          onSaved: (input) => user.emailAddress = input,
+                          // onSaved: (input) => user.emailAddress = input,
                           decoration: InputDecoration(
                             prefixIcon: Icon(Icons.room_service),
                             border: OutlineInputBorder(

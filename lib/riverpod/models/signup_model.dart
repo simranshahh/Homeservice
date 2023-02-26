@@ -26,35 +26,35 @@ class SignupModel {
 class SignupClass {
   SignupClass({
     this.name,
-    this.surname,
-    this.username,
+    this.email,
+    this.servicetype,
     this.phoneNo,
-    this.emailAddress,
+    this.location,
     this.password,
   });
 
   String? name;
-  String? surname;
-  String? username;
+  String? email;
+  String? servicetype;
   String? phoneNo;
-  String? emailAddress;
+  String? location;
   String? password;
 
   factory SignupClass.fromJson(Map<String, dynamic> json) => SignupClass(
         name: json["name"],
-        surname: json["surname"],
-        username: json["username"],
+        email: json["email"],
+        servicetype: json["service"],
         phoneNo: json["phoneNo"],
-        emailAddress: json["emailAddress"],
+        location: json["location"],
         password: json["password"],
       );
 
   Map<String, dynamic> toJson() => {
         "name": name,
-        "surname": surname,
-        "username": username,
+        "email": email,
+        "servicetype": servicetype,
         "phoneNo": phoneNo,
-        "emailAddress": emailAddress,
+        "location": location,
         "password": password,
       };
 }

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, file_names, non_constant_identifier_names, prefer_const_literals_to_create_immutables, unused_import
+// ignore_for_file: prefer_const_constructors, file_names, non_constant_identifier_names, prefer_const_literals_to_create_immutables, unused_import, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -20,6 +20,12 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
   List<String> list = <String>['Carpenter', 'Plumber', 'Laundary', 'Cleaning'];
   @override
   Widget build(BuildContext context) {
+    final name = TextEditingController();
+    final emailctrl = TextEditingController();
+    final servicetype = TextEditingController();
+    final phoneno = TextEditingController();
+    final location = TextEditingController();
+    final passwordctrl = TextEditingController();
     return Scaffold(
       // key: _signupKey,
       body: Stack(
@@ -58,13 +64,6 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
                   SizedBox(
                     height: 10,
                   ),
-                  // Text(
-                  //   'Sign in to experience the best serivces\naround you',
-                  //   style: TextStyle(
-                  //       //fontWeight: FontWeight.w500,
-                  //       fontSize: 15,
-                  //       color: Colors.white),
-                  // )
                 ],
               ),
             ),
@@ -85,7 +84,7 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
                       child: Column(children: [
                         TextFormField(
                           //autovalidateMode: AutovalidateMode.always,
-                          //controller: usernameCtrl,
+                          controller: name,
                           textInputAction: TextInputAction.next,
                           //onSaved: (input) => user.username = input,
                           decoration: InputDecoration(
@@ -102,7 +101,7 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
                           height: 10,
                         ),
                         TextFormField(
-                          //  controller: emailCtrl,
+                          controller: emailctrl,
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.emailAddress,
                           // onSaved: (input) => user.emailAddress = input,

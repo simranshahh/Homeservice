@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types, prefer_const_constructors, file_names
+// ignore_for_file: camel_case_types, prefer_const_constructors, file_names, unused_element
 
 import 'package:flutter/material.dart';
 import 'package:homeservice/Bottomnavbar/BottomNabBar.dart';
@@ -13,12 +13,47 @@ class Cancel_Booking extends ConsumerStatefulWidget {
 }
 
 class _Cancel_BookingState extends ConsumerState<Cancel_Booking> {
-  bool isChecked = true;
+  // bool isChecked = true;
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  // List<bool> isChecked = [false, false,true,true,true,true];
+  // int value = 0;
+
+  // void initState() {
+  //   super.initState();
+  // }
+
+  // _addCard() {
+  //   setState(() {
+  //     value = value + 1;
+  //     print(value);
+  //   });
+  // }
+
+  Map<String, bool> numbers = {
+    'More Expensive': false,
+    'Inappropriate timing and scheduling': false,
+    'Order By Mistake': false,
+    'For reordering': false,
+    'Not needed at current': false,
+    'Wanted to check the application': false,
+  };
+
+  // var holder_1 = [];
+
+  // getItems() {
+  //   numbers.forEach((key, value) {
+  //     if (value == true) {
+  //       holder_1.add(key);
+  //     }
+  //   });
+
+  //   // Printing all selected items on Terminal screen.
+  //   print(holder_1);
+  //   // Here you will get all your selected Checkbox items.
+
+  //   // Clear array after use.
+  //   holder_1.clear();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -56,114 +91,131 @@ class _Cancel_BookingState extends ConsumerState<Cancel_Booking> {
               SizedBox(
                 height: 10,
               ),
-              Row(
-                children: [
-                  Checkbox(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    checkColor: Colors.white,
-                    fillColor: MaterialStateProperty.resolveWith(getColor),
-                    value: isChecked,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isChecked = value!;
-                      });
-                    },
-                  ),
-                  Text('More Expensive')
-                ],
+              Expanded(
+                child: ListView(
+                  children: numbers.keys.map((String key) {
+                    return CheckboxListTile(
+                      title: Text(key),
+                      value: numbers[key],
+                      activeColor: Colors.pink,
+                      checkColor: Colors.white,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          numbers[key] = value!;
+                        });
+                      },
+                    );
+                  }).toList(),
+                ),
               ),
-              Row(
-                children: [
-                  Checkbox(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    checkColor: Colors.white,
-                    fillColor: MaterialStateProperty.resolveWith(getColor),
-                    value: isChecked,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isChecked = value!;
-                      });
-                    },
-                  ),
-                  Text('Inappropriate timing and scheduling.'),
-                ],
-              ),
-              Row(
-                children: [
-                  Checkbox(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    checkColor: Colors.white,
-                    fillColor: MaterialStateProperty.resolveWith(getColor),
-                    value: isChecked,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isChecked = value!;
-                      });
-                    },
-                  ),
-                  Text('Order By Mistake')
-                ],
-              ),
-              Row(
-                children: [
-                  Checkbox(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    checkColor: Colors.white,
-                    fillColor: MaterialStateProperty.resolveWith(getColor),
-                    value: isChecked,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isChecked = value!;
-                      });
-                    },
-                  ),
-                  Text('For reordering')
-                ],
-              ),
-              Row(
-                children: [
-                  Checkbox(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    checkColor: Colors.white,
-                    fillColor: MaterialStateProperty.resolveWith(getColor),
-                    value: isChecked,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isChecked = value!;
-                      });
-                    },
-                  ),
-                  Text('Not needed at current')
-                ],
-              ),
-              Row(
-                children: [
-                  Checkbox(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    checkColor: Colors.white,
-                    fillColor: MaterialStateProperty.resolveWith(getColor),
-                    value: isChecked,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isChecked = value!;
-                      });
-                    },
-                  ),
-                  Text('Wanted to check the application')
-                ],
-              ),
+              // Row(
+              //   children: [
+              //     Checkbox(
+              //       shape: RoundedRectangleBorder(
+              //         borderRadius: BorderRadius.circular(5.0),
+              //       ),
+              //       checkColor: Colors.white,
+              //       fillColor: MaterialStateProperty.resolveWith(getColor),
+              //       value: isChecked.,
+              //       onChanged: (bool? value) {
+              //         setState(() {
+              //           isChecked = value!;
+              //         });
+              //       },
+              //     ),
+              //     Text('More Expensive')
+              //   ],
+              // ),
+              // Row(
+              //   children: [
+              //     Checkbox(
+              //       shape: RoundedRectangleBorder(
+              //         borderRadius: BorderRadius.circular(5.0),
+              //       ),
+              //       checkColor: Colors.white,
+              //       fillColor: MaterialStateProperty.resolveWith(getColor),
+              //       value: isChecked,
+              //       onChanged: (bool? value) {
+              //         setState(() {
+              //           isChecked = value!;
+              //         });
+              //       },
+              //     ),
+              //     Text('Inappropriate timing and scheduling.'),
+              //   ],
+              // ),
+              // Row(
+              //   children: [
+              //     Checkbox(
+              //       shape: RoundedRectangleBorder(
+              //         borderRadius: BorderRadius.circular(5.0),
+              //       ),
+              //       checkColor: Colors.white,
+              //       fillColor: MaterialStateProperty.resolveWith(getColor),
+              //       value: isChecked,
+              //       onChanged: (bool? value) {
+              //         setState(() {
+              //           isChecked = value!;
+              //         });
+              //       },
+              //     ),
+              //     Text('Order By Mistake')
+              //   ],
+              // ),
+              // Row(
+              //   children: [
+              //     Checkbox(
+              //       shape: RoundedRectangleBorder(
+              //         borderRadius: BorderRadius.circular(5.0),
+              //       ),
+              //       checkColor: Colors.white,
+              //       fillColor: MaterialStateProperty.resolveWith(getColor),
+              //       value: isChecked,
+              //       onChanged: (bool? value) {
+              //         setState(() {
+              //           isChecked = value!;
+              //         });
+              //       },
+              //     ),
+              //     Text('For reordering')
+              //   ],
+              // ),
+              // Row(
+              //   children: [
+              //     Checkbox(
+              //       shape: RoundedRectangleBorder(
+              //         borderRadius: BorderRadius.circular(5.0),
+              //       ),
+              //       checkColor: Colors.white,
+              //       fillColor: MaterialStateProperty.resolveWith(getColor),
+              //       value: isChecked,
+              //       onChanged: (bool? value) {
+              //         setState(() {
+              //           isChecked = value!;
+              //         });
+              //       },
+              //     ),
+              //     Text('Not needed at current')
+              //   ],
+              // ),
+              // Row(
+              //   children: [
+              //     Checkbox(
+              //       shape: RoundedRectangleBorder(
+              //         borderRadius: BorderRadius.circular(5.0),
+              //       ),
+              //       checkColor: Colors.white,
+              //       fillColor: MaterialStateProperty.resolveWith(getColor),
+              //       value: isChecked,
+              //       onChanged: (bool? value) {
+              //         setState(() {
+              //           isChecked = value!;
+              //         });
+              //       },
+              //     ),
+              //     Text('Wanted to check the application')
+              //   ],
+              // ),
               SizedBox(
                 height: 20,
               ),
