@@ -2,38 +2,39 @@
 
 import 'package:firebase_core/firebase_core.dart';
 import "package:flutter/material.dart";
-import 'package:homeservice/Bottomnavbar/BottomNabBar.dart';
+import 'package:homeservice/CustomerPanel/Bottomnavbar/BottomNabBar.dart';
 import 'package:homeservice/Serviceprovider/Dashboard/Dashboard/Ratings.dart';
 import 'package:homeservice/Serviceprovider/Dashboard/bottomnavbar.dart';
-import 'package:homeservice/View/Bookings/current/current.dart';
-import 'package:homeservice/View/Bookings/scheduled_booking.dart';
-import 'package:homeservice/View/Home/Homepage.dart';
-import 'package:homeservice/View/Notifications/notification.dart';
-import 'package:homeservice/View/Notifications/notification_detail.dart';
-import 'package:homeservice/View/Serviceman_Profile/Serviceman_Profile.dart';
-import 'package:homeservice/View/Settings/Edit_Profile.dart';
-import 'package:homeservice/View/SignIn/customersignin.dart';
-import 'package:homeservice/View/SignIn/servicemansignin.dart';
-import 'package:homeservice/View/SignIn/signin.dart';
-import 'package:homeservice/View/Signup/signup.dart';
-import 'package:homeservice/View/StartScreen.dart/Welcome.dart';
-import 'package:homeservice/View/StartScreen.dart/onboarding_example.dart';
+import 'package:homeservice/CustomerPanel/View/Bookings/current/current.dart';
+import 'package:homeservice/CustomerPanel/View/Bookings/scheduled_booking.dart';
+import 'package:homeservice/CustomerPanel/View/Home/Homepage.dart';
+import 'package:homeservice/CustomerPanel/View/Notifications/notification.dart';
+import 'package:homeservice/CustomerPanel/View/Notifications/notification_detail.dart';
+import 'package:homeservice/CustomerPanel/View/Serviceman_Profile/Serviceman_Profile.dart';
+import 'package:homeservice/CustomerPanel/View/Settings/Edit_Profile.dart';
+import 'package:homeservice/CustomerPanel/View/SignIn/customersignin.dart';
+import 'package:homeservice/CustomerPanel/View/SignIn/servicemansignin.dart';
+import 'package:homeservice/CustomerPanel/View/SignIn/signin.dart';
+import 'package:homeservice/CustomerPanel/View/Signup/signup.dart';
+import 'package:homeservice/CustomerPanel/View/StartScreen.dart/Welcome.dart';
+import 'package:homeservice/CustomerPanel/View/StartScreen.dart/onboarding_example.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import 'Serviceprovider/Dashboard/Book/CurrentPanel/Currentpanel.dart';
 import 'Serviceprovider/Dashboard/Dashboard/reviews.dart';
-import 'View/ForgetPassword.dart';
-import 'View/Settings/customerprofile.dart';
-import 'View/Signup/Customersignup.dart';
-import 'View/Signup/ServicemanSignup.dart';
+import 'CustomerPanel/View/ForgetPassword.dart';
+import 'CustomerPanel/View/Serviceman_Profile/rate.dart';
+import 'CustomerPanel/View/Settings/customerprofile.dart';
+import 'CustomerPanel/View/Signup/Customersignup.dart';
+import 'CustomerPanel/View/Signup/ServicemanSignup.dart';
 
 // import 'package:easy_localization/easy_localization.dart';
 // Future<void> backgroundHandler(RemoteMessage message) async {
 // 	print(message.data.toString());
 // print(message.notification!.title);
 // }
-
+final themeMode = ValueNotifier(2);
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // FirebaseMessaging.onBackgroundMessage(backgroundHandler);
@@ -53,16 +54,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<ThemeMode>(
-        valueListenable: themeNotifier,
-        builder: (_, ThemeMode currentMode, __) {
+    return ValueListenableBuilder(
+        valueListenable: themeMode,
+        builder: (context, value, g) {
           return MaterialApp(
-            // Remove the debug banner
+            // Remove the debug
+            // darkTheme: ThemeData.dark(),
+            // themeMode: ThemeMode.values.toList()[value],
             debugShowCheckedModeBanner: false,
-            theme: ThemeData(primarySwatch: Colors.amber),
-            darkTheme: ThemeData.dark(),
-            themeMode: currentMode,
-            home: Bottomnavbar(),
+
+            home: RateServiceman(),
           );
         });
   }

@@ -82,7 +82,7 @@ class _CompletededPanelState extends ConsumerState<CompletededPanel> {
                               child: Center(
                                 child: Text(
                                   'Completed',
-                                  style: TextStyle(fontSize: 9),
+                                  style: TextStyle(fontSize: 8),
                                 ),
                               ),
                             ),

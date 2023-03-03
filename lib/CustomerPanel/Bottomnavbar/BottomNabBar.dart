@@ -1,24 +1,27 @@
 // ignore_for_file: file_names, prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_local_variable
 
 import 'package:flutter/material.dart';
-import 'package:homeservice/Serviceprovider/Notifications/WorkNotify.dart';
-import 'package:homeservice/Serviceprovider/Dashboard/Dashboard/dashboard.dart';
 import 'package:homeservice/Serviceprovider/Dashboard/profile.dart';
+import 'package:homeservice/CustomerPanel/View/Home/Homepage.dart';
+import 'package:homeservice/CustomerPanel/View/Notifications/notification.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class Bottomnavbar extends ConsumerStatefulWidget {
-  const Bottomnavbar({super.key});
+import '../View/Bookings/Bookings.dart';
+
+class BottomNavScreen extends ConsumerStatefulWidget {
+  const BottomNavScreen({super.key});
 
   @override
-  ConsumerState<Bottomnavbar> createState() => _BottomnavbarState();
+  ConsumerState<BottomNavScreen> createState() => _BottomNavScreenState();
 }
 
-class _BottomnavbarState extends ConsumerState<Bottomnavbar> {
+class _BottomNavScreenState extends ConsumerState<BottomNavScreen> {
   int _currentIndex = 0;
   final screens = [
-    const Dashboard(),
-    const Serviceman_Notification(),
-    const Serviceman_setting(),
+    const Homepage(),
+    const Bookings(),
+    const Notification_page(),
+    const Serviceman_setting()
   ];
 
   void _onItemTapped(int index) {
@@ -39,14 +42,18 @@ class _BottomnavbarState extends ConsumerState<Bottomnavbar> {
             items: [
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
-                label: 'Dashboard',
+                label: 'Home',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.bookmark_outlined),
-                label: 'Notifications',
+                label: 'Bookings',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.notifications),
+                label: 'Notifications',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.settings),
                 label: 'Profile',
               ),
             ],

@@ -138,7 +138,7 @@ class _CurrentPanelState extends ConsumerState<CurrentPanel> {
                             ),
                             Row(
                               children: [
-                                Text('Cudefstomer:'),
+                                Text('Customer:'),
                                 Text('Simran Sah'),
                               ],
                             )

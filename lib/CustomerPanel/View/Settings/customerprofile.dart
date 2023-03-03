@@ -1,32 +1,22 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, unused_import, file_names
-
-import 'dart:io';
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types
 
 import 'package:flutter/material.dart';
 import 'package:homeservice/CustomerPanel/Bottomnavbar/BottomNabBar.dart';
-import 'package:homeservice/Serviceprovider/Dashboard/edit_profile.dart';
 import 'package:homeservice/CustomerPanel/View/Settings/Edit_Profile.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:image_picker/image_picker.dart';
 
-import '../../main.dart';
-import 'bottomnavbar.dart';
+import '../../../main.dart';
 
-class Serviceman_setting extends ConsumerStatefulWidget {
-  const Serviceman_setting({super.key});
+class Customer_setting extends ConsumerStatefulWidget {
+  const Customer_setting({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      _Serviceman_settingState();
+      _Customer_settingState();
 }
 
-class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
+class _Customer_settingState extends ConsumerState<Customer_setting> {
   bool isDarkModeEnabled = false;
-
-  ImagePicker picker = ImagePicker();
-  XFile? image;
-
-  String imageUrl = '';
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +49,8 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (BuildContext context) => Bottomnavbar()));
+                            builder: (BuildContext context) =>
+                                BottomNavScreen()));
                   },
                   icon: Icon(Icons.arrow_back_ios),
                   color: Colors.white,
@@ -95,17 +86,6 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
             child: CircleAvatar(
               radius: 50,
               backgroundImage: AssetImage('assets/worker.jpg'),
-              child: Padding(
-                padding: const EdgeInsets.all(65.0),
-                child: IconButton(
-                  icon: Icon(Icons.camera),
-                  onPressed: (() async {
-                    image = await picker.pickImage(source: ImageSource.gallery);
-                    setState(() {});
-                    // image == null ? Container() : Image.file(File(image!.path));
-                  }),
-                ),
-              ),
             ),
           ),
           Padding(
@@ -130,7 +110,7 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
                           width: 40,
                         ),
                         Text(
-                          '   Ram Shrestha',
+                          '   Sandhya Shrestha',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         )
                       ],
@@ -146,7 +126,7 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
                           width: 35,
                         ),
                         Text(
-                          '   rammma123@gmail.com',
+                          '   sandy123@gmail.com',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         )
                       ],
@@ -163,22 +143,6 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
                         ),
                         Text(
                           '   9805367848',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Row(
-                      children: [
-                        Image.asset(
-                          'assets/job.png',
-                          height: 35,
-                          width: 35,
-                        ),
-                        Text(
-                          '   Carpenter',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         )
                       ],
@@ -219,7 +183,7 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (BuildContext context) =>
-                                        EditServiceman_setting()));
+                                        Edit_ProfilePage()));
                           },
                         )
                       ],
