@@ -12,3 +12,12 @@ class Notification_items {
       required this.subtitle,
       required this.date});
 }
+
+class AdminNotification {
+  String heading;
+  String subheading;
+  String time;
+
+  AdminNotification(
+      {required this.heading, required this.subheading, required this.time});
+}

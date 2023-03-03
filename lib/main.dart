@@ -22,6 +22,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import 'Serviceprovider/Dashboard/Book/CurrentPanel/Currentpanel.dart';
+import 'Serviceprovider/Dashboard/Dashboard/Aboutus.dart';
 import 'Serviceprovider/Dashboard/Dashboard/reviews.dart';
 import 'CustomerPanel/View/ForgetPassword.dart';
 import 'CustomerPanel/View/Serviceman_Profile/rate.dart';
@@ -63,7 +64,7 @@ class MyApp extends StatelessWidget {
             // themeMode: ThemeMode.values.toList()[value],
             debugShowCheckedModeBanner: false,
 
-            home: RateServiceman(),
+            home: BottomNavScreen(),
           );
         });
   }

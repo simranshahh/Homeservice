@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, unused_import, file_names
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, unused_import, file_names, sort_child_properties_last
 
 import 'dart:io';
 
@@ -10,6 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../main.dart';
+import 'Dashboard/Aboutus.dart';
 import 'bottomnavbar.dart';
 
 class Serviceman_setting extends ConsumerStatefulWidget {
@@ -120,111 +121,138 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
               ),
               Padding(
                 padding: const EdgeInsets.all(28.0),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Image.asset(
-                          'assets/name.png',
-                          height: 40,
-                          width: 40,
-                        ),
-                        Text(
-                          '   Ram Shrestha',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Row(
-                      children: [
-                        Image.asset(
-                          'assets/mail.png',
-                          height: 35,
-                          width: 35,
-                        ),
-                        Text(
-                          '   rammma123@gmail.com',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Row(
-                      children: [
-                        Image.asset(
-                          'assets/call.png',
-                          height: 35,
-                          width: 35,
-                        ),
-                        Text(
-                          '   9805367848',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Row(
-                      children: [
-                        Image.asset(
-                          'assets/job.png',
-                          height: 35,
-                          width: 35,
-                        ),
-                        Text(
-                          '   Carpenter',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Row(
-                      children: [
-                        Image.asset(
-                          'assets/location.png',
-                          height: 35,
-                          width: 35,
-                        ),
-                        Text(
-                          '   Biratnagar,Morang',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Row(
-                      children: [
-                        Image.asset(
-                          'assets/profile_setting.png',
-                          height: 35,
-                          width: 35,
-                        ),
-                        InkWell(
-                          child: Text(
-                            '   Edit Profile',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Image.asset(
+                            'assets/name.png',
+                            height: 40,
+                            width: 40,
                           ),
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        EditServiceman_setting()));
-                          },
-                        )
-                      ],
-                    ),
-                  ],
+                          Text(
+                            '   Ram Shrestha',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset(
+                            'assets/mail.png',
+                            height: 35,
+                            width: 35,
+                          ),
+                          Text(
+                            '   rammma123@gmail.com',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset(
+                            'assets/call.png',
+                            height: 35,
+                            width: 35,
+                          ),
+                          Text(
+                            '   9805367848',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset(
+                            'assets/job.png',
+                            height: 35,
+                            width: 35,
+                          ),
+                          Text(
+                            '   Carpenter',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset(
+                            'assets/location.png',
+                            height: 35,
+                            width: 35,
+                          ),
+                          Text(
+                            '   Biratnagar,Morang',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      InkWell(
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              'assets/about.png',
+                              height: 35,
+                              width: 35,
+                            ),
+                            Text(
+                              '   About Us',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                        onTap: (() {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      AboutUs()));
+                        }),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset(
+                            'assets/profile_setting.png',
+                            height: 35,
+                            width: 35,
+                          ),
+                          InkWell(
+                            child: Text(
+                              '   Edit Profile',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          EditServiceman_setting()));
+                            },
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
 

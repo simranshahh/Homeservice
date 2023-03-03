@@ -132,6 +132,18 @@ class _EditServiceman_settingState
                     SizedBox(
                       height: 10,
                     ),
+                    TextField(
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.man),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                        labelText: 'Amount Per Hour',
+                      ),
+                      textInputAction: TextInputAction.next,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Color.fromARGB(255, 90, 36, 165)),

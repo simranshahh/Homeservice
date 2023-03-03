@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:homeservice/CustomerPanel/View/SignIn/customersignin.dart';
-import 'package:homeservice/View/Signup/Signup.dart';
+import 'package:homeservice/CustomerPanel/View/Signup/signup.dart';
 import 'package:homeservice/CustomerPanel/riverpod/provider/signup_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

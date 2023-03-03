@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:homeservice/CustomerPanel/View/SignIn/customersignin.dart';
 import 'package:homeservice/CustomerPanel/View/SignIn/signin.dart';
 import 'package:homeservice/CustomerPanel/View/Signup/Customersignup.dart';
-import 'package:homeservice/View/Signup/Signup.dart';
 import 'package:homeservice/CustomerPanel/View/StartScreen.dart/onboarding_example.dart';
+
+import '../Signup/signup.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});

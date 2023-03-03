@@ -47,9 +47,30 @@ class _Notification_pageState extends ConsumerState<Notification_page> {
         subtitle: 'The winter season brings \nyou the lots of offers',
         date: '02.02.2022'),
   ];
+
+  List<AdminNotification> notify = [
+    AdminNotification(
+        heading: 'Appointment Completed',
+        subheading: 'Appointment for laundary has been completed',
+        time: '02.02.2022 Dec 2022'),
+    AdminNotification(
+        heading: 'Appointment Started',
+        subheading: 'Appointment for laundary has been startes.',
+        time: '02.02.2022 Dec 2022'),
+    AdminNotification(
+        heading: 'Provider Arriving.',
+        subheading: 'Provider is coming for laundary.',
+        time: '02.02.2022 Dec 2022'),
+    AdminNotification(
+        heading: 'Appointment Accepted',
+        subheading: 'Provider has accepted the appointment.',
+        time: '02.02.2022 Dec 2022')
+  ];
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -89,6 +110,42 @@ class _Notification_pageState extends ConsumerState<Notification_page> {
                   ),
                 ),
               ]),
+              Container(
+                height: height,
+                child: ListView.builder(
+                    itemCount: notify.length,
+                    itemBuilder: (BuildContext context, index) {
+                      return Card(
+                        child: Container(
+                          height: 100,
+                          width: width,
+                          color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      notify[index].heading,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(notify[index].time)
+                                  ],
+                                ),
+                                Text(notify[index].subheading)
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+              ),
               Container(
                 height: height,
                 child: ListView.builder(

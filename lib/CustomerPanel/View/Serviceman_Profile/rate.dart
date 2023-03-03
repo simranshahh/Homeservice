@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../Bottomnavbar/BottomNabBar.dart';
+
 class RateServiceman extends ConsumerStatefulWidget {
   const RateServiceman({super.key});
 
@@ -67,7 +69,47 @@ class _RateServicemanState extends ConsumerState<RateServiceman> {
             Text('Let us know your experience.'),
             TextField(),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Image.asset(
+                            'assets/done.png',
+                            height: 100,
+                            width: 100,
+                          ),
+                          Text(
+                              '     Your Service has been    \n      Cancelled successfully!'),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          BottomNavScreen()));
+                            },
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  Colors.deepPurpleAccent),
+                            ),
+                            child: Text(
+                              'Go to Homepage',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                );
+              },
               child: Text('Submit Rating'),
               style: ButtonStyle(
                   backgroundColor:
