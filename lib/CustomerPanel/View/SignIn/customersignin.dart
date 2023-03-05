@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables, avoid_print, no_leading_underscores_for_local_identifiers, unused_import
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:homeservice/CustomerPanel/BottomnavScreen/BottomNabBar.dart';
 import 'package:homeservice/CustomerPanel/Model/Home/usermodel.dart';
 import 'package:homeservice/CustomerPanel/View/ForgetPassword.dart';
 import 'package:homeservice/CustomerPanel/View/SignIn/signin.dart';
@@ -14,6 +16,11 @@ import 'package:nb_utils/nb_utils.dart';
 import '../../helper/constants.dart';
 import '../../riverpod/provider/signin_provider.dart';
 
+Future<FirebaseApp> _initializeFirebase() async {
+  FirebaseApp firebaseApp = await Firebase.initializeApp();
+  return firebaseApp;
+}
+
 class CustomerSignin extends ConsumerStatefulWidget {
   const CustomerSignin({super.key});
 
@@ -22,6 +29,27 @@ class CustomerSignin extends ConsumerStatefulWidget {
 }
 
 class CustomerSigninState extends ConsumerState<CustomerSignin> {
+  User? user;
+
+  static Future<User?> loginUsingEmailPassword(
+      {required String email,
+      required String password,
+      required BuildContext context}) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user;
+    try {
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      user = userCredential.user;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "usernotfound") {
+        print("no user found of that email");
+      }
+    }
+
+    return user;
+  }
+
   googleLogin() async {
     print("googleLogin method Called");
     final _googleSignIn = GoogleSignIn();
@@ -34,37 +62,39 @@ class CustomerSigninState extends ConsumerState<CustomerSignin> {
     print(result.serverAuthCode);
   }
 
-  final userKey = GlobalKey<FormState>();
-  final email = TextEditingController();
-  final password = TextEditingController();
+  // final userKey = GlobalKey<FormState>();
+  // final email = TextEditingController();
+  // final password = TextEditingController();
 
-  Future<void> signin() async {
-    if (userKey.currentState!.validate()) {
-      String tenantValue = getStringAsync(tenantName).toString();
-      ref.read(userNotifierProvider.notifier).login(
-            email.value.text,
-            tenantValue.toString(),
-            password.value.text,
-            context,
-          );
+  // Future<void> signin() async {
+  //   if (userKey.currentState!.validate()) {
+  //     String tenantValue = getStringAsync(tenantName).toString();
+  //     ref.read(userNotifierProvider.notifier).login(
+  //           email.value.text,
+  //           tenantValue.toString(),
+  //           password.value.text,
+  //           context,
+  //         );
 
-      await setValue(tenantName, tenantValue.toString());
-      await setValue(userEmail, email.value.text);
-      await setValue(userPassword, password.value.text);
-    }
-  }
+  //     await setValue(tenantName, tenantValue.toString());
+  //     await setValue(userEmail, email.value.text);
+  //     await setValue(userPassword, password.value.text);
+  //   }
+  // }
 
-  @override
-  void dispose() {
-    email.dispose();
-    password.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   email.dispose();
+  //   password.dispose();
+  //   super.dispose();
+  // }
 
-  late Logininfo user;
+  // late Logininfo user;
 
   @override
   Widget build(BuildContext context) {
+    final email = TextEditingController();
+    final password = TextEditingController();
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -116,7 +146,7 @@ class CustomerSigninState extends ConsumerState<CustomerSignin> {
               ),
             ),
             Form(
-              key: userKey,
+              // key: userKey,
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20.0, 200, 20, 0),
                 child: Card(
@@ -131,7 +161,7 @@ class CustomerSigninState extends ConsumerState<CustomerSignin> {
                       child: Column(
                         children: [
                           TextFormField(
-                            onSaved: (input) => user.email = input,
+                            //  onSaved: (input) => user.email = input,
                             controller: email,
                             decoration: InputDecoration(
                               prefixIcon: Icon(Icons.mail),
@@ -146,7 +176,7 @@ class CustomerSigninState extends ConsumerState<CustomerSignin> {
                             height: 10,
                           ),
                           TextFormField(
-                            onSaved: (input) => user.password = input,
+                            // onSaved: (input) => user.password = input,
                             controller: password,
                             decoration: InputDecoration(
                               prefixIcon: Icon(Icons.mail),
@@ -175,7 +205,19 @@ class CustomerSigninState extends ConsumerState<CustomerSignin> {
                                   'Sign In',
                                   style: TextStyle(color: Colors.white),
                                 ),
-                                onTap: signin,
+                                onTap: () async {
+                                  User? user = await loginUsingEmailPassword(
+                                      email: email.text,
+                                      password: password.text,
+                                      context: context);
+                                  print(user);
+                                  if (user != null) {
+                                    Navigator.of(context).pushReplacement(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                BottomNavScreen()));
+                                  }
+                                },
                               ),
                             ),
                           ),

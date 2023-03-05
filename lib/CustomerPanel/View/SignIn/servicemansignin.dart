@@ -4,8 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:homeservice/CustomerPanel/Bottomnavbar/BottomNabBar.dart';
+import 'package:homeservice/CustomerPanel/BottomnavScreen/BottomNabBar.dart';
 import 'package:homeservice/CustomerPanel/View/SignIn/signin.dart';
+import 'package:homeservice/Serviceprovider/Dashboard/bottomnavbar.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../Home/Homepage.dart';
@@ -149,8 +150,7 @@ class _ServicemanSigninState extends ConsumerState<ServicemanSignin> {
                               if (user != null) {
                                 Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            BottomNavScreen()));
+                                        builder: (context) => Bottomnavbar()));
                               }
                             },
                             child: Text('Login'),

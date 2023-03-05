@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../Bottomnavbar/BottomNabBar.dart';
+import '../../BottomnavScreen/BottomNabBar.dart';
 
 class RateServiceman extends ConsumerStatefulWidget {
   const RateServiceman({super.key});

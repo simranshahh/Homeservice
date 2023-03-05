@@ -1,7 +1,7 @@
 // ignore_for_file: camel_case_types, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
-import 'package:homeservice/CustomerPanel/Bottomnavbar/BottomNabBar.dart';
+import 'package:homeservice/CustomerPanel/BottomnavScreen/BottomNabBar.dart';
 import 'package:homeservice/CustomerPanel/Model/Notification/notification_model.dart';
 import 'package:homeservice/CustomerPanel/View/Notifications/notification_detail.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

@@ -1,7 +1,7 @@
 // ignore_for_file: camel_case_types, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:homeservice/CustomerPanel/Bottomnavbar/BottomNabBar.dart';
+import 'package:homeservice/CustomerPanel/BottomnavScreen/BottomNabBar.dart';
 import 'package:homeservice/CustomerPanel/View/Carpenter/Repair.dart';
 import 'package:homeservice/CustomerPanel/View/Carpenter/new.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

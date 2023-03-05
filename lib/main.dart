@@ -2,7 +2,7 @@
 
 import 'package:firebase_core/firebase_core.dart';
 import "package:flutter/material.dart";
-import 'package:homeservice/CustomerPanel/Bottomnavbar/BottomNabBar.dart';
+import 'package:homeservice/CustomerPanel/BottomnavScreen/BottomNabBar.dart';
 import 'package:homeservice/Serviceprovider/Dashboard/Dashboard/Ratings.dart';
 import 'package:homeservice/Serviceprovider/Dashboard/bottomnavbar.dart';
 import 'package:homeservice/CustomerPanel/View/Bookings/current/current.dart';

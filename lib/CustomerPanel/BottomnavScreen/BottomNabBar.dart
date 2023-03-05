@@ -1,12 +1,12 @@
 // ignore_for_file: file_names, prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_local_variable
 
 import 'package:flutter/material.dart';
-import 'package:homeservice/Serviceprovider/Dashboard/profile.dart';
 import 'package:homeservice/CustomerPanel/View/Home/Homepage.dart';
 import 'package:homeservice/CustomerPanel/View/Notifications/notification.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../View/Bookings/Bookings.dart';
+import '../View/Settings/customerprofile.dart';
 
 class BottomNavScreen extends ConsumerStatefulWidget {
   const BottomNavScreen({super.key});
@@ -21,7 +21,7 @@ class _BottomNavScreenState extends ConsumerState<BottomNavScreen> {
     const Homepage(),
     const Bookings(),
     const Notification_page(),
-    const Serviceman_setting()
+    const Customer_setting()
   ];
 
   void _onItemTapped(int index) {
