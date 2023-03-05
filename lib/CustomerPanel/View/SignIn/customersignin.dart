@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables, avoid_print, no_leading_underscores_for_local_identifiers, unused_import
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables, avoid_print, no_leading_underscores_for_local_identifiers, unused_import, use_build_context_synchronously
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -15,11 +15,6 @@ import 'package:nb_utils/nb_utils.dart';
 
 import '../../helper/constants.dart';
 import '../../riverpod/provider/signin_provider.dart';
-
-Future<FirebaseApp> _initializeFirebase() async {
-  FirebaseApp firebaseApp = await Firebase.initializeApp();
-  return firebaseApp;
-}
 
 class CustomerSignin extends ConsumerStatefulWidget {
   const CustomerSignin({super.key});

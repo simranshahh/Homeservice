@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:homeservice/CustomerPanel/BottomnavScreen/BottomNabBar.dart';
 import 'package:homeservice/CustomerPanel/View/Settings/Edit_Profile.dart';
+import 'package:homeservice/CustomerPanel/View/Settings/aboutus.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../main.dart';
@@ -166,6 +167,31 @@ class _Customer_settingState extends ConsumerState<Customer_setting> {
                     SizedBox(
                       height: 15,
                     ),
+                    InkWell(
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            'assets/about.png',
+                            height: 35,
+                            width: 35,
+                          ),
+                          Text(
+                            '   About Us',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                      onTap: (() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    CustomerAboutus()));
+                      }),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
                     Row(
                       children: [
                         Image.asset(
@@ -188,6 +214,13 @@ class _Customer_settingState extends ConsumerState<Customer_setting> {
                         )
                       ],
                     ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Text('Log Out'),
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                              Colors.deepPurpleAccent)),
+                    )
                   ],
                 ),
               ),
