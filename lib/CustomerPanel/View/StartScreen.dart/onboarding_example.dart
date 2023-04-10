@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
+import 'package:homeservice/Aaa/landingpage.dart';
 import 'package:homeservice/CustomerPanel/View/SignIn.dart';
 import 'package:homeservice/CustomerPanel/View/Login.dart';
 import 'package:homeservice/CustomerPanel/View/SignIn/customersignin.dart';
@@ -31,13 +32,21 @@ class _OnBoardState extends State<OnBoard> {
         );
       },
       finishButtonColor: kDarkBlueColor,
-      skipTextButton: Text(
-        'Skip',
-        style: TextStyle(
-          fontSize: 16,
-          color: Color.fromARGB(255, 90, 36, 165),
-          fontWeight: FontWeight.w600,
+      skipTextButton: InkWell(
+        child: Text(
+          'Skip',
+          style: TextStyle(
+            fontSize: 16,
+            color: Color.fromARGB(255, 90, 36, 165),
+            fontWeight: FontWeight.w600,
+          ),
         ),
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => LandingPage()));
+        },
       ),
       trailing: Text(
         'Login',
@@ -102,7 +111,7 @@ class _OnBoardState extends State<OnBoard> {
                 height: 10,
               ),
               Text(
-                'to find the perfect looking Onboarding for your app?',
+                'to find the perfect looking app for your service to doorstepssssss',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.black,
@@ -123,7 +132,7 @@ class _OnBoardState extends State<OnBoard> {
                 height: 440,
               ),
               Text(
-                "You’ve reached your destination.",
+                "With better Experience & Ease",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color.fromARGB(255, 90, 36, 165),
@@ -135,7 +144,7 @@ class _OnBoardState extends State<OnBoard> {
                 height: 20,
               ),
               Text(
-                'Sliding with animation',
+                'Just A click Away',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.black,
@@ -168,7 +177,7 @@ class _OnBoardState extends State<OnBoard> {
                 height: 8,
               ),
               Text(
-                'Where everything is possible and customize your onboarding.',
+                'Where every service is found out to doorway',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.black,

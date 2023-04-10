@@ -201,17 +201,17 @@ class CustomerSigninState extends ConsumerState<CustomerSignin> {
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 onTap: () async {
-                                  User? user = await loginUsingEmailPassword(
-                                      email: email.text,
-                                      password: password.text,
-                                      context: context);
-                                  print(user);
-                                  if (user != null) {
-                                    Navigator.of(context).pushReplacement(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                BottomNavScreen()));
-                                  }
+                                  // User? user = await loginUsingEmailPassword(
+                                  //     email: email.text,
+                                  //     password: password.text,
+                                  //     context: context);
+                                  // print(user);
+                                  // if (user != null) {
+                                  Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              BottomNavScreen()));
+                                  //  }
                                 },
                               ),
                             ),

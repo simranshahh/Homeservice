@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, sort_child_properties_last
 
 import 'package:flutter/material.dart';
 import 'package:homeservice/CustomerPanel/BottomnavScreen/BottomNabBar.dart';
@@ -101,127 +101,129 @@ class _Customer_settingState extends ConsumerState<Customer_setting> {
               ),
               Padding(
                 padding: const EdgeInsets.all(28.0),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Image.asset(
-                          'assets/name.png',
-                          height: 40,
-                          width: 40,
-                        ),
-                        Text(
-                          '   Sandhya Shrestha',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Row(
-                      children: [
-                        Image.asset(
-                          'assets/mail.png',
-                          height: 35,
-                          width: 35,
-                        ),
-                        Text(
-                          '   sandy123@gmail.com',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Row(
-                      children: [
-                        Image.asset(
-                          'assets/call.png',
-                          height: 35,
-                          width: 35,
-                        ),
-                        Text(
-                          '   9805367848',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Row(
-                      children: [
-                        Image.asset(
-                          'assets/location.png',
-                          height: 35,
-                          width: 35,
-                        ),
-                        Text(
-                          '   Biratnagar,Morang',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    InkWell(
-                      child: Row(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Row(
                         children: [
                           Image.asset(
-                            'assets/about.png',
-                            height: 35,
-                            width: 35,
+                            'assets/name.png',
+                            height: 40,
+                            width: 40,
                           ),
                           Text(
-                            '   About Us',
+                            '   Sandhya Shrestha',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           )
                         ],
                       ),
-                      onTap: (() {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    CustomerAboutus()));
-                      }),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Row(
-                      children: [
-                        Image.asset(
-                          'assets/profile_setting.png',
-                          height: 35,
-                          width: 35,
-                        ),
-                        InkWell(
-                          child: Text(
-                            '   Edit Profile',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset(
+                            'assets/mail.png',
+                            height: 35,
+                            width: 35,
                           ),
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        Edit_ProfilePage()));
-                          },
-                        )
-                      ],
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text('Log Out'),
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                              Colors.deepPurpleAccent)),
-                    )
-                  ],
+                          Text(
+                            '   sandy123@gmail.com',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset(
+                            'assets/call.png',
+                            height: 35,
+                            width: 35,
+                          ),
+                          Text(
+                            '   9805367848',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset(
+                            'assets/location.png',
+                            height: 35,
+                            width: 35,
+                          ),
+                          Text(
+                            '   Biratnagar,Morang',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      InkWell(
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              'assets/about.png',
+                              height: 35,
+                              width: 35,
+                            ),
+                            Text(
+                              '   About Us',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                        onTap: (() {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      CustomerAboutus()));
+                        }),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset(
+                            'assets/profile_setting.png',
+                            height: 35,
+                            width: 35,
+                          ),
+                          InkWell(
+                            child: Text(
+                              '   Edit Profile',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          Edit_ProfilePage()));
+                            },
+                          )
+                        ],
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text('Log Out'),
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                                Colors.deepPurpleAccent)),
+                      )
+                    ],
+                  ),
                 ),
               ),
 

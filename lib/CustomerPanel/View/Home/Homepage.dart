@@ -28,17 +28,17 @@ class _HomepageState extends State<Homepage> {
     List<FeaturedServices> product = [
       FeaturedServices(
         image: "assets/baner.png",
-        dprice: "\$ 200",
+        dprice: "Rs. 200",
         pname: "Painter",
       ),
       FeaturedServices(
         image: "assets/baner.png",
-        dprice: "\$ 150",
+        dprice: "Rs. 150",
         pname: "Laundary",
       ),
       FeaturedServices(
         image: "assets/baner.png",
-        dprice: "\$ 1500",
+        dprice: "Rs.1500",
         pname: "Carpenter",
       ),
       FeaturedServices(
@@ -69,7 +69,7 @@ class _HomepageState extends State<Homepage> {
                   height: MediaQuery.of(context).size.height * 0.15,
                   width: MediaQuery.of(context).size.width,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
+                    padding: const EdgeInsets.only(left: 10.0),
                     child: Row(
                       children: [
                         Icon(
@@ -124,8 +124,7 @@ class _HomepageState extends State<Homepage> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
                                 image: DecorationImage(
-                                  image: NetworkImage(
-                                      "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"),
+                                  image: AssetImage("assets/swap.jpg"),
                                   // fit: BoxFit.cover,
                                 ),
                               ),
@@ -135,8 +134,7 @@ class _HomepageState extends State<Homepage> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
                                 image: DecorationImage(
-                                  image: NetworkImage(
-                                      "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"),
+                                  image: AssetImage("assets/swap1.jpg"),
                                   // fit: BoxFit.cover,
                                 ),
                               ),
@@ -146,8 +144,7 @@ class _HomepageState extends State<Homepage> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
                                 image: DecorationImage(
-                                    image: NetworkImage(
-                                        "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg")),
+                                    image: AssetImage("assets/swap.jpg")),
                               ),
                             ),
                           ],

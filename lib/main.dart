@@ -21,6 +21,8 @@ import 'package:homeservice/CustomerPanel/View/StartScreen.dart/onboarding_examp
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+import 'CustomerPanel/View/Serviceman_Profile/routes/routes.dart';
+import 'CustomerPanel/View/StartScreen.dart/Splashscreen.dart';
 import 'Serviceprovider/Dashboard/Book/CurrentPanel/Currentpanel.dart';
 import 'Serviceprovider/Dashboard/Dashboard/Aboutus.dart';
 import 'Serviceprovider/Dashboard/Dashboard/reviews.dart';
@@ -55,6 +57,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final router = Routes.getRouter();
+
     return ValueListenableBuilder(
         valueListenable: themeMode,
         builder: (context, value, g) {
@@ -64,7 +68,7 @@ class MyApp extends StatelessWidget {
             // themeMode: ThemeMode.values.toList()[value],
             debugShowCheckedModeBanner: false,
 
-            home: BottomNavScreen(),
+            home: StartScreen(),
           );
         });
   }
