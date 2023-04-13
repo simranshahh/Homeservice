@@ -1,33 +1,23 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, unused_import, file_names, sort_child_properties_last
-
-import 'dart:io';
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, sort_child_properties_last
 
 import 'package:flutter/material.dart';
 import 'package:homeservice/CustomerPanel/BottomnavScreen/BottomNabBar.dart';
-import 'package:homeservice/Serviceprovider/Dashboard/edit_profile.dart';
-import 'package:homeservice/CustomerPanel/View/Settings/Edit_Profile.dart';
+import 'package:homeservice/CustomerPanel/View/Settings/aboutus.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:image_picker/image_picker.dart';
 
-import '../../main.dart';
-import 'Dashboard/Aboutus.dart';
-import 'bottomnavbar.dart';
+import '../../../main.dart';
+import '../../CustomerPanel/View/Signup/signup.dart';
 
-class Serviceman_setting extends ConsumerStatefulWidget {
-  const Serviceman_setting({super.key});
+class LandingPageAboutus extends ConsumerStatefulWidget {
+  const LandingPageAboutus({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      _Serviceman_settingState();
+      _LandingPageAboutusState();
 }
 
-class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
+class _LandingPageAboutusState extends ConsumerState<LandingPageAboutus> {
   bool isDarkModeEnabled = false;
-
-  ImagePicker picker = ImagePicker();
-  XFile? image;
-
-  String imageUrl = '';
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +50,8 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (BuildContext context) => Bottomnavbar()));
+                            builder: (BuildContext context) =>
+                                BottomNavScreen()));
                   },
                   icon: Icon(Icons.arrow_back_ios),
                   color: Colors.white,
@@ -95,21 +86,8 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
             padding: const EdgeInsets.fromLTRB(130.0, 128, 18, 18),
             child: CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage('assets/worker.jpg'),
-              child: Padding(
-                padding: const EdgeInsets.all(65.0),
-                child: IconButton(
-                  icon: Icon(
-                    Icons.camera,
-                    color: Colors.black,
-                  ),
-                  onPressed: (() async {
-                    image = await picker.pickImage(source: ImageSource.gallery);
-                    setState(() {});
-                    image == null ? Container() : Image.file(File(image!.path));
-                  }),
-                ),
-              ),
+              backgroundColor: Colors.grey,
+              // backgroundImage: AssetImage('assets/worker.jpg'),
             ),
           ),
           Padding(
@@ -135,7 +113,7 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
                             width: 40,
                           ),
                           Text(
-                            '   Ram Shrestha',
+                            '   Your Name',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           )
                         ],
@@ -151,7 +129,7 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
                             width: 35,
                           ),
                           Text(
-                            '   rammma123@gmail.com',
+                            '   Your E-mail',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           )
                         ],
@@ -167,23 +145,7 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
                             width: 35,
                           ),
                           Text(
-                            '   9805367848',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            'assets/job.png',
-                            height: 35,
-                            width: 35,
-                          ),
-                          Text(
-                            '   Carpenter',
+                            '   Your Number',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           )
                         ],
@@ -199,7 +161,7 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
                             width: 35,
                           ),
                           Text(
-                            '   Biratnagar,Morang',
+                            '   Your Location',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           )
                         ],
@@ -226,34 +188,46 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      AboutUs()));
+                                      CustomerAboutus()));
                         }),
                       ),
                       SizedBox(
                         height: 15,
                       ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            'assets/profile_setting.png',
-                            height: 35,
-                            width: 35,
-                          ),
-                          InkWell(
-                            child: Text(
-                              '   Edit Profile',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          EditServiceman_setting()));
-                            },
-                          )
-                        ],
-                      ),
+                      // Row(
+                      //   children: [
+                      //     Image.asset(
+                      //       'assets/profile_setting.png',
+                      //       height: 35,
+                      //       width: 35,
+                      //     ),
+                      //     InkWell(
+                      //       child: Text(
+                      //         '   Edit Profile',
+                      //         style: TextStyle(fontWeight: FontWeight.bold),
+                      //       ),
+                      //       onTap: () {
+                      //         Navigator.push(
+                      //             context,
+                      //             MaterialPageRoute(
+                      //                 builder: (BuildContext context) =>
+                      //                     Edit_ProfilePage()));
+                      //       },
+                      //     )
+                      //   ],
+                      // ),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => SignUp()));
+                        },
+                        child: Text('Join Now'),
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                                Colors.deepPurpleAccent)),
+                      )
                     ],
                   ),
                 ),

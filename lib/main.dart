@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
             // themeMode: ThemeMode.values.toList()[value],
             debugShowCheckedModeBanner: false,
 
-            home: StartScreen(),
+            home: Bottomnavbar(),
           );
         });
   }

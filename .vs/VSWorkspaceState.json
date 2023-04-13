@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\lib",
+    "\\lib\\Aaa",
+    "\\lib\\Aaa\\LandingPage"
   ],
   "PreviewInSolutionExplorer": false
 }

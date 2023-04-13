@@ -53,6 +53,8 @@ class _Serviceman_ProfileState extends ConsumerState<Serviceman_Profile> {
   // String dropdownValue = list.first;
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         body: Stack(children: [
@@ -257,7 +259,7 @@ class _Serviceman_ProfileState extends ConsumerState<Serviceman_Profile> {
                       ),
                       Container(
                         height: 120,
-                        width: 300,
+                        width: width,
                         child: GoogleMapPage(),
                       )
                     ],

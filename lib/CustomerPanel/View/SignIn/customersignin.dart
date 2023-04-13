@@ -146,7 +146,7 @@ class CustomerSigninState extends ConsumerState<CustomerSignin> {
                 padding: const EdgeInsets.fromLTRB(20.0, 200, 20, 0),
                 child: Card(
                   child: Container(
-                    height: 350,
+                    height: 400,
                     width: 410,
                     decoration: BoxDecoration(
                         color: Colors.white,
@@ -249,7 +249,7 @@ class CustomerSigninState extends ConsumerState<CustomerSignin> {
                     children: [
                       Container(
                         height: 2,
-                        width: 100,
+                        width: 50,
                         color: Color.fromARGB(255, 224, 224, 224),
                       ),
                       Text(
@@ -259,7 +259,7 @@ class CustomerSigninState extends ConsumerState<CustomerSignin> {
                       ),
                       Container(
                         height: 2,
-                        width: 100,
+                        width: 50,
                         color: Color.fromARGB(255, 224, 224, 224),
                       ),
                     ],

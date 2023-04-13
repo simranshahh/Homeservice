@@ -505,10 +505,10 @@ packages:
     dependency: "direct main"
     description:
       name: image_picker
-      sha256: f98d76672d309c8b7030c323b3394669e122d52b307d2bbd8d06bd70f5b2aabe
+      sha256: "8b0efbf350ba4f2be1531d629396a994983d0c02f4a82a128aed84d954b90cfa"
       url: "https://pub.dev"
     source: hosted
-    version: "0.8.6+1"
+    version: "0.8.7+2"
   image_picker_android:
     dependency: transitive
     description:
@@ -980,4 +980,4 @@ packages:
     version: "3.1.1"
 sdks:
   dart: ">=2.18.4 <3.0.0"
-  flutter: ">=3.0.0"
+  flutter: ">=3.3.0"

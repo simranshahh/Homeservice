@@ -195,27 +195,18 @@ class _CustomerSignupState extends ConsumerState<CustomerSignup> {
                         SizedBox(
                           height: 20,
                         ),
-                        Container(
-                          height: 25,
-                          width: 100,
-                          decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 90, 36, 165),
-                              borderRadius: BorderRadius.circular(15)),
-                          child: Center(
-                            child: InkWell(
-                              child: Text(
-                                'Sign Up',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              onTap: () {
-                                Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            CustomerSignin()));
-                              },
-                            ),
-                          ),
-                        ),
+                        ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    Colors.deepPurpleAccent)),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          CustomerSignin()));
+                            },
+                            child: Text('Sign Up'))
                       ],
                     ),
                   ),

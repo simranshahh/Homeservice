@@ -17,17 +17,16 @@ class _AboutUsState extends ConsumerState<AboutUs> {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-            Color.fromARGB(255, 247, 247, 247),
-            Color.fromARGB(255, 136, 136, 136),
-          ])),
+          // gradient: LinearGradient(
+          //     begin: Alignment.topLeft,
+          //     end: Alignment.bottomRight,
+          //     colors: [
+          //   Color.fromARGB(255, 247, 247, 247),
+          //   Color.fromARGB(255, 136, 136, 136),
+          // ])
+          ),
       child: SafeArea(
         child: Scaffold(
-          // By defaut, Scaffold background is white
-          // Set its value to transparent
           backgroundColor: Colors.transparent,
           body: Stack(children: [
             Image.asset(

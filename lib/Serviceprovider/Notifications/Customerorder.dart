@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, camel_case_types, prefer_const_constructors, duplicate_ignore, prefer_const_literals_to_create_immutables, sort_child_properties_last, unused_element
 
 import 'package:flutter/material.dart';
+import 'package:homeservice/Serviceprovider/Notifications/CustomerLocation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:timelines/timelines.dart';
 
@@ -53,7 +54,7 @@ class _Customer_OrderState extends ConsumerState<Customer_Order> {
             Stack(children: [
               Card(
                 child: Container(
-                  height: height * 0.38,
+                  height: height * 0.42,
                   width: width * 1,
                   color: Colors.white,
                 ),
@@ -107,9 +108,22 @@ class _Customer_OrderState extends ConsumerState<Customer_Order> {
                     SizedBox(
                       height: 20,
                     ),
-                    Text(
-                      'Address',
-                      style: TextStyle(color: Colors.grey),
+                    Row(
+                      children: [
+                        Text(
+                          'Address',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          CustomerLocation()));
+                            },
+                            icon: Icon(Icons.location_city))
+                      ],
                     ),
                     Text('BiratNursing Home,Biratnagar'),
                     Padding(

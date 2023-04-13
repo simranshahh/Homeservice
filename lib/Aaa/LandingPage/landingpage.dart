@@ -1,12 +1,11 @@
 // ignore_for_file: file_names, prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_local_variable
 
 import 'package:flutter/material.dart';
-import 'package:homeservice/CustomerPanel/View/Home/Homepage.dart';
-import 'package:homeservice/CustomerPanel/View/Notifications/notification.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../CustomerPanel/View/Bookings/Bookings.dart';
-import '../CustomerPanel/View/Settings/customerprofile.dart';
+import 'LandingBooking.dart';
+import 'Landinghomepage.dart';
+import 'landingaboutus.dart';
 
 class LandingPage extends ConsumerStatefulWidget {
   const LandingPage({super.key});
@@ -18,10 +17,10 @@ class LandingPage extends ConsumerStatefulWidget {
 class _LandingPageState extends ConsumerState<LandingPage> {
   int _currentIndex = 0;
   final screens = [
-    const Homepage(),
-    const Bookings(),
-    const Notification_page(),
-    const Customer_setting()
+    const Landinghomepage(),
+    const LandingBooking(),
+    // const Notification_page(),
+    const LandingPageAboutus()
   ];
 
   void _onItemTapped(int index) {
@@ -48,10 +47,10 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                 icon: Icon(Icons.bookmark_outlined),
                 label: 'Bookings',
               ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.notifications),
-                label: 'Notifications',
-              ),
+              // BottomNavigationBarItem(
+              //   icon: Icon(Icons.notifications),
+              //   label: 'Notifications',
+              // ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.settings),
                 label: 'Profile',

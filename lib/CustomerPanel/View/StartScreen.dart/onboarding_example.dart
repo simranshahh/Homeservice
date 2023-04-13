@@ -3,7 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
-import 'package:homeservice/Aaa/landingpage.dart';
+import 'package:homeservice/Aaa/LandingPage/landingpage.dart';
 import 'package:homeservice/CustomerPanel/View/SignIn.dart';
 import 'package:homeservice/CustomerPanel/View/Login.dart';
 import 'package:homeservice/CustomerPanel/View/SignIn/customersignin.dart';
@@ -49,7 +49,7 @@ class _OnBoardState extends State<OnBoard> {
         },
       ),
       trailing: Text(
-        'Login',
+        'Skip',
         style: TextStyle(
           fontSize: 16,
           color: Color.fromARGB(255, 90, 36, 165),
@@ -60,7 +60,7 @@ class _OnBoardState extends State<OnBoard> {
         Navigator.push(
           context,
           CupertinoPageRoute(
-            builder: (context) => CustomerSignin(),
+            builder: (context) => LandingPage(),
           ),
         );
       },
