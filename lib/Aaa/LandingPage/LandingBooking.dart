@@ -3,8 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../CustomerPanel/View/Signup/signup.dart';
-
 class LandingBooking extends ConsumerStatefulWidget {
   const LandingBooking({super.key});
 
@@ -32,10 +30,10 @@ class _LandingBookingState extends ConsumerState<LandingBooking> {
             Text('Signin to Book'),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => SignUp()));
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (BuildContext context) => Signup()));
               },
               child: Text('Join Now'),
               style: ButtonStyle(

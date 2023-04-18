@@ -1,10 +1,13 @@
-// ignore_for_file: prefer_const_constructors, file_names, non_constant_identifier_names, prefer_const_literals_to_create_immutables, unused_import, unused_local_variable
+// ignore_for_file: prefer_const_constructors, file_names, non_constant_identifier_names, unused_import, unused_field, prefer_final_fields, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:homeservice/CustomerPanel/View/SignIn/customersignin.dart';
+import 'package:homeservice/CustomerPanel/View/SignIn/signin.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../SignIn/customersignin.dart';
+import '../../riverpod/models/Signup_model.dart';
+import '../../riverpod/provider/Signup_provider.dart';
 import '../StartScreen.dart/Welcome.dart';
 
 class ServicemanSignup extends ConsumerStatefulWidget {
@@ -16,245 +19,184 @@ class ServicemanSignup extends ConsumerStatefulWidget {
 }
 
 class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
-  List<String> list = <String>['Carpenter', 'Plumber', 'Laundary', 'Cleaning'];
+  Future<void> register() async {
+    if (_ServicemanSignupKey.currentState!.validate()) {
+      ref.read(signupNotifierProvider.notifier).Register(
+            emailCtrl.value.text,
+            passwordCtrl.value.text,
+            context,
+          );
+    }
+  }
+
+  int _value = 1;
+
+  final _ServicemanSignupKey = GlobalKey<FormState>();
+
+  final emailCtrl = TextEditingController();
+  final passwordCtrl = TextEditingController();
+
+  late Signupclass user;
+  @override
+  void dispose() {
+    emailCtrl.dispose();
+    passwordCtrl.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final name = TextEditingController();
-    final emailctrl = TextEditingController();
-    final servicetype = TextEditingController();
-    final phoneno = TextEditingController();
-    final location = TextEditingController();
-    final passwordctrl = TextEditingController();
-    return Scaffold(
-      // key: _signupKey,
-      body: Stack(
-        children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-                color: Color.fromARGB(255, 90, 36, 165),
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(15),
-                    bottomRight: Radius.circular(15))),
-            height: MediaQuery.of(context).size.height * 0.4,
-            width: MediaQuery.of(context).size.width,
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  IconButton(
-                    color: Colors.white,
-                    icon: Icon(Icons.arrow_back_ios),
-                    onPressed: () {
-                      //  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      //    builder: (BuildContext context) => ()));
-                    },
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'Sign Up As Service Provider',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20,
-                        color: Colors.white),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                ],
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Stack(
+          children: <Widget>[
+            Container(
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 90, 36, 165),
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(15),
+                      bottomRight: Radius.circular(15))),
+              height: MediaQuery.of(context).size.height * 0.4,
+              width: MediaQuery.of(context).size.width,
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    IconButton(
+                      color: Colors.white,
+                      icon: Icon(Icons.arrow_back_ios),
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (BuildContext context) => Signin()));
+                      },
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Sign Up',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                          color: Colors.white),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Sign in to experience the best serivces\naround you',
+                      style: TextStyle(
+                          //fontWeight: FontWeight.w500,
+                          fontSize: 15,
+                          color: Colors.white),
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20.0, 160, 20, 0),
-            child: Form(
-              child: Card(
-                child: Container(
-                  height: 500,
-                  width: 410,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20.0, 40, 20, 20),
-                    child: SingleChildScrollView(
-                      child: Column(children: [
-                        TextFormField(
-                          //autovalidateMode: AutovalidateMode.always,
-                          controller: name,
-                          textInputAction: TextInputAction.next,
-                          //onSaved: (input) => user.username = input,
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.mail),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15)),
-                            labelText: 'Name',
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20.0, 160, 20, 0),
+              child: Form(
+                key: _ServicemanSignupKey,
+                child: Card(
+                  child: Container(
+                    height: height,
+                    width: 410,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(20.0, 60, 20, 0),
+                      child: Column(
+                        children: [
+                          // Container(
+                          //   padding: EdgeInsets.all(20),
+                          //   child: DropdownButton(
+                          //       value: _value,
+                          //       items: const [
+                          //         DropdownMenuItem(
+                          //           value: 1,
+                          //           child: Text("First Item"),
+                          //         ),
+                          //         DropdownMenuItem(
+                          //           value: 2,
+                          //           child: Text("Second Item"),
+                          //         )
+                          //       ],
+                          //       onChanged: (int? value) {
+                          //         setState(() {
+                          //           _value = value!;
+                          //         });
+                          //       },
+                          //       hint: Text("Select item")),
+                          // ),
+                          TextFormField(
+                            autovalidateMode: AutovalidateMode.always,
+                            controller: emailCtrl,
+                            textInputAction: TextInputAction.next,
+                            onSaved: (input) => user.email = input,
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.mail),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15)),
+                              labelText: 'Email Address',
+                            ),
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.required(),
+                            ]),
                           ),
-                          validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(),
-                          ]),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                          controller: emailctrl,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: TextInputType.emailAddress,
-                          // onSaved: (input) => user.emailAddress = input,
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.room_service),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15)),
-                            labelText: 'Email',
+                          SizedBox(
+                            height: 10,
                           ),
-                          validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(),
-                            FormBuilderValidators.email(),
-                          ]),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: 270,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: Colors.white),
-                              child: DropdownButton<String>(
-                                hint: Padding(
-                                  padding: const EdgeInsets.only(left: 15.0),
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.medical_services_sharp),
-                                      Text('  Service Type'),
-                                    ],
-                                  ),
-                                ),
-                                icon: Padding(
-                                  padding: const EdgeInsets.only(left: 80.0),
-                                  child: const Icon(
-                                      Icons.arrow_drop_down_circle_outlined),
-                                ),
-                                elevation: 16,
-                                style:
-                                    const TextStyle(color: Colors.deepPurple),
-                                underline: Container(
-                                  height: 2,
-                                  // color: Colors.deepPurpleAccent,
-                                ),
-                                onChanged: (String? value) {},
-                                items: list.map<DropdownMenuItem<String>>(
-                                    (String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(
-                                      value,
-                                      style: TextStyle(color: Colors.black),
-                                    ),
-                                  );
-                                }).toList(),
-                              ),
+                          TextFormField(
+                            controller: passwordCtrl,
+                            textInputAction: TextInputAction.next,
+                            keyboardType: TextInputType.emailAddress,
+                            onSaved: (input) => user.password = input,
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.room_service),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15)),
+                              labelText: 'Password',
                             ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            TextFormField(
-                              //    controller: phoneCtrl,
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.phone,
-                              //onSaved: (input) => user.phoneNo,
-                              decoration: InputDecoration(
-                                prefixIcon: Icon(Icons.phone),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15)),
-                                labelText: 'PhoneNo',
-                              ),
-                              validator: FormBuilderValidators.compose([
-                                FormBuilderValidators.required(),
-                              ]),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            TextFormField(
-                              //    controller: phoneCtrl,
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.phone,
-                              //onSaved: (input) => user.phoneNo,
-                              decoration: InputDecoration(
-                                prefixIcon: Icon(Icons.location_city),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15)),
-                                labelText: 'Location',
-                              ),
-                              validator: FormBuilderValidators.compose([
-                                FormBuilderValidators.required(),
-                              ]),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            TextFormField(
-                              //    controller: phoneCtrl,
-                              //    onSaved: (input) => user.phoneNo = input,
-                              keyboardType: TextInputType.text,
-                              textInputAction: TextInputAction.done,
-                              decoration: InputDecoration(
-                                prefixIcon: Icon(Icons.lock),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15)),
-                                labelText: 'Password',
-                              ),
-                              validator: FormBuilderValidators.compose([
-                                FormBuilderValidators.required(),
-                                FormBuilderValidators.minLength(6,
-                                    errorText: "minimum 6 characters required")
-                              ]),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Center(
-                              child: Container(
-                                height: 40,
-                                width: 150,
-                                decoration: BoxDecoration(
-                                    color: Color.fromARGB(255, 90, 36, 165),
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: Center(
-                                  child: InkWell(
-                                    child: Text(
-                                      'Sign Up',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    onTap: () {
-                                      Navigator.of(context).pushReplacement(
-                                          MaterialPageRoute(
-                                              builder: (BuildContext context) =>
-                                                  CustomerSignin()));
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ]),
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.required(),
+                              FormBuilderValidators.minLength(6,
+                                  errorText:
+                                      "Password should be minimum 6 characters"),
+                              // FormBuilderValidators.email(),
+                            ]),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          ElevatedButton(
+                              style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                      Colors.deepPurpleAccent)),
+                              onPressed: () {
+                                register();
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (BuildContext context) =>
+                                //             CustomerSignin()));
+                              },
+                              child: Text('Sign Up'))
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -1,15 +1,22 @@
-// import 'package:fluro/fluro.dart';
-// import 'package:flutter/widgets.dart';
-// import 'package:homeservice/CustomerPanel/View/StartScreen.dart/onboarding_example.dart';
+import 'package:fluro/fluro.dart';
+import 'package:flutter/widgets.dart';
 
-// class Routes {
-//   static FluroRouter getRouter() {
-//     final router = FluroRouter();
+import '../../../../Serviceprovider/Dashboard/bottomnavbar.dart';
+import '../../../BottomnavScreen/BottomNabBar.dart';
 
-//     Handler OnBoardPageHandler = Handler(
-//         handlerFunc: (BuildContext? context, Map<String, dynamic> params) =>
-//             OnBoard());
+class Routes {
+  static FluroRouter getRouter() {
+    final router = FluroRouter();
 
-//     return router;
-//   }
-// }
+    router.define('bnv',
+        handler: Handler(
+            handlerFunc: (BuildContext? context, Map<String, dynamic> params) =>
+                BottomNavScreen()));
+    router.define('bnb',
+        handler: Handler(
+            handlerFunc: (BuildContext? context, Map<String, dynamic> params) =>
+                Bottomnavbar()));
+
+    return router;
+  }
+}

@@ -13,12 +13,11 @@ class UserNotifier extends StateNotifier<UserState> {
 
   UserNotifier(this._iUserRepository) : super(UserInitialState());
 
-  Future<void> login(String email, String password, String tenantname,
-      BuildContext context) async {
+  Future<void> login(
+      String email, String password, BuildContext context) async {
     try {
       state = UserLoadingState();
-      final user =
-          await _iUserRepository.logIn(email, password, tenantname, context);
+      final user = await _iUserRepository.logIn(email, password, context);
 
       state = UserLoadedState(user);
     } on NetworkException {

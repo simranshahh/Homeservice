@@ -1,7 +1,8 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, unused_import, file_names, sort_child_properties_last
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, unused_import, file_names, sort_child_properties_last, empty_catches
 
 import 'dart:io';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:homeservice/CustomerPanel/BottomnavScreen/BottomNabBar.dart';
 import 'package:homeservice/Serviceprovider/Dashboard/edit_profile.dart';
@@ -104,8 +105,27 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
                     color: Colors.black,
                   ),
                   onPressed: (() async {
+                    String uniqueFilename =
+                        DateTime.now().millisecondsSinceEpoch.toString();
+                    Reference referenceRoot = FirebaseStorage.instance.ref();
+                    Reference referenceDirImages =
+                        referenceRoot.child('images');
+
+                    Reference referenceImageToUpload =
+                        referenceDirImages.child(uniqueFilename);
+                    try {
+                      await referenceImageToUpload.putFile(File(image!.path));
+
+                      imageUrl = await referenceImageToUpload.getDownloadURL();
+                    } catch (error) {}
+
                     image = await picker.pickImage(source: ImageSource.gallery);
-                    setState(() {});
+                    setState(() {
+                      //update UI
+                    });
+
+                    // image = await picker.pickImage(source: ImageSource.gallery);
+                    // setState(() {});
                     image == null ? Container() : Image.file(File(image!.path));
                   }),
                 ),

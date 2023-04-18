@@ -1,17 +1,12 @@
 class MyConfig {
-  static const String loginURL = "/api/TokenAuth/Authenticate";
-  static const String appUrl = "http://103.90.86.54:2010";
-  static const String appApiUrl = "http://103.90.86.54:2010";
-  static const String registerURL = "/api/services/app/Account/Register";
+  static const String appUrl = "http://192.168.1.75:5000";
 
-  static const String login = "localhost:9000/login";
-
-  static const String currentUserURL =
-      "/api/services/app/StudentAcademic/GetStudentInfo";
-  static const String changePassword =
-      "/api/services/app/Profile/ChangePassword";
+  // static const apiBaseUrl = 'https://localhost:27017/sajha';
+  static const String register = "http://192.168.1.75:5000/api/auth/register";
+  static const String login = "/api/auth/login";
 
   /// Dont change the code below
   MyConfig._();
+
   //api methods
 }

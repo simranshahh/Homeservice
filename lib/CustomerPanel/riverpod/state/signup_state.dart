@@ -1,4 +1,4 @@
-import '../models/signup_model.dart';
+import '../models/Signup_model.dart';
 
 abstract class SignupState {
   SignupState();
@@ -13,7 +13,7 @@ class SignupLoadingState extends SignupState {
 }
 
 class SignupLoadedState extends SignupState {
-  final SignupClass? signup;
+  final Signupclass? signup;
   SignupLoadedState(this.signup);
 }
 

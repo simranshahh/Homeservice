@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables, file_names
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables, file_names, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -37,8 +37,8 @@ class _NewpassState extends State<Newpass> {
                       color: Colors.white,
                       icon: Icon(Icons.arrow_back_ios),
                       onPressed: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (BuildContext context) => Welcome()));
+                        // Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        //     builder: (BuildContext context) => Welcome()));
                       },
                     ),
                     SizedBox(

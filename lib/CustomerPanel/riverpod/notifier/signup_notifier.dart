@@ -1,11 +1,14 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: implementation_imports, inference_failure_on_untyped_parameter, depend_on_referenced_packages, file_names, non_constant_identifier_names
 
-import 'package:flutter/cupertino.dart';
-import 'package:homeservice/CustomerPanel/Services/localkeys.dart';
-import 'package:homeservice/CustomerPanel/Services/networkexception.dart';
-import 'package:homeservice/CustomerPanel/riverpod/interface/signup_interface.dart';
-import 'package:homeservice/CustomerPanel/riverpod/state/signup_state.dart';
+// ignore: avoid_web_libraries_in_flutter
+
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../Services/localkeys.dart';
+import '../../Services/networkexception.dart';
+import '../interface/Signup_interface.dart';
+import '../state/Signup_state.dart';
 
 class SignupNotifier extends StateNotifier<SignupState> {
   final ISignupRepository _iSignupRepository;
@@ -13,17 +16,11 @@ class SignupNotifier extends StateNotifier<SignupState> {
   SignupNotifier(this._iSignupRepository) : super(SignupInitialState());
 
   Future<void> Register(
-      String name,
-      String surname,
-      String username,
-      String emailAddress,
-      String password,
-      String phoneNumber,
-      BuildContext context) async {
+      String email, String password, BuildContext context) async {
     try {
       state = SignupLoadingState();
-      final sendSignupSms = await _iSignupRepository.Register(name, surname,
-          username, emailAddress, password, phoneNumber, context);
+      final sendSignupSms =
+          await _iSignupRepository.Register(email, password, context);
       state = SignupLoadedState(sendSignupSms);
     } on NetworkException {
       state = SignupErrorState(LocaleKeys.something_went_wrong.trim());

@@ -1,22 +1,22 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables, avoid_print, no_leading_underscores_for_local_identifiers, file_names, unused_import
 
 import 'package:flutter/material.dart';
+import 'package:homeservice/CustomerPanel/View/SignIn/signin.dart';
+import 'package:homeservice/CustomerPanel/View/Signup/ServicemanSignup.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../Model/Home/usermodel.dart';
-import '../StartScreen.dart/Welcome.dart';
 import 'Customersignup.dart';
-import 'ServicemanSignup.dart';
 
-class SignUp extends ConsumerStatefulWidget {
-  const SignUp({super.key});
+class SignupPage extends ConsumerStatefulWidget {
+  const SignupPage({super.key});
 
   @override
-  SignUpState createState() => SignUpState();
+  SignupPageState createState() => SignupPageState();
 }
 
-class SignUpState extends ConsumerState<SignUp> {
+class SignupPageState extends ConsumerState<SignupPage> {
   late Logininfo user;
 
   @override
@@ -44,7 +44,7 @@ class SignUpState extends ConsumerState<SignUp> {
                       icon: Icon(Icons.arrow_back_ios),
                       onPressed: () {
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (BuildContext context) => Welcome()));
+                            builder: (BuildContext context) => Signin()));
                       },
                     ),
                     SizedBox(

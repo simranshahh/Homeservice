@@ -25,7 +25,7 @@ class Api {
   static Dio createDio() {
     // String accesstoken = StorageUtil.getString(access);
     var dio = Dio(BaseOptions(
-      baseUrl: MyConfig.appUrl,
+      //  baseUrl: MyConfig.appUrl,
       receiveTimeout: 15000, // 15 seconds
       connectTimeout: 15000,
       sendTimeout: 15000,
@@ -208,8 +208,7 @@ class AppInterceptors extends Interceptor {
       case DioErrorType.receiveTimeout:
         throw DeadlineExceededException(err.requestOptions, "");
       case DioErrorType.response:
-        String errorMsg =
-            json.decode(err.response.toString())["error"]["message"];
+        String errorMsg = json.decode(err.response.toString())["message"];
         switch (err.response?.statusCode) {
           case 400:
             throw BadRequestException(err.requestOptions, errorMsg);
@@ -224,7 +223,7 @@ class AppInterceptors extends Interceptor {
         }
         break;
       case DioErrorType.other:
-        throw NoInternetConnectionException(err.requestOptions, "Failed");
+        throw NoInternetConnectionException(err.requestOptions, errorMessage);
       case DioErrorType.cancel:
         break;
     }

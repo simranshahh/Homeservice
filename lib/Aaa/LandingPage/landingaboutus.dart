@@ -6,7 +6,6 @@ import 'package:homeservice/CustomerPanel/View/Settings/aboutus.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../main.dart';
-import '../../CustomerPanel/View/Signup/signup.dart';
 
 class LandingPageAboutus extends ConsumerStatefulWidget {
   const LandingPageAboutus({super.key});
@@ -218,10 +217,10 @@ class _LandingPageAboutusState extends ConsumerState<LandingPageAboutus> {
                       // ),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) => SignUp()));
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (BuildContext context) => Signup()));
                         },
                         child: Text('Join Now'),
                         style: ButtonStyle(

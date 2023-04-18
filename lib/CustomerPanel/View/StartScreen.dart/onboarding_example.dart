@@ -7,6 +7,7 @@ import 'package:homeservice/Aaa/LandingPage/landingpage.dart';
 import 'package:homeservice/CustomerPanel/View/SignIn.dart';
 import 'package:homeservice/CustomerPanel/View/Login.dart';
 import 'package:homeservice/CustomerPanel/View/SignIn/customersignin.dart';
+import 'package:homeservice/CustomerPanel/View/SignIn/signin.dart';
 import 'package:homeservice/CustomerPanel/View/StartScreen.dart/Welcome.dart';
 
 class OnBoard extends StatefulWidget {
@@ -27,7 +28,7 @@ class _OnBoardState extends State<OnBoard> {
         Navigator.push(
           context,
           CupertinoPageRoute(
-            builder: (context) => Welcome(),
+            builder: (context) => Signin(),
           ),
         );
       },

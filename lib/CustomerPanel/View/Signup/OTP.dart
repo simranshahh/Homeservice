@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_interpolation_to_compose_strings, avoid_print, file_names
+// ignore_for_file: prefer_const_constructors, prefer_interpolation_to_compose_strings, avoid_print, file_names, unused_import
 
 import 'dart:async';
 
@@ -58,8 +58,8 @@ class _ConfirmOTPState extends ConsumerState<ConfirmOTP> {
                     color: Colors.white,
                     icon: Icon(Icons.arrow_back_ios),
                     onPressed: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (BuildContext context) => CustomerSignup()));
+                      // Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      //     builder: (BuildContext context) => CustomerSignup()));
                     },
                   ),
                   SizedBox(

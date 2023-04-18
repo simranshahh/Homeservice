@@ -1,60 +1,58 @@
+// To parse this JSON data, do
+//
+//     final Signupclass = SignupclassFromJson(jsonString);
+
 import 'dart:convert';
 
-SignupClass signupFromJson(String str) =>
-    SignupClass.fromJson(json.decode(str));
-
-String signupToJson(SignupClass data) => json.encode(data.toJson());
-
-class SignupModel {
-  SignupClass? result;
-  SignupModel({
-    this.result,
+class Signupclass {
+  Signupclass({
+    this.email,
+    this.password,
+    this.refreshTokens,
+    this.role,
+    this.verified,
+    this.picture,
+    this.id,
+    this.v,
   });
-  factory SignupModel.fromRawJson(String str) =>
-      SignupModel.fromRawJson(json.decode(str));
+
+  String? email;
+  String? password;
+  List<dynamic>? refreshTokens;
+  String? role;
+  bool? verified;
+  String? picture;
+  String? id;
+  int? v;
+
+  factory Signupclass.fromRawJson(String str) =>
+      Signupclass.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory SignupModel.fromJson(Map<String, dynamic> json) => SignupModel(
-        result: SignupClass.fromJson(json['result']),
-      );
-
-  Map<String, dynamic> toJson() =>
-      <String, dynamic>{'result': result!.toJson()};
-}
-
-class SignupClass {
-  SignupClass({
-    this.name,
-    this.email,
-    this.servicetype,
-    this.phoneNo,
-    this.location,
-    this.password,
-  });
-
-  String? name;
-  String? email;
-  String? servicetype;
-  String? phoneNo;
-  String? location;
-  String? password;
-
-  factory SignupClass.fromJson(Map<String, dynamic> json) => SignupClass(
-        name: json["name"],
+  factory Signupclass.fromJson(Map<String, dynamic> json) => Signupclass(
         email: json["email"],
-        servicetype: json["service"],
-        phoneNo: json["phoneNo"],
-        location: json["location"],
         password: json["password"],
+        refreshTokens: json["refreshTokens"] == null
+            ? []
+            : List<dynamic>.from(json["refreshTokens"]!.map((x) => x)),
+        role: json["role"],
+        verified: json["verified"],
+        picture: json["picture"],
+        id: json["_id"],
+        v: json["__v"],
       );
 
   Map<String, dynamic> toJson() => {
-        "name": name,
         "email": email,
-        "servicetype": servicetype,
-        "phoneNo": phoneNo,
-        "location": location,
         "password": password,
+        "refreshTokens": refreshTokens == null
+            ? []
+            : List<dynamic>.from(refreshTokens!.map((x) => x)),
+        "role": role,
+        "verified": verified,
+        "picture": picture,
+        "_id": id,
+        "__v": v,
       };
 }
