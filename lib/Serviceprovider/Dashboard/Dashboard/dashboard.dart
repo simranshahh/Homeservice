@@ -55,31 +55,31 @@ class _DashboardState extends ConsumerState<Dashboard> {
                         margin: EdgeInsets.all(8.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
-                          image: DecorationImage(
-                            image: NetworkImage(
-                                "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"),
-                            // fit: BoxFit.cover,
-                          ),
+                          // image: DecorationImage(
+                          //   image: NetworkImage(
+                          //       "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"),
+                          //   // fit: BoxFit.cover,
+                          // ),
                         ),
                       ),
                       Container(
                         margin: EdgeInsets.all(8.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
-                          image: DecorationImage(
-                            image: NetworkImage(
-                                "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"),
-                            // fit: BoxFit.cover,
-                          ),
+                          // image: DecorationImage(
+                          //   image: NetworkImage(
+                          //       "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"),
+                          //   // fit: BoxFit.cover,
+                          // ),
                         ),
                       ),
                       Container(
                         margin: EdgeInsets.all(8.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
-                          image: DecorationImage(
-                              image: NetworkImage(
-                                  "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg")),
+                          //   image: DecorationImage(
+                          //       image: NetworkImage(
+                          //           "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg")),
                         ),
                       ),
                     ],

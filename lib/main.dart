@@ -2,36 +2,11 @@
 
 import 'package:firebase_core/firebase_core.dart';
 import "package:flutter/material.dart";
-import 'package:homeservice/CustomerPanel/BottomnavScreen/BottomNabBar.dart';
-import 'package:homeservice/CustomerPanel/View/SignIn.dart';
-import 'package:homeservice/Serviceprovider/Dashboard/Dashboard/Ratings.dart';
-import 'package:homeservice/Serviceprovider/Dashboard/bottomnavbar.dart';
-import 'package:homeservice/CustomerPanel/View/Bookings/current/current.dart';
-import 'package:homeservice/CustomerPanel/View/Bookings/scheduled_booking.dart';
-import 'package:homeservice/CustomerPanel/View/Home/Homepage.dart';
-import 'package:homeservice/CustomerPanel/View/Notifications/notification.dart';
-import 'package:homeservice/CustomerPanel/View/Notifications/notification_detail.dart';
-import 'package:homeservice/CustomerPanel/View/Serviceman_Profile/Serviceman_Profile.dart';
-import 'package:homeservice/CustomerPanel/View/Settings/Edit_Profile.dart';
-import 'package:homeservice/CustomerPanel/View/SignIn/customersignin.dart';
-import 'package:homeservice/CustomerPanel/View/SignIn/servicemansignin.dart';
-import 'package:homeservice/CustomerPanel/View/SignIn/signin.dart';
-import 'package:homeservice/CustomerPanel/View/Signup/SignupPage.dart';
-import 'package:homeservice/CustomerPanel/View/StartScreen.dart/Welcome.dart';
-import 'package:homeservice/CustomerPanel/View/StartScreen.dart/onboarding_example.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nb_utils/nb_utils.dart';
-
-import 'CustomerPanel/View/Serviceman_Profile/routes/routes.dart';
-import 'CustomerPanel/View/SignIn/Login.dart';
-import 'CustomerPanel/View/StartScreen.dart/Splashscreen.dart';
-import 'Serviceprovider/Dashboard/Book/CurrentPanel/Currentpanel.dart';
-import 'Serviceprovider/Dashboard/Dashboard/Aboutus.dart';
-import 'Serviceprovider/Dashboard/Dashboard/reviews.dart';
-import 'CustomerPanel/View/ForgetPassword.dart';
-import 'CustomerPanel/View/Serviceman_Profile/rate.dart';
-import 'CustomerPanel/View/Settings/customerprofile.dart';
-import 'CustomerPanel/View/Signup/Customersignup.dart';
+import 'common/routes/routes.dart';
+import 'common/Services/app_navigator_service.dart';
+import 'common/StartScreen.dart/Splashscreen.dart';
 
 // import 'package:easy_localization/easy_localization.dart';
 // Future<void> backgroundHandler(RemoteMessage message) async {
@@ -58,19 +33,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final router = Routes.getRouter();
+    final router = Routes.getRouter();
 
-    return ValueListenableBuilder(
-        valueListenable: themeMode,
-        builder: (context, value, g) {
-          return MaterialApp(
-            // Remove the debug
-            // darkTheme: ThemeData.dark(),
-            // themeMode: ThemeMode.values.toList()[value],
-            debugShowCheckedModeBanner: false,
+    return MaterialApp(
+      onGenerateRoute: router.generator,
+      navigatorKey: AppNavigatorService.navigatorKey,
+      // Remove the debug
+      // darkTheme: ThemeData.dark(),
+      // themeMode: ThemeMode.values.toList()[value],
+      debugShowCheckedModeBanner: false,
 
-            home: OnBoard(),
-          );
-        });
+      home: StartScreen(),
+    );
   }
 }
