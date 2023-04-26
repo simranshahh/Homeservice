@@ -6,8 +6,8 @@ import 'package:homeservice/Serviceprovider/ServiceProviderSignup/ServicemanSign
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../Guest/LandingPage/landingpage.dart';
 import '../../Customer/Model/Home/usermodel.dart';
+import '../../Guest/landingpage.dart';
 
 class ChooseSigninPage extends ConsumerStatefulWidget {
   const ChooseSigninPage({super.key});

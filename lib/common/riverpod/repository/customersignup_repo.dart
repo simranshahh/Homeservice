@@ -7,6 +7,7 @@ import '../../Services/basedio.dart';
 import '../../config/my_config.dart';
 import '../interface/customer_signup.dart';
 import '../models/customer_signup.dart';
+import '../models/customerprofile.dart';
 
 class CustomerSignupRepository implements ICustomerSignupRepository {
   @override
@@ -42,6 +43,26 @@ class CustomerSignupRepository implements ICustomerSignupRepository {
         //  await setString(userId, a['email']["password"].toString());
         print(response.data);
         AppNavigatorService.pushNamedAndRemoveUntil("Signin");
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+    return null;
+  }
+
+  @override
+  Future<CInfo?> customerinfo() async {
+    try {
+      var response = await Api().get(MyConfig.cusinfo);
+
+      var a = json.decode(response.toString());
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        var responsedata = json.decode(response.data);
+        print(responsedata);
+        //  await setString(userId, a['email']["password"].toString());
+        print(response.data);
+        // AppNavigatorService.pushNamedAndRemoveUntil("Signin");
       }
     } catch (e) {
       print(e.toString());

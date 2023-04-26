@@ -50,10 +50,9 @@ Widget getScreen() {
   var roles = getStringAsync(role);
 
   if (token.isNotEmpty && first.isNotEmpty && roles == customer) {
-    return const ChooseSigninPage();
-    // Bottomnavbar
-  } else if (token.isNotEmpty && first.isNotEmpty) {
     return const BottomNavScreen();
+  } else if (token.isNotEmpty && first.isNotEmpty) {
+    return const Bottomnavbar();
   } else if (first.isNotEmpty && token.isEmptyOrNull) {
     return const ChooseSigninPage();
   } else {

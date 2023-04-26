@@ -25,9 +25,9 @@ class Api {
     // String accesstoken = StorageUtil.getString(access);
     var dio = Dio(BaseOptions(
       baseUrl: MyConfig.appUrl,
-      receiveTimeout: 15000, // 15 seconds
-      connectTimeout: 15000,
-      sendTimeout: 15000,
+      receiveTimeout: 30000, // 15 seconds
+      connectTimeout: 30000,
+      sendTimeout: 30000,
     ));
     dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) {
@@ -62,7 +62,7 @@ class Api {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      Response response = await dio.post<String>(
+      Response response = await dio.post(
         uri,
         data: data,
         queryParameters: queryParameters,
@@ -77,13 +77,13 @@ class Api {
       throw SocketException(e.toString());
     } on FormatException catch (_) {
       throw const FormatException("Unable to process the data");
-    } catch (e) {
-      print(e.toString());
+      // } catch (e) {
+      //   print("errr: ${e.toString()}");
 
-      Fluttertoast.showToast(
-        msg: e.toString(),
-      );
-      rethrow;
+      //   Fluttertoast.showToast(
+      //     msg: e.toString(),
+      //   );
+      //   rethrow;
     }
   }
 

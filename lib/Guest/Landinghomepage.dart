@@ -3,9 +3,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-import '../../Customer/Model/Home/Featuredservices.dart';
 import '../../Customer/Model/Ourservices.dart';
-import '../../Customer/View/Home/DetailPage.dart';
 import 'CarpenterDummy.dart';
 
 class Landinghomepage extends StatefulWidget {
@@ -25,29 +23,29 @@ class _LandinghomepageState extends State<Landinghomepage> {
 
   @override
   Widget build(BuildContext context) {
-    List<FeaturedServices> product = [
-      FeaturedServices(
-        image: "assets/baner.png",
-        dprice: "Rs. 200",
-        pname: "Painter",
-      ),
-      FeaturedServices(
-        image: "assets/baner.png",
-        dprice: "Rs. 150",
-        pname: "Laundary",
-      ),
-      FeaturedServices(
-        image: "assets/baner.png",
-        dprice: "Rs.1500",
-        pname: "Carpenter",
-      ),
-      FeaturedServices(
-        image: "assets/baner.png",
-        dprice: "\$ 1500",
-        pname: "Plumber",
-        //
-      ),
-    ];
+    // List<FeaturedServices> product = [
+    //   FeaturedServices(
+    //     image: "assets/baner.png",
+    //     dprice: "Rs. 200",
+    //     pname: "Painter",
+    //   ),
+    //   FeaturedServices(
+    //     image: "assets/baner.png",
+    //     dprice: "Rs. 150",
+    //     pname: "Laundary",
+    //   ),
+    //   FeaturedServices(
+    //     image: "assets/baner.png",
+    //     dprice: "Rs.1500",
+    //     pname: "Carpenter",
+    //   ),
+    //   FeaturedServices(
+    //     image: "assets/baner.png",
+    //     dprice: "\$ 1500",
+    //     pname: "Plumber",
+    //     //
+    //   ),
+    // ];
 
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;

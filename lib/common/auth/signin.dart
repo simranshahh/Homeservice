@@ -9,6 +9,7 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+import '../../Customer/View/CustomerSignup/Customersignup.dart';
 import 'chooseSignin.dart';
 import '../riverpod/provider/signin_provider.dart';
 // import '../'../../../common/auth/SignupPage.dart'nin.dart';
@@ -35,6 +36,24 @@ class _SigninState extends ConsumerState<Signin> {
           );
       await setValue(emails, emailCtrl.value.text);
       await setValue(passwords, passwordCtrl.value.text);
+    }
+  }
+
+  Icon lockIcon = LockIcon().lock;
+
+  bool offsecureText1 = true;
+
+  void _onlockPressed2() {
+    if (offsecureText1 == true) {
+      setState(() {
+        offsecureText1 = false;
+        lockIcon = LockIcon().open;
+      });
+    } else {
+      setState(() {
+        offsecureText1 = true;
+        lockIcon = LockIcon().lock;
+      });
     }
   }
 
@@ -98,9 +117,12 @@ class _SigninState extends ConsumerState<Signin> {
                       FormBuilderValidators.minLength(6)
                     ]),
                     decoration: InputDecoration(
-                      fillColor: Colors.deepPurpleAccent,
-                      labelText: "Password",
-                      prefixIcon: const Icon(Icons.lock),
+                      suffixIcon: IconButton(
+                          icon: lockIcon, onPressed: () => _onlockPressed2()),
+                      prefixIcon: Icon(Icons.lock),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      labelText: 'Password',
                     ),
                     obscureText: true,
                   ),

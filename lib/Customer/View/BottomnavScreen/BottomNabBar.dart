@@ -53,7 +53,7 @@ class _BottomNavScreenState extends ConsumerState<BottomNavScreen> {
                 label: 'Notifications',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.settings),
+                icon: Icon(Icons.person),
                 label: 'Profile',
               ),
             ],
