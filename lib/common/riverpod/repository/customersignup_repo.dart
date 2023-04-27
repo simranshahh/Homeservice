@@ -12,23 +12,23 @@ import '../models/customerprofile.dart';
 class CustomerSignupRepository implements ICustomerSignupRepository {
   @override
   Future<CustomerRegister?> customerregister(
-    String email,
-    String password,
-    String cordinates,
-    String phone,
-    String address,
-    String fullName,
-    String role,
+    // String email,
+    // String password,
+    // String cordinates,
+    // String phone,
+    // String address,
+    // String fullName,
+    // String role,
     BuildContext context,
   ) async {
     var data = {
-      'email': email,
-      'password': password,
-      "cordinates": cordinates,
-      "phone": phone,
-      "address": address,
-      "full_name": fullName,
-      "role": role,
+      "email": "p@gmail.com",
+      "password": "S@ndhya12345",
+      "cordinates": "26.6660761,87.2708559",
+      "phone": 76692789273,
+      "address": "itaharui",
+      "full_name": "67758",
+      "role": "6446b631df4fb8661ce20a80"
     };
     print(data);
 
@@ -37,7 +37,7 @@ class CustomerSignupRepository implements ICustomerSignupRepository {
 
       var a = json.decode(response.toString());
       print(response.statusCode);
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         var responsedata = json.decode(response.data);
         print(responsedata);
         //  await setString(userId, a['email']["password"].toString());
@@ -58,10 +58,12 @@ class CustomerSignupRepository implements ICustomerSignupRepository {
       var a = json.decode(response.toString());
       print(response.statusCode);
       if (response.statusCode == 200) {
-        var responsedata = json.decode(response.data);
+        var responsedata = json.decode(response.data)["user"];
         print(responsedata);
         //  await setString(userId, a['email']["password"].toString());
         print(response.data);
+        var data = CInfo.fromJson(responsedata);
+        return data;
         // AppNavigatorService.pushNamedAndRemoveUntil("Signin");
       }
     } catch (e) {

@@ -7,13 +7,13 @@ import '../models/customerprofile.dart';
 
 abstract class ICustomerSignupRepository {
   Future<CustomerRegister?> customerregister(
-    String email,
-    String password,
-    String cordinates,
-    String phone,
-    String address,
-    String fullName,
-    String role,
+    // String email,
+    // String password,
+    // String cordinates,
+    // String phone,
+    // String address,
+    // String fullName,
+    // String role,
     BuildContext context,
   );
   Future<CInfo?> customerinfo();

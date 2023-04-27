@@ -87,7 +87,7 @@ class _Customer_settingState extends ConsumerState<Customer_setting> {
           ),
           cusinfo.when(
             data: (data) => data == null
-                ? Text("No data")
+                ? Center(child: Text("No data"))
                 : Padding(
                     padding: const EdgeInsets.fromLTRB(8.0, 150, 8, 0),
                     child: Card(

@@ -68,25 +68,25 @@ class _CustomerSignupState extends ConsumerState<CustomerSignup> {
 
 // Register button validation
   Future<void> customerRegister() async {
-    if (_signupKey.currentState!.validate()) {
-      ref.read(customerSignupNotifierProvider.notifier).CustomerRegister(
-          emailctrl.value.text,
-          passwordctrl.value.text,
-          locationCtrl.text,
-          phoneCtrl.value.text,
-          addressctrl.value.text,
-          fullnameCtrl.value.text,
-          rolectrl.value.text,
-          context);
+    // if (_signupKey.currentState!.validate()) {
+    ref.read(customerSignupNotifierProvider.notifier).CustomerRegister(
+        // emailctrl.value.text,
+        // passwordctrl.value.text,
+        // locationCtrl.text,
+        // phoneCtrl.value.text,
+        // addressctrl.value.text,
+        // fullnameCtrl.value.text,
+        // rolectrl.value.text,
+        context);
 
-      await setValue(email, emailctrl.value.text);
-      await setValue(password, passwordctrl.value.text);
-      await setValue(coordinates, locationCtrl.value.text);
-      await setValue(phone, phoneCtrl.value.text);
-      await setValue(address, addressctrl.value.text);
-      await setValue(fullname, fullnameCtrl.value.text);
-      await setValue(role, rolectrl.value.text);
-    }
+    // await setValue(email, emailctrl.value.text);
+    // await setValue(password, passwordctrl.value.text);
+    // await setValue(coordinates, locationCtrl.value.text);
+    // await setValue(phone, phoneCtrl.value.text);
+    // await setValue(address, addressctrl.value.text);
+    // await setValue(fullname, fullnameCtrl.value.text);
+    // await setValue(role, rolectrl.value.text);
+    // }
   }
 
   bool pressed = false;

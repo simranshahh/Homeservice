@@ -37,6 +37,9 @@ class Api {
         return handler.next(response);
       },
       onError: (DioError e, handler) {
+        print(e.message);
+        print(e.response!.statusCode);
+
         return handler.next(e);
       },
     ));
@@ -62,7 +65,7 @@ class Api {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      Response response = await dio.post(
+      Response response = await dio.post<String>(
         uri,
         data: data,
         queryParameters: queryParameters,
@@ -187,6 +190,9 @@ class AppInterceptors extends Interceptor {
   Future onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
     final token = getStringAsync(accessToken);
+    // print(token);
+    // String token =
+    //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDQ2YmMzZTY3ZjRlYWNmZTc0ODcxOWUiLCJyb2xlIjoiNjQ0NmJiZGY2N2Y0ZWFjZmU3NDg3MTk1IiwiaWF0IjoxNjgyNTY3MTEyLCJleHAiOjE2ODI2NTM1MTJ9.sfWtfECT3cqO1yNGsx-w4cp51b5zluws6AXDgElnek8";
 
     options.headers.addAll({
       "Authorization": "Bearer $token",

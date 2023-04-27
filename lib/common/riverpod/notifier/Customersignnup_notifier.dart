@@ -16,20 +16,19 @@ class CustomerSignupNotifier extends StateNotifier<CustomerSignupState> {
       : super(CustomerSignupInitialState());
 
   Future<void> CustomerRegister(
-    String email,
-    String password,
-    String cordinates,
-    String phone,
-    String address,
-    String fullName,
-    String role,
+    // String email,
+    // String password,
+    // String cordinates,
+    // String phone,
+    // String address,
+    // String fullName,
+    // String role,
     BuildContext context,
   ) async {
     try {
       state = CustomerSignupLoadingState();
       final sendCustomerSignupSms =
-          await _iCustomerSignupRepository.customerregister(email, password,
-              cordinates, phone, address, fullName, role, context);
+          await _iCustomerSignupRepository.customerregister(context);
       state = CustomerSignupLoadedState(sendCustomerSignupSms);
     } on NetworkException {
       state = CustomerSignupErrorState(LocaleKeys.something_went_wrong.trim());

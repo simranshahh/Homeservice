@@ -56,6 +56,6 @@ Widget getScreen() {
   } else if (first.isNotEmpty && token.isEmptyOrNull) {
     return const ChooseSigninPage();
   } else {
-    return const OnBoard();
+    return const BottomNavScreen();
   }
 }
