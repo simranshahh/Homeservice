@@ -55,31 +55,28 @@ class _DashboardState extends ConsumerState<Dashboard> {
                         margin: EdgeInsets.all(8.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
-                          // image: DecorationImage(
-                          //   image: NetworkImage(
-                          //       "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"),
-                          //   // fit: BoxFit.cover,
-                          // ),
+                          image: DecorationImage(
+                            image: AssetImage("assets/swap.jpg"),
+                            // fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                       Container(
                         margin: EdgeInsets.all(8.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
-                          // image: DecorationImage(
-                          //   image: NetworkImage(
-                          //       "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"),
-                          //   // fit: BoxFit.cover,
-                          // ),
+                          image: DecorationImage(
+                            image: AssetImage("assets/swap1.jpg"),
+                            // fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                       Container(
                         margin: EdgeInsets.all(8.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
-                          //   image: DecorationImage(
-                          //       image: NetworkImage(
-                          //           "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg")),
+                          image: DecorationImage(
+                              image: AssetImage("assets/swap.jpg")),
                         ),
                       ),
                     ],
@@ -96,6 +93,73 @@ class _DashboardState extends ConsumerState<Dashboard> {
                   ),
                 ]),
               ),
+              // Container(
+              //   height: height * 0.2,
+              //   child: ListView(children: [
+              //     CarouselSlider(
+              //       items: [
+              //         Container(
+              //           height: height * 0.2,
+              //           child: ListView(children: [
+              //             CarouselSlider(
+              //               items: [
+              //                 Container(
+              //                   margin: EdgeInsets.all(8.0),
+              //                   decoration: BoxDecoration(
+              //                     borderRadius: BorderRadius.circular(10.0),
+              //                     image: DecorationImage(
+              //                       image: AssetImage("assets/swap.jpg"),
+              //                       // fit: BoxFit.cover,
+              //                     ),
+              //                   ),
+              //                 ),
+              //                 Container(
+              //                   margin: EdgeInsets.all(8.0),
+              //                   decoration: BoxDecoration(
+              //                     borderRadius: BorderRadius.circular(10.0),
+              //                     image: DecorationImage(
+              //                       image: AssetImage("assets/swap1.jpg"),
+              //                       // fit: BoxFit.cover,
+              //                     ),
+              //                   ),
+              //                 ),
+              //                 Container(
+              //                   margin: EdgeInsets.all(8.0),
+              //                   decoration: BoxDecoration(
+              //                     borderRadius: BorderRadius.circular(10.0),
+              //                     image: DecorationImage(
+              //                         image: AssetImage("assets/swap.jpg")),
+              //                   ),
+              //                 ),
+              //               ],
+              //               options: CarouselOptions(
+              //                 // height: 380.0,
+              //                 enlargeCenterPage: true,
+              //                 autoPlay: true,
+              //                 aspectRatio: 16 / 9,
+              //                 autoPlayCurve: Curves.fastOutSlowIn,
+              //                 enableInfiniteScroll: true,
+              //                 autoPlayAnimationDuration:
+              //                     Duration(milliseconds: 800),
+              //                 viewportFraction: 0.8,
+              //               ),
+              //             ),
+              //           ]),
+              //         ),
+              //       ],
+              //       options: CarouselOptions(
+              //         // height: 380.0,
+              //         enlargeCenterPage: true,
+              //         autoPlay: true,
+              //         aspectRatio: 16 / 9,
+              //         autoPlayCurve: Curves.fastOutSlowIn,
+              //         enableInfiniteScroll: true,
+              //         autoPlayAnimationDuration: Duration(milliseconds: 800),
+              //         viewportFraction: 0.8,
+              //       ),
+              //     ),
+              //   ]),
+              // ),
               Card(
                 child: Container(
                   height: height * 0.125,

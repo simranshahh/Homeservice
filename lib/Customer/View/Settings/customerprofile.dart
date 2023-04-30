@@ -1,10 +1,9 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, sort_child_properties_last, unused_local_variable
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, sort_child_properties_last, unused_local_variable, avoid_print
 
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:homeservice/Customer/View/BottomnavScreen/BottomNabBar.dart';
-import 'package:homeservice/Customer/View/Settings/aboutus.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../Serviceprovider/Dashboard/Dashboard/Aboutus.dart';

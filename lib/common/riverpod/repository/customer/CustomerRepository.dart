@@ -8,24 +8,25 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../Services/basedio.dart';
 import '../../../config/my_config.dart';
 import '../../models/AllrolesModel.dart';
-import '../../models/customerprofile.dart';
 
 class CustomerRepository {
-  Future<List<Service>> serviceDetails(String? serviceid) async {
+  Future<List<ServiceDetails>> serviceDetails(String? servicename) async {
     try {
-      final serviceDetails = "/api/service/all/$serviceid";
+      final serviceDetails = "/api/service/all/$servicename";
 
       var response = await Api().get(MyConfig.appUrl + serviceDetails);
       print(response.statusCode);
       if (response.statusCode == 200) {
-        Map<String, dynamic> responsedata = json.decode(response.data);
-        List<dynamic> data = responsedata["services"];
-        return data.map((e) => Service.fromJson(e)).toList();
+        var value = jsonDecode(response.data);
+        print(value);
+        // Map<String, dynamic> responsedata = json.decode(response.data);
+        List<dynamic> data = json.decode(response.data);
+        return data.map((e) => ServiceDetails.fromJson(e)).toList();
       }
     } catch (e) {
       print(e.toString());
     }
-    List<Service> b = [];
+    List<ServiceDetails> b = [];
     return b;
   }
 

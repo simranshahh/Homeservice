@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, unused_import, file_names, sort_child_properties_last, empty_catches
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, unused_import, file_names, sort_child_properties_last, empty_catches, avoid_print
 
 import 'dart:convert';
 import 'dart:io';
@@ -136,7 +136,7 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
                                           width: 40,
                                         ),
                                         Text(
-                                          snapshot.data!.fullName.toString(),
+                                          snapshot.data!.address.toString(),
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
                                         )
@@ -170,7 +170,7 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
                                           width: 35,
                                         ),
                                         Text(
-                                          snapshot.data!.phone.toString(),
+                                          ' 9805367848',
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
                                         )
@@ -187,7 +187,7 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
                                           width: 35,
                                         ),
                                         Text(
-                                          snapshot.data!.address.toString(),
+                                          snapshot.data!.phone.toString(),
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
                                         )

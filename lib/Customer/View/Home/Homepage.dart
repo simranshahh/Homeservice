@@ -54,9 +54,10 @@ class _HomepageState extends ConsumerState<Homepage> {
     final height = MediaQuery.of(context).size.height;
     final role = ref.watch(allrolesprovider);
 
-    getprovider(String id) {
-      final servicedetailsprovider = FutureProvider<List<Service>>((ref) async {
-        return ref.read(customerRepositoryProvider).serviceDetails(id);
+    getprovider(String name) {
+      final servicedetailsprovider =
+          FutureProvider<List<ServiceDetails>>((ref) async {
+        return ref.read(customerRepositoryProvider).serviceDetails(name);
       });
 
       return servicedetailsprovider;
@@ -198,8 +199,9 @@ class _HomepageState extends ConsumerState<Homepage> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => New_Order(
-                                        detaillist: getprovider(
-                                            data[index].id.toString())),
+                                      detaillist: getprovider(
+                                          data[index].name.toString()),
+                                    ),
                                   ));
                             },
                             child: Card(

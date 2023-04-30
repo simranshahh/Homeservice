@@ -8,8 +8,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../common/riverpod/models/ServiceDetails.dart';
 
 class New_Order extends ConsumerStatefulWidget {
-  New_Order({this.detaillist, super.key});
-  FutureProvider<List<Service>>? detaillist;
+  New_Order({this.detaillist, this.s, super.key});
+  FutureProvider<List<ServiceDetails>>? detaillist;
+  void Function()? s;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _New_OrderState();
@@ -52,17 +53,14 @@ class _New_OrderState extends ConsumerState<New_Order> {
   //       Jobno: '122',
   //       Rate: 'Rs.200/hr',
   //       name: 'Maya Tana'),
-  //   WorkerDetails(
-  //       Profile: 'assets/worker.jpg',
-  //       Jobno: '122',
-  //       Rate: 'Rs.200/hr',
-  //       name: 'Nirab Luitel'),
+
   //   WorkerDetails(
   //       Profile: 'assets/worker.jpg',
   //       Jobno: '122',
   //       Rate: 'Rs.200/hr',
   //       name: 'Sana sana'),
   // ];
+
   @override
   Widget build(BuildContext context) {
     final services = ref.watch(widget.detaillist!);
@@ -119,7 +117,7 @@ class _New_OrderState extends ConsumerState<New_Order> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                data[index].name.toString(),
+                                data[index].fullName.toString(),
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               SizedBox(
@@ -163,7 +161,7 @@ class _New_OrderState extends ConsumerState<New_Order> {
                                         style: TextStyle(color: Colors.grey),
                                       ),
                                       Text(
-                                        data[index].description.toString(),
+                                        data[index].role.toString(),
                                         style: TextStyle(fontSize: 12),
                                       )
                                     ],
@@ -199,6 +197,48 @@ class _New_OrderState extends ConsumerState<New_Order> {
           child: CircularProgressIndicator(),
         ),
       ),
+    );
+  }
+
+  void ss(String name) async {
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(
+                'assets/popup.png',
+                height: 110,
+                width: 110,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Highly Recommended!',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 90, 36, 165)),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                '   Your ServiceProvider nearest to your area is \n                        recommended for you.',
+                style: TextStyle(fontSize: 10),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Text(
+                name,
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 }

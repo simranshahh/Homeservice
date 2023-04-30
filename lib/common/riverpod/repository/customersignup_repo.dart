@@ -8,7 +8,6 @@ import '../../Services/basedio.dart';
 import '../../config/my_config.dart';
 import '../interface/customer_signup.dart';
 import '../models/customer_signup.dart';
-import '../models/customerprofile.dart';
 
 class CustomerSignupRepository implements ICustomerSignupRepository {
   @override
@@ -49,6 +48,4 @@ class CustomerSignupRepository implements ICustomerSignupRepository {
     }
     return null;
   }
-
- 
 }

@@ -19,5 +19,5 @@ abstract class ICustomerSignupRepository {
     int? v,
     BuildContext context,
   );
-  Future<Service?> customerinfo();
+  // Future<Service?> customerinfo();
 }
