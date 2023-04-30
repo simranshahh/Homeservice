@@ -15,5 +15,4 @@ abstract class ICustomerSignupRepository {
     String fullName,
     BuildContext context,
   );
-  Future<CInfo?> customerinfo();
 }

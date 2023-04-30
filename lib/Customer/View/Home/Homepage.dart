@@ -95,31 +95,31 @@ class _HomepageState extends ConsumerState<Homepage> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(28.0, 80, 28, 0),
-                  child: Container(
-                    height: 50,
-                    width: 350,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.white),
-                    child: TextField(
-                      decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          suffixIcon: IconButton(
-                              onPressed: () {
-                                // // method to show the search bar
-                                showSearch(
-                                    context: context,
-                                    // delegate to customize the search bar
-                                    delegate: CustomSearchDelegate());
-                              },
-                              icon: const Icon(Icons.search))),
-                    ),
-                  ),
-                )
+                // Padding(
+                //   padding: const EdgeInsets.fromLTRB(28.0, 80, 28, 0),
+                //   child: Container(
+                //     height: 50,
+                //     width: 350,
+                //     decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.circular(15),
+                //         color: Colors.white),
+                //     child: TextField(
+                //       decoration: InputDecoration(
+                //           fillColor: Colors.white,
+                //           border: OutlineInputBorder(
+                //               borderRadius: BorderRadius.circular(15)),
+                //           suffixIcon: IconButton(
+                //               onPressed: () {
+                //                 // // method to show the search bar
+                //                 showSearch(
+                //                     context: context,
+                //                     // delegate to customize the search bar
+                //                     delegate: CustomSearchDelegate());
+                //               },
+                //               icon: const Icon(Icons.search))),
+                //     ),
+                //   ),
+                // )
               ]),
               Padding(
                 padding: const EdgeInsets.only(top: 10),

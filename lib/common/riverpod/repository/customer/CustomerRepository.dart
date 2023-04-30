@@ -8,6 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../Services/basedio.dart';
 import '../../../config/my_config.dart';
 import '../../models/AllrolesModel.dart';
+import '../../models/customerprofile.dart';
 
 class CustomerRepository {
   Future<List<Service>> serviceDetails(String? serviceid) async {
@@ -43,6 +44,28 @@ class CustomerRepository {
     List<Roles> b = [];
     return b;
   }
+
+  // Future<User?> customerinfo() async {
+  //   try {
+  //     final response = await Api().get(MyConfig.cusinfo);
+
+  //     // var a = json.decode(response.toString());
+  //     print(response.statusCode);
+  //     if (response.statusCode == 200) {
+  //       var value = json.decode(response.data);
+  //       // responsedata = json.decode(response.data)["user"];
+  //       print(value);
+  //       //  await setString(userId, a['email']["password"].toString());
+  //       var data = User.fromJson(value);
+  //       print(data);
+  //       return data;
+  //       // AppNavigatorService.pushNamedAndRemoveUntil("Signin");
+  //     }
+  //   } catch (e) {
+  //     print(e.toString());
+  //   }
+  //   return null;
+  // }
 }
 
 final customerRepositoryProvider =
@@ -57,3 +80,8 @@ final allrolesprovider = FutureProvider.autoDispose<List<Roles>>(
     return ref.read(customerRepositoryProvider).allRoles();
   },
 );
+// final cusprofileprovider = FutureProvider.autoDispose<User?>(
+//   (ref) async {
+//     return ref.read(customerRepositoryProvider).customerinfo();
+//   },
+// );

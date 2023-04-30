@@ -46,9 +46,9 @@ class UserRepository implements IUserRepository {
       print(roles);
 
       if (roles == '6446bbdf67f4eacfe7487195') {
-        AppNavigatorService.pushNamed("bnv");
+        AppNavigatorService.pushNamedAndRemoveUntil("bnv");
       } else {
-        AppNavigatorService.pushNamed("bnb");
+        AppNavigatorService.pushNamedAndRemoveUntil("bnb");
       }
       //else if (usertype == 'users') {
       //   AppNavigatorService.pushNamed("bnv");

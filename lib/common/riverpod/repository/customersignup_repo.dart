@@ -50,26 +50,5 @@ class CustomerSignupRepository implements ICustomerSignupRepository {
     return null;
   }
 
-  @override
-  Future<CInfo?> customerinfo() async {
-    try {
-      var response = await Api().get(MyConfig.cusinfo);
-
-      // var a = json.decode(response.toString());
-      print(response.statusCode);
-      if (response.statusCode == 200) {
-        var responsedata = json.decode(response.data);
-        // responsedata = json.decode(response.data)["user"];
-        print(responsedata);
-        //  await setString(userId, a['email']["password"].toString());
-        var data = CInfo.fromJson(responsedata);
-        print(data);
-        return data;
-        // AppNavigatorService.pushNamedAndRemoveUntil("Signin");
-      }
-    } catch (e) {
-      print(e.toString());
-    }
-    return null;
-  }
+ 
 }

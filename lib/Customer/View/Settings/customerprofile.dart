@@ -1,11 +1,16 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, sort_child_properties_last, unused_local_variable
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:homeservice/Customer/View/BottomnavScreen/BottomNabBar.dart';
 import 'package:homeservice/Customer/View/Settings/aboutus.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../common/riverpod/provider/customerSignup_provider.dart';
+import '../../../Serviceprovider/Dashboard/Dashboard/Aboutus.dart';
+import '../../../common/Services/basedio.dart';
+import '../../../common/config/my_config.dart';
+import '../../../common/riverpod/models/customerprofile.dart';
 import '../../../common/riverpod/provider/signin_provider.dart';
 
 class Customer_setting extends ConsumerStatefulWidget {
@@ -26,7 +31,7 @@ class _Customer_settingState extends ConsumerState<Customer_setting> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
 
-    final cusinfo = ref.watch(customerinfoprovider);
+    // final cusinfo = ref.watch(cusprofileprovider);
     final width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
@@ -95,182 +100,147 @@ class _Customer_settingState extends ConsumerState<Customer_setting> {
               ],
             ),
           ),
-          cusinfo.when(
-            data: (data) => data == null
-                ? Center(child: Text("No data"))
-                : Padding(
-                    padding: const EdgeInsets.fromLTRB(8.0, 150, 8, 0),
-                    child: Card(
-                      elevation: 5,
-                      child: SizedBox(
-                        height: height * 0.6,
-                        child: Column(
-                          children: [
-                            // Padding(
-                            //   padding: const EdgeInsets.fromLTRB(130.0, 0, 18, 18),
-                            //   child: CircleAvatar(
-                            //     radius: 50,
-                            //     backgroundImage: AssetImage('assets/worker.jpg'),
-                            //   ),
-                            // ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(8.0, 2, 8, 0),
-                              child: Column(children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(28.0),
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Image.asset(
-                                              'assets/name.png',
-                                              height: 40,
-                                              width: 40,
-                                            ),
-                                            Text(
-                                              data.fullName.toString(),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold),
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 15,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Image.asset(
-                                              'assets/mail.png',
-                                              height: 35,
-                                              width: 35,
-                                            ),
-                                            Text(
-                                              data.email.toString(),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold),
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 15,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Image.asset(
-                                              'assets/call.png',
-                                              height: 35,
-                                              width: 35,
-                                            ),
-                                            Text(
-                                              data.phone.toString(),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold),
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 15,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Image.asset(
-                                              'assets/location.png',
-                                              height: 35,
-                                              width: 35,
-                                            ),
-                                            Text(
-                                              data.address.toString(),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold),
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 15,
-                                        ),
-                                        InkWell(
-                                          child: Row(
-                                            children: [
-                                              Image.asset(
-                                                'assets/about.png',
-                                                height: 35,
-                                                width: 35,
-                                              ),
-                                              Text(
-                                                '   About Us',
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              )
-                                            ],
+          FutureBuilder(
+            future: customerinfo(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Padding(
+                  padding: const EdgeInsets.fromLTRB(8.0, 150, 8, 0),
+                  child: Card(
+                    elevation: 5,
+                    child: SizedBox(
+                      height: height * 0.6,
+                      child: Column(
+                        children: [
+                          // Padding(
+                          //   padding: const EdgeInsets.fromLTRB(130.0, 0, 18, 18),
+                          //   child: CircleAvatar(
+                          //     radius: 50,
+                          //     backgroundImage: AssetImage('assets/worker.jpg'),
+                          //   ),
+                          // ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(8.0, 2, 8, 0),
+                            child: Column(children: [
+                              Padding(
+                                padding: const EdgeInsets.all(28.0),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Image.asset(
+                                            'assets/name.png',
+                                            height: 40,
+                                            width: 40,
                                           ),
-                                          onTap: (() {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (BuildContext
-                                                            context) =>
-                                                        CustomerAboutus()));
-                                          }),
+                                          Text(
+                                            snapshot.data!.fullName.toString(),
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Image.asset(
+                                            'assets/mail.png',
+                                            height: 35,
+                                            width: 35,
+                                          ),
+                                          Text(
+                                            snapshot.data!.email.toString(),
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Image.asset(
+                                            'assets/call.png',
+                                            height: 35,
+                                            width: 35,
+                                          ),
+                                          Text(
+                                            snapshot.data!.phone.toString(),
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Image.asset(
+                                            'assets/location.png',
+                                            height: 35,
+                                            width: 35,
+                                          ),
+                                          Text(
+                                            snapshot.data!.address.toString(),
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      InkWell(
+                                        child: Row(
+                                          children: [
+                                            Image.asset(
+                                              'assets/about.png',
+                                              height: 35,
+                                              width: 35,
+                                            ),
+                                            Text(
+                                              '   About Us',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ],
                                         ),
-                                        SizedBox(
-                                          height: 15,
-                                        ),
-                                        // Row(
-                                        //   children: [
-                                        //     Image.asset(
-                                        //       'assets/profile_setting.png',
-                                        //       height: 35,
-                                        //       width: 35,
-                                        //     ),
-                                        //     InkWell(
-                                        //       child: Text(
-                                        //         '   Edit Profile',
-                                        //         style: TextStyle(
-                                        //             fontWeight:
-                                        //                 FontWeight.bold),
-                                        //       ),
-                                        //       onTap: () {
-                                        //         Navigator.push(
-                                        //             context,
-                                        //             MaterialPageRoute(
-                                        //                 builder: (BuildContext
-                                        //                         context) =>
-                                        //                     Edit_ProfilePage()));
-                                        //       },
-                                        //     )
-                                        //   ],
-                                        // ),
-                                      ],
-                                    ),
+                                        onTap: (() {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder:
+                                                      (BuildContext context) =>
+                                                          AboutUs()));
+                                        }),
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                    ],
                                   ),
                                 ),
-
-                                // Padding(
-                                //   padding: const EdgeInsets.fromLTRB(30, 278, 0, 0),
-                                //   child: DayNightSwitcher(
-                                //       isDarkModeEnabled: isDarkModeEnabled,
-                                //       onStateChanged: onStateChanged),
-                                // ),
-                                // Padding(
-                                //   padding: EdgeInsets.only(top: 330, left: 30),
-                                //   child: Text('Dark mode is ' +
-                                //       (isDarkModeEnabled ? 'enabled' : 'disabled') +
-                                //       '.'),
-                                // ),
-                              ]),
-                            )
-                          ],
-                        ),
+                              ),
+                            ]),
+                          )
+                        ],
                       ),
                     ),
                   ),
-            error: (error, stackTrace) => Text(error.toString()),
-            loading: () => Center(
-              child: CircularProgressIndicator(),
-            ),
-          ),
+                );
+              } else if (snapshot.hasError) {
+                return Text('${snapshot.error}');
+              }
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            },
+          )
         ]),
       ),
     );
@@ -281,4 +251,28 @@ class _Customer_settingState extends ConsumerState<Customer_setting> {
   //     this.isDarkModeEnabled = isDarkModeEnabled;
   //   });
   // }
+}
+
+Future<User?> customerinfo() async {
+  try {
+    final response = await Api().get(MyConfig.cusinfo);
+
+    // var a = json.decode(response.toString());
+    print(response.statusCode);
+    print(json.decode(response.data)['user']);
+    if (response.statusCode == 200) {
+      // var value = json.decode(response.data);
+      // responsedata = json.decode(response.data)["user"];
+      // print(value);
+      //  await setString(userId, a['email']["password"].toString());
+      // var data = User.fromJson(json.decode(response.data));
+      // print(data);
+      return User.fromJson(jsonDecode(response.data)['user']);
+
+      // AppNavigatorService.pushNamedAndRemoveUntil("Signin");
+    }
+  } catch (e) {
+    print(e.toString());
+  }
+  return null;
 }

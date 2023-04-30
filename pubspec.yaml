@@ -62,12 +62,9 @@ dependencies:
   syncfusion_flutter_pdf: ^20.4.44
   flutter_svg: ^1.1.6
   day_night_switcher: ^0.2.0+1
-  firebase_auth: ^4.2.5
-  firebase_core: ^2.4.1
   image_picker: ^0.8.7+2
   timelines: ^0.1.0
   fluro: ^2.0.5
-  firebase_storage: ^11.1.0
   geolocator: ^9.0.2
   geocoding: ^2.1.0
   

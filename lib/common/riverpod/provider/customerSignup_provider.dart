@@ -14,8 +14,4 @@ final customerSignupNotifierProvider =
     StateNotifierProvider<CustomerSignupNotifier, CustomerSignupState>((ref) =>
         CustomerSignupNotifier(ref.watch(_customerSignupRepositoryProvider)));
 
-final customerinfoprovider = FutureProvider.autoDispose<CInfo?>(
-  (ref) async {
-    return ref.read(_customerSignupRepositoryProvider).customerinfo();
-  },
-);
+
