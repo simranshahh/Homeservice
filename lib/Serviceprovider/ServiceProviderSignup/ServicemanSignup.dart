@@ -1,15 +1,19 @@
-// ignore_for_file: prefer_const_constructors, file_names, non_constant_identifier_names, unused_import, unused_field, prefer_final_fields, unused_local_variable
+// ignore_for_file: prefer_const_constructors, file_names, non_constant_identifier_names, unused_import, unused_field, prefer_final_fields, unused_local_variable, unnecessary_null_comparison, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:homeservice/common/Services/constants.dart';
 import 'package:homeservice/Serviceprovider/View/Serviceman_Profile/Location.dart';
 import 'package:homeservice/common/auth/signin.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+import '../../common/helper/constants.dart';
 import '../../common/riverpod/models/SignupModel.dart';
 import '../../common/riverpod/provider/Signup_provider.dart';
+import '../../common/riverpod/provider/customerSignup_provider.dart';
 
 class ServicemanSignup extends ConsumerStatefulWidget {
   const ServicemanSignup({super.key});
@@ -20,24 +24,100 @@ class ServicemanSignup extends ConsumerStatefulWidget {
 }
 
 class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
-  int _value = 1;
+  String _value = "carpenter";
+  final List<String> list_items = [
+    "carpenter",
+    "plumber",
+    "laundary",
+    "painter"
+  ];
   final a = getStringAsync(location);
 
   final _ServicemanSignupKey = GlobalKey<FormState>();
+
+  bool pressed = false;
+  final geolocator =
+      Geolocator.getCurrentPosition(forceAndroidLocationManager: true);
+  Position? _currentPosition;
+  String currentAddress = "";
+
+  void getCurrentLocation() {
+    Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+        .then((Position position) {
+      setState(() {
+        _currentPosition = position;
+        pressed = true;
+      });
+
+      getAddressFromLatLng();
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
+  void getAddressFromLatLng() async {
+    try {
+      List<Placemark> p = await placemarkFromCoordinates(
+          _currentPosition!.latitude, _currentPosition!.longitude);
+
+      // Placemark place = p[0];
+
+      setState(() {
+        currentAddress =
+            "${_currentPosition!.latitude},${_currentPosition!.longitude}";
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
   final fullnameCtrl = TextEditingController();
+  final phoneCtrl = TextEditingController();
   final locationCtrl = TextEditingController();
+  final emailctrl = TextEditingController();
+  final passwordctrl = TextEditingController();
+  final addressctrl = TextEditingController();
+  final rolectrl = TextEditingController();
+  final pricectrl = TextEditingController();
+// Register button validation
+  Future<void> servicepRegister() async {
+    if (_ServicemanSignupKey.currentState!.validate()) {
+      ref.read(serviceSignupNotifierProvider.notifier).ServiceRegister(
+          emailctrl.value.text,
+          passwordctrl.value.text,
+          locationCtrl.text,
+          phoneCtrl.value.text,
+          addressctrl.value.text,
+          fullnameCtrl.value.text,
+          _value.toString(),
+          pricectrl.value.text.toInt(),
+          context);
 
-  final emailCtrl = TextEditingController();
-  final phonenoCtrl = TextEditingController();
-  final priceCtrl = TextEditingController();
-
-  final passwordCtrl = TextEditingController();
+      await setValue(email, emailctrl.value.text);
+      await setValue(password, passwordctrl.value.text);
+      await setValue(coordinates, locationCtrl.value.text);
+      await setValue(phone, phoneCtrl.value.text);
+      await setValue(address, addressctrl.value.text);
+      await setValue(fullname, fullnameCtrl.value.text);
+      await setValue(role, _value.toString());
+    }
+  }
 
   late Register user;
   @override
   void dispose() {
-    emailCtrl.dispose();
-    passwordCtrl.dispose();
+    emailctrl.dispose();
+    passwordctrl.dispose();
+    fullnameCtrl.dispose();
+    locationCtrl.dispose();
+    addressctrl.dispose();
+    phoneCtrl.dispose();
+    pricectrl.dispose();
+
+    final rolectrl = TextEditingController();
+
+    rolectrl.dispose();
+
     super.dispose();
   }
 
@@ -45,6 +125,11 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
+    if (_currentPosition != null && currentAddress != null) {
+      locationCtrl.text = currentAddress;
+    }
+
+    print(locationCtrl.text);
 
     return SafeArea(
       child: Scaffold(
@@ -113,37 +198,6 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
                         child: Column(
                           children: [
                             SizedBox(
-                              height: 50,
-                              // width: 100,
-                              // padding: EdgeInsets.all(20),
-                              child: DropdownButton(
-                                  value: _value,
-                                  items: const [
-                                    DropdownMenuItem(
-                                      value: 1,
-                                      child: Text("Carpenter"),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: 2,
-                                      child: Text("Plumber"),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: 3,
-                                      child: Text("Electrician"),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: 4,
-                                      child: Text("Laundary"),
-                                    )
-                                  ],
-                                  onChanged: (int? value) {
-                                    setState(() {
-                                      _value = value!;
-                                    });
-                                  },
-                                  hint: Text("Select item")),
-                            ),
-                            SizedBox(
                               height: 10,
                             ),
                             TextFormField(
@@ -166,7 +220,7 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
                             ),
                             TextFormField(
                               //autovalidateMode: AutovalidateMode.always,
-                              controller: emailCtrl,
+                              controller: emailctrl,
                               textInputAction: TextInputAction.next,
                               onSaved: (input) => user.email = input,
                               decoration: InputDecoration(
@@ -184,7 +238,7 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
                             ),
                             TextFormField(
                               autovalidateMode: AutovalidateMode.always,
-                              controller: phonenoCtrl,
+                              controller: phoneCtrl,
                               textInputAction: TextInputAction.next,
                               // onSaved: (input) => user.email = input,
                               decoration: InputDecoration(
@@ -200,9 +254,54 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
                             SizedBox(
                               height: 10,
                             ),
+                            Container(
+                                width: width,
+                                height: height * 0.08,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    border: Border.all(color: Colors.grey)),
+                                // width: 100,
+                                // padding: EdgeInsets.all(20),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.person_2_outlined),
+                                      SizedBox(
+                                        width: width * 0.07,
+                                      ),
+                                      Center(
+                                        child: DropdownButton(
+                                          value: _value,
+                                          items: list_items.map((String item) {
+                                            return DropdownMenuItem<String>(
+                                              value: item,
+                                              child: Text(item),
+                                            );
+                                          }).toList(),
+                                          onChanged: (value) {
+                                            setState(() {
+                                              _value = value!;
+                                              print(_value);
+                                            });
+                                          },
+                                          hint: Text("Select item"),
+                                          disabledHint: Text("Disabled"),
+                                          elevation: 8,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 16),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )),
+                            SizedBox(
+                              height: 10,
+                            ),
                             TextFormField(
                               autovalidateMode: AutovalidateMode.always,
-                              controller: priceCtrl,
+                              controller: pricectrl,
                               textInputAction: TextInputAction.next,
                               // onSaved: (input) => user.email = input,
                               decoration: InputDecoration(
@@ -219,27 +318,7 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
                               height: 10,
                             ),
                             TextFormField(
-                              // initialValue: a,
-                              //readOnly: true,
-                              autovalidateMode: AutovalidateMode.always,
-                              controller: locationCtrl,
-                              textInputAction: TextInputAction.next,
-                              // onSaved: (input) => user.email = input,
-                              decoration: InputDecoration(
-                                prefixIcon: Icon(Icons.location_city),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15)),
-                                labelText: 'Location',
-                              ),
-                              // validator: FormBuilderValidators.compose([
-                              //   FormBuilderValidators.required(),
-                              //]),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            TextFormField(
-                              controller: passwordCtrl,
+                              controller: passwordctrl,
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.emailAddress,
                               onSaved: (input) => user.password = input,
@@ -260,11 +339,63 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
                             SizedBox(
                               height: 10,
                             ),
+                            TextFormField(
+                              //initialValue: "jbsjvbc",
+                              // readOnly: true,
+                              controller: addressctrl,
+                              textInputAction: TextInputAction.next,
+                              keyboardType: TextInputType.text,
+                              onSaved: (input) => user.cordinates = input,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.place),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15)),
+                                labelText: 'Address',
+                              ),
+                              validator: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(),
+                              ]),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            pressed == false
+                                ? ElevatedButton(
+                                    onPressed: getCurrentLocation,
+                                    child: Text(
+                                      'Get Location',
+                                      style:
+                                          Theme.of(context).textTheme.bodySmall,
+                                    ),
+                                  )
+                                : TextFormField(
+                                    //initialValue: "jbsjvbc",
+                                    readOnly: true,
+                                    controller: locationCtrl,
+                                    textInputAction: TextInputAction.next,
+                                    keyboardType: TextInputType.text,
+                                    onSaved: (input) => user.cordinates = input,
+                                    decoration: InputDecoration(
+                                      prefixIcon: Icon(Icons.place),
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                      labelText: 'Location',
+                                    ),
+                                    validator: FormBuilderValidators.compose([
+                                      FormBuilderValidators.required(),
+                                    ]),
+                                  ),
+                            SizedBox(
+                              height: 10,
+                            ),
                             ElevatedButton(
                                 style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
                                         Colors.deepPurpleAccent)),
-                                onPressed: () {},
+                                onPressed: () {
+                                  servicepRegister();
+                                },
                                 child: Text('Sign Up'))
                           ],
                         ),

@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
       // themeMode: ThemeMode.values.toList()[value],
       debugShowCheckedModeBanner: false,
 
-      home: CustomerSignup(),
+      home: StartScreen(),
     );
   }
 }

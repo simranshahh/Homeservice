@@ -33,17 +33,19 @@ class UserRepository implements IUserRepository {
 
     if (response.statusCode == 200) {
       var token = json.decode(response.data)['accessToken'];
+      var reftoken = json.decode(response.data)["user"]['refreshTokens'];
       var usertype = json.decode(response.data)['user']['role'];
       print(usertype);
       await setValue(loggedIn, "true");
       await setValue(firsttime, "false");
 
       await setValue(accessToken, token);
+      await setValue(refreshToken, reftoken);
       await setValue(role, usertype);
       var roles = getStringAsync(role);
       print(roles);
 
-      if (usertype == '6446bbdf67f4eacfe7487195') {
+      if (roles == '6446bbdf67f4eacfe7487195') {
         AppNavigatorService.pushNamed("bnv");
       } else {
         AppNavigatorService.pushNamed("bnb");
@@ -56,6 +58,23 @@ class UserRepository implements IUserRepository {
       // }
     }
 
+    return null;
+  }
+
+  @override
+  Future logout() async {
+    try {
+      var response = await Api().get(MyConfig.logout);
+
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        await setValue(accessToken, "");
+        await setValue(refreshToken, "");
+        AppNavigatorService.pushNamedAndRemoveUntil("Signin");
+      }
+    } catch (e) {
+      print(e.toString());
+    }
     return null;
   }
 }

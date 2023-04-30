@@ -2,54 +2,65 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:homeservice/Customer/View/CustomerWorkerDetails/workers.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../common/riverpod/models/ServiceDetails.dart';
+import '../../../common/riverpod/repository/customer/CustomerRepository.dart';
 import '../../Model/Home/Featuredservices.dart';
-import '../../Model/Ourservices.dart';
+import '../CustomerWorkerDetails/new.dart';
 import 'DetailPage.dart';
 
-class Homepage extends StatefulWidget {
+class Homepage extends ConsumerStatefulWidget {
   const Homepage({super.key});
 
   @override
-  State<Homepage> createState() => _HomepageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _HomepageState();
 }
 
-class _HomepageState extends State<Homepage> {
-  List<Services> item = [
-    Services(text: 'Carpenter'),
-    Services(text: 'Plumber'),
-    Services(text: 'Laundary'),
-    Services(text: 'Painter'),
+class _HomepageState extends ConsumerState<Homepage> {
+  List<FeaturedServices> product = [
+    FeaturedServices(
+      image: "assets/baner.png",
+      dprice: "Rs. 200",
+      pname: "Painter",
+    ),
+    FeaturedServices(
+      image: "assets/baner.png",
+      dprice: "Rs. 150",
+      pname: "Laundary",
+    ),
+    FeaturedServices(
+      image: "assets/baner.png",
+      dprice: "Rs.1500",
+      pname: "Carpenter",
+    ),
+    FeaturedServices(
+      image: "assets/baner.png",
+      dprice: "\$ 1500",
+      pname: "Plumber",
+      //
+    ),
   ];
+
+  // List<Services> item = [
+  //   Services(text: 'Carpenter'),
+  //   Services(text: 'Plumber'),
+  //   Services(text: 'Laundary'),
+  //   Services(text: 'Painter'),
+  // ];
 
   @override
   Widget build(BuildContext context) {
-    List<FeaturedServices> product = [
-      FeaturedServices(
-        image: "assets/baner.png",
-        dprice: "Rs. 200",
-        pname: "Painter",
-      ),
-      FeaturedServices(
-        image: "assets/baner.png",
-        dprice: "Rs. 150",
-        pname: "Laundary",
-      ),
-      FeaturedServices(
-        image: "assets/baner.png",
-        dprice: "Rs.1500",
-        pname: "Carpenter",
-      ),
-      FeaturedServices(
-        image: "assets/baner.png",
-        dprice: "\$ 1500",
-        pname: "Plumber",
-        //
-      ),
-    ];
-
     final height = MediaQuery.of(context).size.height;
+    final role = ref.watch(allrolesprovider);
+
+    getprovider(String id) {
+      final servicedetailsprovider = FutureProvider<List<Service>>((ref) async {
+        return ref.read(customerRepositoryProvider).serviceDetails(id);
+      });
+
+      return servicedetailsprovider;
+    }
 
     return SafeArea(
       child: Scaffold(
@@ -169,227 +180,255 @@ class _HomepageState extends State<Homepage> {
                       'Our Services',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30.0, top: 15),
-                      child: Container(
-                        height: 260,
-                        color: Colors.white,
-                        // width: 40,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                InkWell(
-                                  child: Card(
-                                    elevation: 5,
-                                    child: Container(
-                                      height: 110,
-                                      width: 120,
+                    SizedBox(
+                      height: height * 0.32,
+                      child: role.when(
+                        data: (data) => GridView.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 200,
+                            childAspectRatio: 3 / 2,
+                            crossAxisSpacing: 20,
+                            mainAxisSpacing: 20,
+                          ),
+                          itemCount: data.length,
+                          itemBuilder: (context, index) => InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => New_Order(
+                                        detaillist: getprovider(
+                                            data[index].id.toString())),
+                                  ));
+                            },
+                            child: Card(
+                              elevation: 5,
+                              child: Container(
+                                height: 110,
+                                width: 120,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(5)),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      alignment: Alignment.center,
+                                      height: 70,
                                       decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            alignment: Alignment.center,
-                                            height: 70,
-                                            //width: 50,
-                                            decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                  image: AssetImage(
-                                                      'assets/plumber.png'),
-                                                  fit: BoxFit.fitHeight),
-                                              // color: Color(0xffF7825C),
-                                            ),
-                                            // child: Icon(item[index].icon),
-                                          ),
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          Text(
-                                            'Carpenter',
-                                            style: TextStyle(fontSize: 10),
-                                          ),
-                                        ],
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                'assets/plumber.png'),
+                                            fit: BoxFit.fitHeight),
                                       ),
                                     ),
-                                  ),
-                                  onTap: () {
-                                    Navigator.of(context).pushReplacement(
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                Carpenter_Workers()));
-                                    showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return AlertDialog(
-                                          content: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Image.asset(
-                                                'assets/popup.png',
-                                                height: 110,
-                                                width: 110,
-                                              ),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              Text(
-                                                'Highly Recommended!',
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Color.fromARGB(
-                                                        255, 90, 36, 165)),
-                                              ),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              Text(
-                                                '   Your ServiceProvider nearest to your area is \n                        recommended for you.',
-                                                style: TextStyle(fontSize: 10),
-                                              ),
-                                              SizedBox(
-                                                height: 15,
-                                              ),
-                                              Text(
-                                                'Ram Prasad Sharma',
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  },
-                                ),
-                                SizedBox(
-                                  width: 30,
-                                ),
-                                Card(
-                                  elevation: 5,
-                                  child: Container(
-                                    height: 110,
-                                    width: 120,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(5)),
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          alignment: Alignment.center,
-                                          height: 70,
-                                          //width: 50,
-                                          decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: AssetImage(
-                                                    'assets/plumber.png'),
-                                                fit: BoxFit.fitHeight),
-                                            // color: Color(0xffF7825C),
-                                          ),
-                                          // child: Icon(item[index].icon),
-                                        ),
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        Text(
-                                          'Plumber',
-                                          style: TextStyle(fontSize: 10),
-                                        ),
-                                      ],
+                                    SizedBox(
+                                      height: 8,
                                     ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Card(
-                                  elevation: 5,
-                                  child: Container(
-                                    height: 110,
-                                    width: 120,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(5)),
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          alignment: Alignment.center,
-                                          height: 70,
-                                          //width: 50,
-                                          decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: AssetImage(
-                                                    'assets/plumber.png'),
-                                                fit: BoxFit.fitHeight),
-                                            // color: Color(0xffF7825C),
-                                          ),
-                                          // child: Icon(item[index].icon),
-                                        ),
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        Text(
-                                          'Electrician',
-                                          style: TextStyle(fontSize: 10),
-                                        ),
-                                      ],
+                                    Text(
+                                      data[index].name.toString(),
+                                      style: TextStyle(fontSize: 10),
                                     ),
-                                  ),
+                                  ],
                                 ),
-                                SizedBox(
-                                  width: 30,
-                                ),
-                                Card(
-                                  elevation: 5,
-                                  child: Container(
-                                    height: 110,
-                                    width: 120,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(5)),
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          alignment: Alignment.center,
-                                          height: 70,
-                                          //width: 50,
-                                          decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: AssetImage(
-                                                    'assets/plumber.png'),
-                                                fit: BoxFit.fitHeight),
-                                            // color: Color(0xffF7825C),
-                                          ),
-                                          // child: Icon(item[index].icon),
-                                        ),
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        Text(
-                                          'Laundary',
-                                          style: TextStyle(fontSize: 10),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 30,
-                                ),
-                              ],
+                              ),
                             ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                          ],
+                          ),
+                        ),
+                        error: (error, stackTrace) => Text(error.toString()),
+                        loading: () => Center(
+                          child: CircularProgressIndicator(),
                         ),
                       ),
                     ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 30.0, top: 15),
+                    //   child: Container(
+                    //     height: 260,
+                    //     color: Colors.white,
+                    //     // width: 40,
+                    //     child: Column(
+                    //       mainAxisAlignment: MainAxisAlignment.start,
+                    //       crossAxisAlignment: CrossAxisAlignment.start,
+                    //       children: [
+                    //         Row(
+                    //           mainAxisAlignment: MainAxisAlignment.start,
+                    //           crossAxisAlignment: CrossAxisAlignment.start,
+                    //           children: [
+                    //             InkWell(
+                    //               child: Card(
+                    //                 elevation: 5,
+                    //                 child: Container(
+                    //                   height: 110,
+                    //                   width: 120,
+                    //                   decoration: BoxDecoration(
+                    //                       color: Colors.white,
+                    //                       borderRadius:
+                    //                           BorderRadius.circular(5)),
+                    //                   child: Column(
+                    //                     children: [
+                    //                       Container(
+                    //                         alignment: Alignment.center,
+                    //                         height: 70,
+                    //                         //width: 50,
+                    //                         decoration: BoxDecoration(
+                    //                           image: DecorationImage(
+                    //                               image: AssetImage(
+                    //                                   'assets/plumber.png'),
+                    //                               fit: BoxFit.fitHeight),
+                    //                           // color: Color(0xffF7825C),
+                    //                         ),
+                    //                         // child: Icon(item[index].icon),
+                    //                       ),
+                    //                       SizedBox(
+                    //                         height: 8,
+                    //                       ),
+                    //                       Text(
+                    //                         'Carpenter',
+                    //                         style: TextStyle(fontSize: 10),
+                    //                       ),
+                    //                     ],
+                    //                   ),
+                    //                 ),
+                    //               ),
+                    //               onTap: () {
+                    //                 Navigator.of(context).pushReplacement(
+                    //                     MaterialPageRoute(
+                    //                         builder: (BuildContext context) =>
+                    //                             Carpenter_Workers()));
+                    //                 showDialog(
+                    //                   context: context,
+                    //                   builder: (BuildContext context) {
+                    //                     return AlertDialog(
+                    //                       content: Column(
+                    //                         mainAxisSize: MainAxisSize.min,
+                    //                         children: [
+                    //                           Image.asset(
+                    //                             'assets/popup.png',
+                    //                             height: 110,
+                    //                             width: 110,
+                    //                           ),
+                    //                           SizedBox(
+                    //                             height: 10,
+                    //                           ),
+                    //                           Text(
+                    //                             'Highly Recommended!',
+                    //                             style: TextStyle(
+                    //                                 fontWeight: FontWeight.bold,
+                    //                                 color: Color.fromARGB(
+                    //                                     255, 90, 36, 165)),
+                    //                           ),
+                    //                           SizedBox(
+                    //                             height: 10,
+                    //                           ),
+                    //                           Text(
+                    //                             '   Your ServiceProvider nearest to your area is \n                        recommended for you.',
+                    //                             style: TextStyle(fontSize: 10),
+                    //                           ),
+                    //                           SizedBox(
+                    //                             height: 15,
+                    //                           ),
+                    //                           Text(
+                    //                             'Ram Prasad Sharma',
+                    //                           )
+                    //                         ],
+                    //                       ),
+                    //                     );
+                    //                   },
+                    //                 );
+                    //               },
+                    //             ),
+                    //             SizedBox(
+                    //               width: 30,
+                    //             ),
+
+                    //           ],
+                    //         ),
+                    //         Row(
+                    //           children: [
+                    //             Card(
+                    //               elevation: 5,
+                    //               child: Container(
+                    //                 height: 110,
+                    //                 width: 120,
+                    //                 decoration: BoxDecoration(
+                    //                     color: Colors.white,
+                    //                     borderRadius: BorderRadius.circular(5)),
+                    //                 child: Column(
+                    //                   children: [
+                    //                     Container(
+                    //                       alignment: Alignment.center,
+                    //                       height: 70,
+                    //                       //width: 50,
+                    //                       decoration: BoxDecoration(
+                    //                         image: DecorationImage(
+                    //                             image: AssetImage(
+                    //                                 'assets/plumber.png'),
+                    //                             fit: BoxFit.fitHeight),
+                    //                         // color: Color(0xffF7825C),
+                    //                       ),
+                    //                       // child: Icon(item[index].icon),
+                    //                     ),
+                    //                     SizedBox(
+                    //                       height: 8,
+                    //                     ),
+                    //                     Text(
+                    //                       'Electrician',
+                    //                       style: TextStyle(fontSize: 10),
+                    //                     ),
+                    //                   ],
+                    //                 ),
+                    //               ),
+                    //             ),
+                    //             SizedBox(
+                    //               width: 30,
+                    //             ),
+                    //             Card(
+                    //               elevation: 5,
+                    //               child: Container(
+                    //                 height: 110,
+                    //                 width: 120,
+                    //                 decoration: BoxDecoration(
+                    //                     color: Colors.white,
+                    //                     borderRadius: BorderRadius.circular(5)),
+                    //                 child: Column(
+                    //                   children: [
+                    //                     Container(
+                    //                       alignment: Alignment.center,
+                    //                       height: 70,
+                    //                       //width: 50,
+                    //                       decoration: BoxDecoration(
+                    //                         image: DecorationImage(
+                    //                             image: AssetImage(
+                    //                                 'assets/plumber.png'),
+                    //                             fit: BoxFit.fitHeight),
+                    //                         // color: Color(0xffF7825C),
+                    //                       ),
+                    //                       // child: Icon(item[index].icon),
+                    //                     ),
+                    //                     SizedBox(
+                    //                       height: 8,
+                    //                     ),
+                    //                     Text(
+                    //                       'Laundary',
+                    //                       style: TextStyle(fontSize: 10),
+                    //                     ),
+                    //                   ],
+                    //                 ),
+                    //               ),
+                    //             ),
+                    //             SizedBox(
+                    //               width: 30,
+                    //             ),
+                    //           ],
+                    //         ),
+                    //         SizedBox(
+                    //           width: 30,
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
                     Text(
                       'Featured Services',
                       style: TextStyle(fontWeight: FontWeight.bold),

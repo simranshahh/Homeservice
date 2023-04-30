@@ -1,55 +1,52 @@
-
-
-// ignore_for_file: file_names
+// To parse this JSON data, do
+//
+//     final register = registerFromJson(jsonString);
 
 import 'dart:convert';
 
-class Register {
-  Register({
-    this.email,
-    this.password,
-    this.refreshTokens,
-    this.role,
-    this.verified,
-    this.cordinates,
-    this.phone,
-    this.address,
-    this.fullName,
-    this.picture,
-    this.id,
-    this.v,
-  });
+Register registerFromJson(String str) => Register.fromJson(json.decode(str));
 
+String registerToJson(Register data) => json.encode(data.toJson());
+
+class Register {
   String? email;
   String? password;
-  List<dynamic>? refreshTokens;
   String? role;
   bool? verified;
   String? cordinates;
   String? phone;
   String? address;
   String? fullName;
+  String? price;
   String? picture;
   String? id;
   int? v;
 
-  factory Register.fromRawJson(String str) =>
-      Register.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
+  Register({
+    this.email,
+    this.password,
+    this.role,
+    this.verified,
+    this.cordinates,
+    this.phone,
+    this.address,
+    this.fullName,
+    this.price,
+    this.picture,
+    this.id,
+    this.v,
+  });
 
   factory Register.fromJson(Map<String, dynamic> json) => Register(
         email: json["email"],
         password: json["password"],
-        refreshTokens: json["refreshTokens"] == null
-            ? []
-            : List<dynamic>.from(json["refreshTokens"]!.map((x) => x)),
         role: json["role"],
         verified: json["verified"],
         cordinates: json["cordinates"],
         phone: json["phone"],
         address: json["address"],
         fullName: json["full_name"],
+        price: json["price"],
         picture: json["picture"],
         id: json["_id"],
         v: json["__v"],
@@ -58,15 +55,13 @@ class Register {
   Map<String, dynamic> toJson() => {
         "email": email,
         "password": password,
-        "refreshTokens": refreshTokens == null
-            ? []
-            : List<dynamic>.from(refreshTokens!.map((x) => x)),
         "role": role,
         "verified": verified,
         "cordinates": cordinates,
         "phone": phone,
         "address": address,
         "full_name": fullName,
+        "price": price,
         "picture": picture,
         "_id": id,
         "__v": v,

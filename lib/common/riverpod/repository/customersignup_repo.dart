@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:homeservice/common/helper/constants.dart';
 import '../../Services/app_navigator_service.dart';
 import '../../Services/basedio.dart';
 import '../../config/my_config.dart';
@@ -12,23 +13,22 @@ import '../models/customerprofile.dart';
 class CustomerSignupRepository implements ICustomerSignupRepository {
   @override
   Future<CustomerRegister?> customerregister(
-    // String email,
-    // String password,
-    // String cordinates,
-    // String phone,
-    // String address,
-    // String fullName,
-    // String role,
+    String email,
+    String password,
+    String cordinates,
+    String phone,
+    String address,
+    String fullName,
     BuildContext context,
   ) async {
     var data = {
-      "email": "p@gmail.com",
-      "password": "S@ndhya12345",
-      "cordinates": "26.6660761,87.2708559",
-      "phone": 76692789273,
-      "address": "itaharui",
-      "full_name": "67758",
-      "role": "6446b631df4fb8661ce20a80"
+      "email": email,
+      "password": password,
+      "cordinates": coordinates,
+      "phone": phone,
+      "address": address,
+      "full_name": fullname,
+      "role": role
     };
     print(data);
 
@@ -55,14 +55,15 @@ class CustomerSignupRepository implements ICustomerSignupRepository {
     try {
       var response = await Api().get(MyConfig.cusinfo);
 
-      var a = json.decode(response.toString());
+      // var a = json.decode(response.toString());
       print(response.statusCode);
       if (response.statusCode == 200) {
-        var responsedata = json.decode(response.data)["user"];
+        var responsedata = json.decode(response.data);
+        // responsedata = json.decode(response.data)["user"];
         print(responsedata);
         //  await setString(userId, a['email']["password"].toString());
-        print(response.data);
         var data = CInfo.fromJson(responsedata);
+        print(data);
         return data;
         // AppNavigatorService.pushNamedAndRemoveUntil("Signin");
       }

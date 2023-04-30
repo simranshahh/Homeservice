@@ -1,12 +1,12 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, sort_child_properties_last
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, sort_child_properties_last, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:homeservice/Customer/View/BottomnavScreen/BottomNabBar.dart';
-import 'package:homeservice/Customer/View/Settings/Edit_Profile.dart';
 import 'package:homeservice/Customer/View/Settings/aboutus.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../common/riverpod/provider/customerSignup_provider.dart';
+import '../../../common/riverpod/provider/signin_provider.dart';
 
 class Customer_setting extends ConsumerStatefulWidget {
   const Customer_setting({super.key});
@@ -18,13 +18,16 @@ class Customer_setting extends ConsumerStatefulWidget {
 
 class _Customer_settingState extends ConsumerState<Customer_setting> {
   bool isDarkModeEnabled = false;
+  Future<void> logout() async {
+    await ref.read(userNotifierProvider.notifier).logout();
+  }
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
 
     final cusinfo = ref.watch(customerinfoprovider);
+    final width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         body: Stack(children: [
@@ -72,6 +75,13 @@ class _Customer_settingState extends ConsumerState<Customer_setting> {
                 SizedBox(
                   width: 115,
                 ),
+                IconButton(
+                  onPressed: logout,
+                  icon: Icon(Icons.exit_to_app, color: Colors.white),
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.deepPurpleAccent)),
+                )
                 // IconButton(
                 //     icon: Icon(MyApp.themeNotifier.value == ThemeMode.light
                 //         ? Icons.dark_mode
@@ -232,14 +242,6 @@ class _Customer_settingState extends ConsumerState<Customer_setting> {
                                         //     )
                                         //   ],
                                         // ),
-                                        ElevatedButton(
-                                          onPressed: () {},
-                                          child: Text('Log Out'),
-                                          style: ButtonStyle(
-                                              backgroundColor:
-                                                  MaterialStateProperty.all(
-                                                      Colors.deepPurpleAccent)),
-                                        )
                                       ],
                                     ),
                                   ),

@@ -25,7 +25,7 @@ class Api {
     // String accesstoken = StorageUtil.getString(access);
     var dio = Dio(BaseOptions(
       baseUrl: MyConfig.appUrl,
-      receiveTimeout: 30000, // 15 seconds
+      receiveTimeout: 30000, //  seconds
       connectTimeout: 30000,
       sendTimeout: 30000,
     ));
@@ -37,16 +37,12 @@ class Api {
         return handler.next(response);
       },
       onError: (DioError e, handler) {
-        print(e.message);
         print(e.response!.statusCode);
 
+        print(e.message);
         return handler.next(e);
       },
     ));
-    // dio.options.headers = {
-    //   'Content-Type': 'application/json; charset=UTF-8',
-    //   'Authorization': 'Bearer $accesstoken',
-    // };
     dio.interceptors.addAll({
       AppInterceptors(dio),
     });
@@ -73,7 +69,7 @@ class Api {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
-      print("Post " + response.data);
+      // print("Post " + response.data);
 
       return response;
     } on SocketException catch (e) {

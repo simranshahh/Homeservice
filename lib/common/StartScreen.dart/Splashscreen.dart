@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, file_names
+// ignore_for_file: prefer_const_constructors, file_names, avoid_print
 
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -46,16 +46,22 @@ class _StartScreenState extends State<StartScreen> {
 
 Widget getScreen() {
   var token = getStringAsync(accessToken);
+  var reftoken = getStringAsync(refreshToken);
   var first = getStringAsync(firsttime);
   var roles = getStringAsync(role);
+  print(token);
+  print(reftoken);
 
-  if (token.isNotEmpty && first.isNotEmpty && roles == customer) {
+  if (token.isNotEmpty &&
+      reftoken.isNotEmpty &&
+      first.isNotEmpty &&
+      roles == customer) {
     return const BottomNavScreen();
-  } else if (token.isNotEmpty && first.isNotEmpty) {
+  } else if (token.isNotEmpty && reftoken.isNotEmpty && first.isNotEmpty) {
     return const Bottomnavbar();
   } else if (first.isNotEmpty && token.isEmptyOrNull) {
     return const ChooseSigninPage();
   } else {
-    return const BottomNavScreen();
+    return const OnBoard();
   }
 }

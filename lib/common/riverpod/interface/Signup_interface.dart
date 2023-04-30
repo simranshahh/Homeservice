@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../models/SignupModel.dart';
 
 abstract class ISignupRepository {
-  Future<Register?> register(
+  Future<Register?> serviceregister(
     String email,
     String password,
     String role,
@@ -13,6 +13,7 @@ abstract class ISignupRepository {
     String phone,
     String address,
     String fullName,
+    int price,
     BuildContext context,
   );
 }

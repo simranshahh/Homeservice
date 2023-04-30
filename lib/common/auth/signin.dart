@@ -41,17 +41,17 @@ class _SigninState extends ConsumerState<Signin> {
 
   Icon lockIcon = LockIcon().lock;
 
-  bool offsecureText1 = true;
+  bool offsecureText2 = true;
 
   void _onlockPressed2() {
-    if (offsecureText1 == true) {
+    if (offsecureText2 == true) {
       setState(() {
-        offsecureText1 = false;
+        offsecureText2 = false;
         lockIcon = LockIcon().open;
       });
     } else {
       setState(() {
-        offsecureText1 = true;
+        offsecureText2 = true;
         lockIcon = LockIcon().lock;
       });
     }
@@ -79,130 +79,134 @@ class _SigninState extends ConsumerState<Signin> {
             color: Colors.white,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text('Welcome',
-                      style:
-                          TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  Text('Sign in to continue',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
-                  const SizedBox(
-                    height: 35,
-                  ),
-                  TextFormField(
-                    controller: emailCtrl,
-                    textInputAction: TextInputAction.next,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(),
-                      FormBuilderValidators.email()
-                    ]),
-                    decoration: InputDecoration(
-                      labelText: "Email",
-                      prefixIcon: const Icon(Icons.email),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  TextFormField(
-                    controller: passwordCtrl,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(),
-                      FormBuilderValidators.minLength(6)
-                    ]),
-                    decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                          icon: lockIcon, onPressed: () => _onlockPressed2()),
-                      prefixIcon: Icon(Icons.lock),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      labelText: 'Password',
-                    ),
-                    obscureText: true,
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  Container(
-                      width: double.infinity,
-                      height: 60,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.deepPurpleAccent,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
-                              //  backgroundColor: buttonColor,
-                              textStyle: const TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold)),
-                          onPressed: () {
-                            Signin();
-                          },
-                          //    ref.read(userNotifierProvider.notifier).Signin(
-                          //        emailCtrl.value.text,
-                          //        passwordCtrl.value.text);
-                          //   if (_formKey.currentState!.validate()) {
-                          //   Navigator.push(
-                          //       context,
-                          //       MaterialPageRoute(
-                          //         builder: (context) => yhome(),
-                          //       ));
-                          //  }
-                          // onPressed: () {},
-                          child: const Text(
-                            "Signin",
-                            style: TextStyle(
-                              fontSize: 19,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ))),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        height: 2,
-                        width: 50,
-                        color: Color.fromARGB(255, 224, 224, 224),
-                      ),
-                      Text(
-                        'Not a User?',
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text('Welcome',
                         style: TextStyle(
-                            color: Color.fromARGB(255, 103, 102, 102)),
-                      ),
-                      Container(
-                        height: 2,
-                        width: 50,
-                        color: Color.fromARGB(255, 224, 224, 224),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  InkWell(
-                    child: Text(
-                      'Sign Up',
-                      style: TextStyle(
-                          color: Colors.deepPurpleAccent,
-                          fontWeight: FontWeight.bold),
+                            fontSize: 40, fontWeight: FontWeight.bold)),
+                    const SizedBox(
+                      height: 25,
                     ),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  ChooseSignupPage()));
-                    },
-                  ),
-                ],
+                    Text('Sign in to continue',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w500)),
+                    const SizedBox(
+                      height: 35,
+                    ),
+                    TextFormField(
+                      controller: emailCtrl,
+                      textInputAction: TextInputAction.next,
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(),
+                        FormBuilderValidators.email()
+                      ]),
+                      decoration: InputDecoration(
+                        labelText: "Email",
+                        prefixIcon: const Icon(Icons.email),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    TextFormField(
+                      controller: passwordCtrl,
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(),
+                        FormBuilderValidators.minLength(6)
+                      ]),
+                      decoration: InputDecoration(
+                        suffixIcon: IconButton(
+                            icon: lockIcon, onPressed: () => _onlockPressed2()),
+                        prefixIcon: Icon(Icons.lock),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        labelText: 'Password',
+                      ),
+                      obscureText: true,
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    Container(
+                        width: double.infinity,
+                        height: 60,
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.deepPurpleAccent,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0)),
+                                //  backgroundColor: buttonColor,
+                                textStyle: const TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold)),
+                            onPressed: () {
+                              Signin();
+                            },
+                            //    ref.read(userNotifierProvider.notifier).Signin(
+                            //        emailCtrl.value.text,
+                            //        passwordCtrl.value.text);
+                            //   if (_formKey.currentState!.validate()) {
+                            //   Navigator.push(
+                            //       context,
+                            //       MaterialPageRoute(
+                            //         builder: (context) => yhome(),
+                            //       ));
+                            //  }
+                            // onPressed: () {},
+                            child: const Text(
+                              "Signin",
+                              style: TextStyle(
+                                fontSize: 19,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ))),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          height: 2,
+                          width: 50,
+                          color: Color.fromARGB(255, 224, 224, 224),
+                        ),
+                        Text(
+                          'Not a User?',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 103, 102, 102)),
+                        ),
+                        Container(
+                          height: 2,
+                          width: 50,
+                          color: Color.fromARGB(255, 224, 224, 224),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    InkWell(
+                      child: Text(
+                        'Sign Up',
+                        style: TextStyle(
+                            color: Colors.deepPurpleAccent,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    ChooseSignupPage()));
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

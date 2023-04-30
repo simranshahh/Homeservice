@@ -23,4 +23,11 @@ class UserNotifier extends StateNotifier<UserState> {
       state = UserErrorState(LocaleKeys.something_went_wrong.trim());
     }
   }
+  Future<void> logout() async {
+    try {
+      await _iUserRepository.logout();
+    } on NetworkException {
+      state = UserErrorState(LocaleKeys.something_went_wrong.trim());
+    }
+  }
 }

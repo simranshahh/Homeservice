@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 const String accessToken = 'accessToken';
+const String refreshToken = 'refreshToken';
 const String firsttime = "firsttime";
 const String userEmail = 'UserEmail';
 const String userPassword = 'Userpassword';
@@ -15,6 +16,7 @@ const String fullname = 'fullname';
 const String coordinates = 'coordinates';
 const String phone = 'phone';
 const String customer = '6446bbdf67f4eacfe7487195';
+// const String customer = 'customer';
 
 const String email = 'UserEmail';
 const String emails = 'email';

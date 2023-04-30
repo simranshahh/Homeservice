@@ -70,23 +70,20 @@ class _CustomerSignupState extends ConsumerState<CustomerSignup> {
   Future<void> customerRegister() async {
     // if (_signupKey.currentState!.validate()) {
     ref.read(customerSignupNotifierProvider.notifier).CustomerRegister(
-        // emailctrl.value.text,
-        // passwordctrl.value.text,
-        // locationCtrl.text,
-        // phoneCtrl.value.text,
-        // addressctrl.value.text,
-        // fullnameCtrl.value.text,
-        // rolectrl.value.text,
+        emailctrl.value.text,
+        passwordctrl.value.text,
+        locationCtrl.text,
+        phoneCtrl.value.text,
+        addressctrl.value.text,
+        fullnameCtrl.value.text,
         context);
 
-    // await setValue(email, emailctrl.value.text);
-    // await setValue(password, passwordctrl.value.text);
-    // await setValue(coordinates, locationCtrl.value.text);
-    // await setValue(phone, phoneCtrl.value.text);
-    // await setValue(address, addressctrl.value.text);
-    // await setValue(fullname, fullnameCtrl.value.text);
-    // await setValue(role, rolectrl.value.text);
-    // }
+    await setValue(email, emailctrl.value.text);
+    await setValue(password, passwordctrl.value.text);
+    await setValue(coordinates, locationCtrl.value.text);
+    await setValue(phone, phoneCtrl.value.text);
+    await setValue(address, addressctrl.value.text);
+    await setValue(fullname, fullnameCtrl.value.text);
   }
 
   bool pressed = false;
@@ -273,24 +270,24 @@ class _CustomerSignupState extends ConsumerState<CustomerSignup> {
                                   FormBuilderValidators.required(),
                                 ]),
                               ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              TextFormField(
-                                controller: rolectrl,
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.text,
-                                onSaved: (input) => user.role = input,
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.location_city),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15)),
-                                  labelText: 'Role',
-                                ),
-                                validator: FormBuilderValidators.compose([
-                                  FormBuilderValidators.required(),
-                                ]),
-                              ),
+                              // SizedBox(
+                              //   height: 10,
+                              // ),
+                              // TextFormField(
+                              //   controller: rolectrl,
+                              //   textInputAction: TextInputAction.next,
+                              //   keyboardType: TextInputType.text,
+                              //   onSaved: (input) => user.role = input,
+                              //   decoration: InputDecoration(
+                              //     prefixIcon: Icon(Icons.location_city),
+                              //     border: OutlineInputBorder(
+                              //         borderRadius: BorderRadius.circular(15)),
+                              //     labelText: 'Role',
+                              //   ),
+                              //   validator: FormBuilderValidators.compose([
+                              //     FormBuilderValidators.required(),
+                              //   ]),
+                              // ),
                               SizedBox(
                                 height: 10,
                               ),

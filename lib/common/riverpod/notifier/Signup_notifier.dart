@@ -14,20 +14,21 @@ class SignupNotifier extends StateNotifier<SignupState> {
 
   SignupNotifier(this._iSignupRepository) : super(SignupInitialState());
 
-  Future<void> Register(
+  Future<void> ServiceRegister(
     String email,
     String password,
-    String role,
     String cordinates,
     String phone,
     String address,
     String fullName,
+    String role,
+    int price,
     BuildContext context,
   ) async {
     try {
       state = SignupLoadingState();
-      final sendSignupSms = await _iSignupRepository.register(
-          email, password, role, cordinates, phone, address, fullName, context);
+      final sendSignupSms = await _iSignupRepository.serviceregister(email,
+          password, cordinates, phone, address, fullName, role, price, context);
       state = SignupLoadedState(sendSignupSms);
     } on NetworkException {
       state = SignupErrorState(LocaleKeys.something_went_wrong.trim());
