@@ -136,7 +136,7 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
                                           width: 40,
                                         ),
                                         Text(
-                                          snapshot.data!.address.toString(),
+                                          snapshot.data!.fullName.toString(),
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
                                         )
@@ -170,7 +170,7 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
                                           width: 35,
                                         ),
                                         Text(
-                                          ' 9805367848',
+                                          snapshot.data!.phone.toString(),
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
                                         )
@@ -187,7 +187,7 @@ class _Serviceman_settingState extends ConsumerState<Serviceman_setting> {
                                           width: 35,
                                         ),
                                         Text(
-                                          snapshot.data!.phone.toString(),
+                                          snapshot.data!.address.toString(),
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
                                         )

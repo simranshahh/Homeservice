@@ -41,17 +41,17 @@ class _SigninState extends ConsumerState<Signin> {
 
   Icon lockIcon = LockIcon().lock;
 
-  bool offsecureText2 = true;
+  bool offsecureText1 = true;
 
-  void _onlockPressed2() {
-    if (offsecureText2 == true) {
+  void _onlockPressed1() {
+    if (offsecureText1 == true) {
       setState(() {
-        offsecureText2 = false;
+        offsecureText1 = false;
         lockIcon = LockIcon().open;
       });
     } else {
       setState(() {
-        offsecureText2 = true;
+        offsecureText1 = true;
         lockIcon = LockIcon().lock;
       });
     }
@@ -121,13 +121,13 @@ class _SigninState extends ConsumerState<Signin> {
                       ]),
                       decoration: InputDecoration(
                         suffixIcon: IconButton(
-                            icon: lockIcon, onPressed: () => _onlockPressed2()),
+                            icon: lockIcon, onPressed: () => _onlockPressed1()),
                         prefixIcon: Icon(Icons.lock),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15)),
                         labelText: 'Password',
                       ),
-                      obscureText: true,
+                      obscureText: offsecureText1,
                     ),
                     const SizedBox(
                       height: 25,

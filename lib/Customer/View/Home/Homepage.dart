@@ -203,6 +203,46 @@ class _HomepageState extends ConsumerState<Homepage> {
                                           data[index].name.toString()),
                                     ),
                                   ));
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    content: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Image.asset(
+                                          'assets/popup.png',
+                                          height: 110,
+                                          width: 110,
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          'Highly Recommended!',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Color.fromARGB(
+                                                  255, 90, 36, 165)),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          '   Your ServiceProvider nearest to your area is \n                        recommended for you.',
+                                          style: TextStyle(fontSize: 10),
+                                        ),
+                                        SizedBox(
+                                          height: 15,
+                                        ),
+                                        Text(
+                                          'Ram Shrestha',
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
                             },
                             child: Card(
                               elevation: 5,

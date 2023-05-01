@@ -10,6 +10,7 @@ import 'package:homeservice/common/auth/signin.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+import '../../Customer/View/CustomerSignup/Customersignup.dart';
 import '../../common/helper/constants.dart';
 import '../../common/riverpod/models/SignupModel.dart';
 import '../../common/riverpod/provider/Signup_provider.dart';
@@ -120,6 +121,24 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
 
     super.dispose();
   }
+
+  bool offsecureText1 = true;
+
+  void _onlockPressed1() {
+    if (offsecureText1 == true) {
+      setState(() {
+        offsecureText1 = false;
+        lockIcon = LockIcon().open;
+      });
+    } else {
+      setState(() {
+        offsecureText1 = true;
+        lockIcon = LockIcon().lock;
+      });
+    }
+  }
+
+  Icon lockIcon = LockIcon().lock;
 
   @override
   Widget build(BuildContext context) {
@@ -323,11 +342,15 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
                               keyboardType: TextInputType.emailAddress,
                               onSaved: (input) => user.password = input,
                               decoration: InputDecoration(
-                                prefixIcon: Icon(Icons.password),
+                                suffixIcon: IconButton(
+                                    icon: lockIcon,
+                                    onPressed: () => _onlockPressed1()),
+                                prefixIcon: Icon(Icons.lock),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15)),
                                 labelText: 'Password',
                               ),
+                              obscureText: offsecureText1,
                               validator: FormBuilderValidators.compose([
                                 FormBuilderValidators.required(),
                                 FormBuilderValidators.minLength(6,
