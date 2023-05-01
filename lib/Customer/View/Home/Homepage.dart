@@ -2,6 +2,7 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:homeservice/Customer/View/Settings/customerprofile.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../common/riverpod/models/ServiceDetails.dart';
@@ -53,6 +54,7 @@ class _HomepageState extends ConsumerState<Homepage> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final role = ref.watch(allrolesprovider);
+    final info = ref.watch(roleinfo);
 
     getprovider(String name) {
       final servicedetailsprovider =
@@ -72,30 +74,37 @@ class _HomepageState extends ConsumerState<Homepage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(children: [
-                Container(
-                  decoration: BoxDecoration(
-                      color: Colors.deepPurpleAccent,
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(30),
-                          bottomRight: Radius.circular(30))),
-                  height: MediaQuery.of(context).size.height * 0.15,
-                  width: MediaQuery.of(context).size.width,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.location_on,
-                          color: Colors.white,
-                        ),
-                        Text(
-                          'Biratnagar,Koshi',
-                          style: TextStyle(color: Colors.white),
-                        )
-                      ],
+                info.when(
+                  data: (data) => Container(
+                    decoration: BoxDecoration(
+                        color: Colors.deepPurpleAccent,
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(30),
+                            bottomRight: Radius.circular(30))),
+                    height: MediaQuery.of(context).size.height * 0.15,
+                    width: MediaQuery.of(context).size.width,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.location_on,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            data!.address.toString(),
+                            style: TextStyle(color: Colors.white),
+                          )
+                        ],
+                      ),
                     ),
                   ),
+                  error: (error, stackTrace) => Text(error.toString()),
+                  loading: () => Center(
+                    child: CircularProgressIndicator(),
+                  ),
                 ),
+
                 // Padding(
                 //   padding: const EdgeInsets.fromLTRB(28.0, 80, 28, 0),
                 //   child: Container(

@@ -45,7 +45,9 @@ class UserRepository implements IUserRepository {
       var roles = getStringAsync(role);
       print(roles);
 
-      if (roles == '6446bbdf67f4eacfe7487195') {
+      if (roles == 'customer') {
+        AppNavigatorService.pushNamedAndRemoveUntil("bnv");
+      } else if (roles == '6446bbdf67f4eacfe7487195') {
         AppNavigatorService.pushNamedAndRemoveUntil("bnv");
       } else {
         AppNavigatorService.pushNamedAndRemoveUntil("bnb");

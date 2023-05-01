@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, sized_box_for_whitespace, sort_child_properties_last, unused_import
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -9,6 +11,11 @@ import 'package:homeservice/Serviceprovider/Dashboard/Book/SchedulePanel/schedul
 import 'package:homeservice/Serviceprovider/Dashboard/Dashboard/Ratings.dart';
 import 'package:homeservice/Serviceprovider/Dashboard/Dashboard/reviews.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../common/Services/basedio.dart';
+import '../../../common/config/my_config.dart';
+import '../../../common/riverpod/models/customerprofile.dart';
+import '../../../common/riverpod/repository/customer/CustomerRepository.dart';
 
 class Dashboard extends ConsumerStatefulWidget {
   const Dashboard({super.key});
@@ -22,6 +29,7 @@ class _DashboardState extends ConsumerState<Dashboard> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
+    final info = ref.watch(roleinfo);
 
     return Scaffold(
       appBar: AppBar(
@@ -38,9 +46,15 @@ class _DashboardState extends ConsumerState<Dashboard> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Hello Ram Prasad',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              info.when(
+                data: (data) => Text(
+                  'Hello ${data!.fullName}',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                error: (error, stackTrace) => Text(error.toString()),
+                loading: () => Center(
+                  child: CircularProgressIndicator(),
+                ),
               ),
               Text(
                 'Welcome to Saajha!',
@@ -93,112 +107,51 @@ class _DashboardState extends ConsumerState<Dashboard> {
                   ),
                 ]),
               ),
-              // Container(
-              //   height: height * 0.2,
-              //   child: ListView(children: [
-              //     CarouselSlider(
-              //       items: [
-              //         Container(
-              //           height: height * 0.2,
-              //           child: ListView(children: [
-              //             CarouselSlider(
-              //               items: [
-              //                 Container(
-              //                   margin: EdgeInsets.all(8.0),
-              //                   decoration: BoxDecoration(
-              //                     borderRadius: BorderRadius.circular(10.0),
-              //                     image: DecorationImage(
-              //                       image: AssetImage("assets/swap.jpg"),
-              //                       // fit: BoxFit.cover,
-              //                     ),
-              //                   ),
-              //                 ),
-              //                 Container(
-              //                   margin: EdgeInsets.all(8.0),
-              //                   decoration: BoxDecoration(
-              //                     borderRadius: BorderRadius.circular(10.0),
-              //                     image: DecorationImage(
-              //                       image: AssetImage("assets/swap1.jpg"),
-              //                       // fit: BoxFit.cover,
-              //                     ),
-              //                   ),
-              //                 ),
-              //                 Container(
-              //                   margin: EdgeInsets.all(8.0),
-              //                   decoration: BoxDecoration(
-              //                     borderRadius: BorderRadius.circular(10.0),
-              //                     image: DecorationImage(
-              //                         image: AssetImage("assets/swap.jpg")),
-              //                   ),
-              //                 ),
-              //               ],
-              //               options: CarouselOptions(
-              //                 // height: 380.0,
-              //                 enlargeCenterPage: true,
-              //                 autoPlay: true,
-              //                 aspectRatio: 16 / 9,
-              //                 autoPlayCurve: Curves.fastOutSlowIn,
-              //                 enableInfiniteScroll: true,
-              //                 autoPlayAnimationDuration:
-              //                     Duration(milliseconds: 800),
-              //                 viewportFraction: 0.8,
-              //               ),
-              //             ),
-              //           ]),
-              //         ),
-              //       ],
-              //       options: CarouselOptions(
-              //         // height: 380.0,
-              //         enlargeCenterPage: true,
-              //         autoPlay: true,
-              //         aspectRatio: 16 / 9,
-              //         autoPlayCurve: Curves.fastOutSlowIn,
-              //         enableInfiniteScroll: true,
-              //         autoPlayAnimationDuration: Duration(milliseconds: 800),
-              //         viewportFraction: 0.8,
-              //       ),
-              //     ),
-              //   ]),
-              // ),
-              Card(
-                child: Container(
-                  height: height * 0.125,
-                  width: width * 0.9,
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Text('My service:'),
-                            Text(
-                              'Carpenter',
-                              style: TextStyle(
-                                  color: Colors.deepPurpleAccent,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            // Image.asset(
-                            //   'assets/serviceman/star.png',
-                            //   height: 20,
-                            //   width: 20,
-                            // )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text('Location:'),
-                            Text(
-                              'Biratnagar',
-                              style: TextStyle(
-                                  color: Colors.deepPurpleAccent,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ],
+              info.when(
+                data: (data) => Card(
+                  child: Container(
+                    height: height * 0.125,
+                    width: width * 0.9,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text('My service: '),
+                              Text(
+                                data!.role.toString(),
+                                style: TextStyle(
+                                    color: Colors.deepPurpleAccent,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              // Image.asset(
+                              //   'assets/serviceman/star.png',
+                              //   height: 20,
+                              //   width: 20,
+                              // )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text('Location: '),
+                              Text(
+                                data.address.toString(),
+                                style: TextStyle(
+                                    color: Colors.deepPurpleAccent,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
+                ),
+                error: (error, stackTrace) => Text(error.toString()),
+                loading: () => Center(
+                  child: CircularProgressIndicator(),
                 ),
               ),
               SizedBox(

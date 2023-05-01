@@ -53,9 +53,10 @@ Widget getScreen() {
   print(reftoken);
 
   if (token.isNotEmpty &&
-      reftoken.isNotEmpty &&
-      first.isNotEmpty &&
-      roles == customer) {
+          reftoken.isNotEmpty &&
+          first.isNotEmpty &&
+          roles == customer ||
+      roles == customerid) {
     return const BottomNavScreen();
   } else if (token.isNotEmpty && reftoken.isNotEmpty && first.isNotEmpty) {
     return const Bottomnavbar();

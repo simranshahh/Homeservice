@@ -36,7 +36,7 @@ class _Customer_settingState extends ConsumerState<Customer_setting> {
       child: Scaffold(
         body: Stack(children: [
           Container(
-            height: height * 0.3,
+            height: height * 0.33,
             decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
@@ -50,6 +50,15 @@ class _Customer_settingState extends ConsumerState<Customer_setting> {
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(40),
                     bottomRight: Radius.circular(40))),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(8, 50, 8, 8),
+              child: Center(
+                child: CircleAvatar(
+                  radius: 50,
+                  foregroundImage: AssetImage('assets/worker.jpg'),
+                ),
+              ),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -104,7 +113,7 @@ class _Customer_settingState extends ConsumerState<Customer_setting> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Padding(
-                  padding: const EdgeInsets.fromLTRB(8.0, 150, 8, 0),
+                  padding: const EdgeInsets.fromLTRB(8.0, 180, 8, 0),
                   child: Card(
                     elevation: 5,
                     child: SizedBox(
