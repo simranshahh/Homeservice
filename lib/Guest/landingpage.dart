@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../Serviceprovider/Dashboard/Dashboard/Aboutus.dart';
 import 'LandingBooking.dart';
 import 'Landinghomepage.dart';
 import 'landingaboutus.dart';
@@ -20,7 +21,7 @@ class _LandingPageState extends ConsumerState<LandingPage> {
     const Landinghomepage(),
     const LandingBooking(),
     // const Notification_page(),
-    const LandingPageAboutus()
+    const AboutUs()
   ];
 
   void _onItemTapped(int index) {

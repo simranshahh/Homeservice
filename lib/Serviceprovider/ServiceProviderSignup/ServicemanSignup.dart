@@ -153,67 +153,68 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Stack(
-          children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 90, 36, 165),
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(15),
-                      bottomRight: Radius.circular(15))),
-              height: MediaQuery.of(context).size.height * 0.4,
-              width: MediaQuery.of(context).size.width,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    IconButton(
-                      color: Colors.white,
-                      icon: Icon(Icons.arrow_back_ios),
-                      onPressed: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (BuildContext context) => Signin()));
-                      },
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'Sign Up',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20,
-                          color: Colors.white),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'Sign in to experience the best serivces\naround you',
-                      style: TextStyle(
-                          //fontWeight: FontWeight.w500,
-                          fontSize: 15,
-                          color: Colors.white),
-                    )
-                  ],
+        body: SingleChildScrollView(
+          child: Stack(
+            children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 90, 36, 165),
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(15),
+                        bottomRight: Radius.circular(15))),
+                height: MediaQuery.of(context).size.height * 0.4,
+                width: MediaQuery.of(context).size.width,
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      IconButton(
+                        color: Colors.white,
+                        icon: Icon(Icons.arrow_back_ios),
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => Signin()));
+                        },
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Sign Up',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 20,
+                            color: Colors.white),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Sign in to experience the best serivces\naround you',
+                        style: TextStyle(
+                            //fontWeight: FontWeight.w500,
+                            fontSize: 15,
+                            color: Colors.white),
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20.0, 160, 20, 0),
-              child: Form(
-                key: _ServicemanSignupKey,
-                child: Card(
-                  child: Container(
-                    height: height,
-                    width: 410,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(20.0, 20, 0, 0),
-                      child: SingleChildScrollView(
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 160, 20, 0),
+                child: Form(
+                  key: _ServicemanSignupKey,
+                  child: Card(
+                    child: Container(
+                      // height: height,
+                      width: 410,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(20.0, 20, 20, 0),
                         child: Column(
                           children: [
                             SizedBox(
@@ -427,8 +428,8 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

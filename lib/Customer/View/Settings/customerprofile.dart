@@ -224,7 +224,7 @@ class _Customer_settingState extends ConsumerState<Customer_setting> {
                                               MaterialPageRoute(
                                                   builder:
                                                       (BuildContext context) =>
-                                                          AboutUs()));
+                                                         AboutUs()));
                                         }),
                                       ),
                                       SizedBox(
