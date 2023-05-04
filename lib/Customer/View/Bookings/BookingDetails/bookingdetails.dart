@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:timelines/timelines.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../Serviceprovider/View/Serviceman_Profile/Serviceman_Profile.dart';
 import '../../../../Serviceprovider/View/Serviceman_Profile/rate.dart';
 import '../Cancel_Booking/Cancel_booking.dart';
@@ -84,7 +84,14 @@ class _Booking_DetailsState extends ConsumerState<Booking_Details> {
                         width: 100,
                       ),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            Uri phoneno = Uri.parse('tel:+9779876543210');
+                            if (await launchUrl(phoneno)) {
+                              //dialer opened
+                            } else {
+                              //dailer is not opened
+                            }
+                          },
                           icon: Icon(
                             Icons.call,
                             color: Colors.deepPurpleAccent,

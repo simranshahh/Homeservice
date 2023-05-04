@@ -2,8 +2,6 @@
 //
 //     final register = registerFromJson(jsonString);
 
-// ignore_for_file: file_names
-
 import 'dart:convert';
 
 Register registerFromJson(String str) => Register.fromJson(json.decode(str));
@@ -21,6 +19,7 @@ class Register {
   String? fullName;
   String? price;
   String? picture;
+  List<dynamic>? ratings;
   String? id;
   int? v;
 
@@ -35,6 +34,7 @@ class Register {
     this.fullName,
     this.price,
     this.picture,
+    this.ratings,
     this.id,
     this.v,
   });
@@ -50,6 +50,9 @@ class Register {
         fullName: json["full_name"],
         price: json["price"],
         picture: json["picture"],
+        ratings: json["ratings"] == null
+            ? []
+            : List<dynamic>.from(json["ratings"]!.map((x) => x)),
         id: json["_id"],
         v: json["__v"],
       );
@@ -65,6 +68,8 @@ class Register {
         "full_name": fullName,
         "price": price,
         "picture": picture,
+        "ratings":
+            ratings == null ? [] : List<dynamic>.from(ratings!.map((x) => x)),
         "_id": id,
         "__v": v,
       };

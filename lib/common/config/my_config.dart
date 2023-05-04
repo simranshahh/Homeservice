@@ -7,6 +7,8 @@ class MyConfig {
   static const String cusinfo = "/api/auth/getuser";
   static const String allroles = "/api/roles/all";
   static const String logout = "/api/auth/logout";
+  static const String placeorder = "/api/booking/new";
+  static const String servicestatus = "/booking/mybookings?type=scheduled";
 
   /// Dont change the code below
   MyConfig._();

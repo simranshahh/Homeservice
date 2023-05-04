@@ -1,10 +1,10 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, file_names, sized_box_for_whitespace
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:homeservice/Customer/View/Settings/customerprofile.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:nb_utils/nb_utils.dart';
 
+import '../../../common/helper/constants.dart';
 import '../../../common/riverpod/models/ServiceDetails.dart';
 import '../../../common/riverpod/repository/customer/CustomerRepository.dart';
 import '../../Model/Home/Featuredservices.dart';
@@ -39,17 +39,10 @@ class _HomepageState extends ConsumerState<Homepage> {
       image: "assets/baner.png",
       dprice: "\$ 1500",
       pname: "Plumber",
-      //
     ),
   ];
 
-  // List<Services> item = [
-  //   Services(text: 'Carpenter'),
-  //   Services(text: 'Plumber'),
-  //   Services(text: 'Laundary'),
-  //   Services(text: 'Painter'),
-  // ];
-
+  var d = getStringAsync(r);
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -76,7 +69,7 @@ class _HomepageState extends ConsumerState<Homepage> {
               Stack(children: [
                 info.when(
                   data: (data) => Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Colors.deepPurpleAccent,
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(30),
@@ -87,106 +80,77 @@ class _HomepageState extends ConsumerState<Homepage> {
                       padding: const EdgeInsets.only(left: 10.0),
                       child: Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.location_on,
                             color: Colors.white,
                           ),
                           Text(
                             data!.address.toString(),
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                           )
                         ],
                       ),
                     ),
                   ),
                   error: (error, stackTrace) => Text(error.toString()),
-                  loading: () => Center(
+                  loading: () => const Center(
                     child: CircularProgressIndicator(),
                   ),
                 ),
-
-                // Padding(
-                //   padding: const EdgeInsets.fromLTRB(28.0, 80, 28, 0),
-                //   child: Container(
-                //     height: 50,
-                //     width: 350,
-                //     decoration: BoxDecoration(
-                //         borderRadius: BorderRadius.circular(15),
-                //         color: Colors.white),
-                //     child: TextField(
-                //       decoration: InputDecoration(
-                //           fillColor: Colors.white,
-                //           border: OutlineInputBorder(
-                //               borderRadius: BorderRadius.circular(15)),
-                //           suffixIcon: IconButton(
-                //               onPressed: () {
-                //                 // // method to show the search bar
-                //                 showSearch(
-                //                     context: context,
-                //                     // delegate to customize the search bar
-                //                     delegate: CustomSearchDelegate());
-                //               },
-                //               icon: const Icon(Icons.search))),
-                //     ),
-                //   ),
-                // )
               ]),
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Column(
                   children: [
-                    Container(
+                    SizedBox(
                       height: height * 0.2,
                       child: ListView(children: [
                         CarouselSlider(
                           items: [
                             Container(
-                              margin: EdgeInsets.all(8.0),
+                              margin: const EdgeInsets.all(8.0),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
-                                image: DecorationImage(
+                                image: const DecorationImage(
                                   image: AssetImage("assets/swap.jpg"),
-                                  // fit: BoxFit.cover,
                                 ),
                               ),
                             ),
                             Container(
-                              margin: EdgeInsets.all(8.0),
+                              margin: const EdgeInsets.all(8.0),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
-                                image: DecorationImage(
+                                image: const DecorationImage(
                                   image: AssetImage("assets/swap1.jpg"),
-                                  // fit: BoxFit.cover,
                                 ),
                               ),
                             ),
                             Container(
-                              margin: EdgeInsets.all(8.0),
+                              margin: const EdgeInsets.all(8.0),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
-                                image: DecorationImage(
+                                image: const DecorationImage(
                                     image: AssetImage("assets/swap.jpg")),
                               ),
                             ),
                           ],
                           options: CarouselOptions(
-                            // height: 380.0,
                             enlargeCenterPage: true,
                             autoPlay: true,
                             aspectRatio: 16 / 9,
                             autoPlayCurve: Curves.fastOutSlowIn,
                             enableInfiniteScroll: true,
                             autoPlayAnimationDuration:
-                                Duration(milliseconds: 800),
+                                const Duration(milliseconds: 800),
                             viewportFraction: 0.8,
                           ),
                         ),
                       ]),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
-                    Text(
+                    const Text(
                       'Our Services',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
@@ -212,46 +176,7 @@ class _HomepageState extends ConsumerState<Homepage> {
                                           data[index].name.toString()),
                                     ),
                                   ));
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    content: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Image.asset(
-                                          'assets/popup.png',
-                                          height: 110,
-                                          width: 110,
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          'Highly Recommended!',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Color.fromARGB(
-                                                  255, 90, 36, 165)),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          '   Your ServiceProvider nearest to your area is \n                        recommended for you.',
-                                          style: TextStyle(fontSize: 10),
-                                        ),
-                                        SizedBox(
-                                          height: 15,
-                                        ),
-                                        Text(
-                                          'Ram Shrestha',
-                                        )
-                                      ],
-                                    ),
-                                  );
-                                },
-                              );
+                              dialog(d);
                             },
                             child: Card(
                               elevation: 5,
@@ -266,19 +191,19 @@ class _HomepageState extends ConsumerState<Homepage> {
                                     Container(
                                       alignment: Alignment.center,
                                       height: 70,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         image: DecorationImage(
                                             image: AssetImage(
                                                 'assets/plumber.png'),
                                             fit: BoxFit.fitHeight),
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 8,
                                     ),
                                     Text(
                                       data[index].name.toString(),
-                                      style: TextStyle(fontSize: 10),
+                                      style: const TextStyle(fontSize: 10),
                                     ),
                                   ],
                                 ),
@@ -287,206 +212,17 @@ class _HomepageState extends ConsumerState<Homepage> {
                           ),
                         ),
                         error: (error, stackTrace) => Text(error.toString()),
-                        loading: () => Center(
+                        loading: () => const Center(
                           child: CircularProgressIndicator(),
                         ),
                       ),
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(left: 30.0, top: 15),
-                    //   child: Container(
-                    //     height: 260,
-                    //     color: Colors.white,
-                    //     // width: 40,
-                    //     child: Column(
-                    //       mainAxisAlignment: MainAxisAlignment.start,
-                    //       crossAxisAlignment: CrossAxisAlignment.start,
-                    //       children: [
-                    //         Row(
-                    //           mainAxisAlignment: MainAxisAlignment.start,
-                    //           crossAxisAlignment: CrossAxisAlignment.start,
-                    //           children: [
-                    //             InkWell(
-                    //               child: Card(
-                    //                 elevation: 5,
-                    //                 child: Container(
-                    //                   height: 110,
-                    //                   width: 120,
-                    //                   decoration: BoxDecoration(
-                    //                       color: Colors.white,
-                    //                       borderRadius:
-                    //                           BorderRadius.circular(5)),
-                    //                   child: Column(
-                    //                     children: [
-                    //                       Container(
-                    //                         alignment: Alignment.center,
-                    //                         height: 70,
-                    //                         //width: 50,
-                    //                         decoration: BoxDecoration(
-                    //                           image: DecorationImage(
-                    //                               image: AssetImage(
-                    //                                   'assets/plumber.png'),
-                    //                               fit: BoxFit.fitHeight),
-                    //                           // color: Color(0xffF7825C),
-                    //                         ),
-                    //                         // child: Icon(item[index].icon),
-                    //                       ),
-                    //                       SizedBox(
-                    //                         height: 8,
-                    //                       ),
-                    //                       Text(
-                    //                         'Carpenter',
-                    //                         style: TextStyle(fontSize: 10),
-                    //                       ),
-                    //                     ],
-                    //                   ),
-                    //                 ),
-                    //               ),
-                    //               onTap: () {
-                    //                 Navigator.of(context).pushReplacement(
-                    //                     MaterialPageRoute(
-                    //                         builder: (BuildContext context) =>
-                    //                             Carpenter_Workers()));
-                    //                 showDialog(
-                    //                   context: context,
-                    //                   builder: (BuildContext context) {
-                    //                     return AlertDialog(
-                    //                       content: Column(
-                    //                         mainAxisSize: MainAxisSize.min,
-                    //                         children: [
-                    //                           Image.asset(
-                    //                             'assets/popup.png',
-                    //                             height: 110,
-                    //                             width: 110,
-                    //                           ),
-                    //                           SizedBox(
-                    //                             height: 10,
-                    //                           ),
-                    //                           Text(
-                    //                             'Highly Recommended!',
-                    //                             style: TextStyle(
-                    //                                 fontWeight: FontWeight.bold,
-                    //                                 color: Color.fromARGB(
-                    //                                     255, 90, 36, 165)),
-                    //                           ),
-                    //                           SizedBox(
-                    //                             height: 10,
-                    //                           ),
-                    //                           Text(
-                    //                             '   Your ServiceProvider nearest to your area is \n                        recommended for you.',
-                    //                             style: TextStyle(fontSize: 10),
-                    //                           ),
-                    //                           SizedBox(
-                    //                             height: 15,
-                    //                           ),
-                    //                           Text(
-                    //                             'Ram Prasad Sharma',
-                    //                           )
-                    //                         ],
-                    //                       ),
-                    //                     );
-                    //                   },
-                    //                 );
-                    //               },
-                    //             ),
-                    //             SizedBox(
-                    //               width: 30,
-                    //             ),
-
-                    //           ],
-                    //         ),
-                    //         Row(
-                    //           children: [
-                    //             Card(
-                    //               elevation: 5,
-                    //               child: Container(
-                    //                 height: 110,
-                    //                 width: 120,
-                    //                 decoration: BoxDecoration(
-                    //                     color: Colors.white,
-                    //                     borderRadius: BorderRadius.circular(5)),
-                    //                 child: Column(
-                    //                   children: [
-                    //                     Container(
-                    //                       alignment: Alignment.center,
-                    //                       height: 70,
-                    //                       //width: 50,
-                    //                       decoration: BoxDecoration(
-                    //                         image: DecorationImage(
-                    //                             image: AssetImage(
-                    //                                 'assets/plumber.png'),
-                    //                             fit: BoxFit.fitHeight),
-                    //                         // color: Color(0xffF7825C),
-                    //                       ),
-                    //                       // child: Icon(item[index].icon),
-                    //                     ),
-                    //                     SizedBox(
-                    //                       height: 8,
-                    //                     ),
-                    //                     Text(
-                    //                       'Electrician',
-                    //                       style: TextStyle(fontSize: 10),
-                    //                     ),
-                    //                   ],
-                    //                 ),
-                    //               ),
-                    //             ),
-                    //             SizedBox(
-                    //               width: 30,
-                    //             ),
-                    //             Card(
-                    //               elevation: 5,
-                    //               child: Container(
-                    //                 height: 110,
-                    //                 width: 120,
-                    //                 decoration: BoxDecoration(
-                    //                     color: Colors.white,
-                    //                     borderRadius: BorderRadius.circular(5)),
-                    //                 child: Column(
-                    //                   children: [
-                    //                     Container(
-                    //                       alignment: Alignment.center,
-                    //                       height: 70,
-                    //                       //width: 50,
-                    //                       decoration: BoxDecoration(
-                    //                         image: DecorationImage(
-                    //                             image: AssetImage(
-                    //                                 'assets/plumber.png'),
-                    //                             fit: BoxFit.fitHeight),
-                    //                         // color: Color(0xffF7825C),
-                    //                       ),
-                    //                       // child: Icon(item[index].icon),
-                    //                     ),
-                    //                     SizedBox(
-                    //                       height: 8,
-                    //                     ),
-                    //                     Text(
-                    //                       'Laundary',
-                    //                       style: TextStyle(fontSize: 10),
-                    //                     ),
-                    //                   ],
-                    //                 ),
-                    //               ),
-                    //             ),
-                    //             SizedBox(
-                    //               width: 30,
-                    //             ),
-                    //           ],
-                    //         ),
-                    //         SizedBox(
-                    //           width: 30,
-                    //         ),
-                    //       ],
-                    //     ),
-                    //   ),
-                    // ),
-                    Text(
+                    const Text(
                       'Featured Services',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
                       height: 195,
-                      // width: 90,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
@@ -519,28 +255,26 @@ class _HomepageState extends ConsumerState<Homepage> {
                                           fit: BoxFit.fill,
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 5,
                                       ),
                                       Center(
                                         child: Text(
                                           product[index].pname,
-                                          style: TextStyle(
-                                              //fontWeight: FontWeight.bold
-                                              ),
+                                          style: const TextStyle(),
                                         ),
                                       ),
                                       Center(
                                         child: Text(
                                           product[index].dprice,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 12,
                                               color: Color.fromARGB(
                                                   255, 90, 36, 165)),
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 10,
                                       ),
                                     ],
@@ -553,8 +287,8 @@ class _HomepageState extends ConsumerState<Homepage> {
                         itemCount: product.length,
                       ),
                     ),
-                    SizedBox(height: 10),
-                    Text(
+                    const SizedBox(height: 10),
+                    const Text(
                       'Advertisments',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
@@ -570,14 +304,14 @@ class _HomepageState extends ConsumerState<Homepage> {
                             color: Colors.amber[600],
                             child: Image.asset('assets/ban1.jpg'),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 20,
                           ),
                           Container(
                               height: 50,
                               color: Colors.amber[500],
                               child: Image.asset('assets/ban1.jpg')),
-                          SizedBox(
+                          const SizedBox(
                             width: 20,
                           ),
                           Container(
@@ -587,10 +321,10 @@ class _HomepageState extends ConsumerState<Homepage> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-                    Text(
+                    const Text(
                       'Offers & Discounts',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
@@ -605,14 +339,14 @@ class _HomepageState extends ConsumerState<Homepage> {
                             color: Colors.amber[600],
                             child: Image.asset('assets/ad2.jpg'),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 20,
                           ),
                           Container(
                               height: 50,
                               color: Colors.amber[500],
                               child: Image.asset('assets/ad2.jpg')),
-                          SizedBox(
+                          const SizedBox(
                             width: 20,
                           ),
                           Container(
@@ -631,6 +365,51 @@ class _HomepageState extends ConsumerState<Homepage> {
       ),
     );
   }
+
+  void dialog(String name) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return SizedBox(
+          height: 200,
+          child: AlertDialog(
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset(
+                  'assets/popup.png',
+                  height: 110,
+                  width: 110,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  'Highly Recommended!',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 90, 36, 165)),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  '   Your ServiceProvider nearest to your area is \n                        recommended for you.',
+                  style: TextStyle(fontSize: 10),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  name.toString(),
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 }
 
 class CustomSearchDelegate extends SearchDelegate {
@@ -647,9 +426,9 @@ class CustomSearchDelegate extends SearchDelegate {
           onPressed: () {
             query = '';
           },
-          icon: Icon(Icons.clear))
+          icon: const Icon(Icons.clear))
     ];
-  } // for clearing the query use hunxa
+  }
 
   @override
   Widget? buildLeading(BuildContext context) {
@@ -657,8 +436,8 @@ class CustomSearchDelegate extends SearchDelegate {
         onPressed: () {
           close(context, null);
         },
-        icon: Icon(Icons.arrow_back));
-  } //used for leave and close the search bar
+        icon: const Icon(Icons.arrow_back));
+  }
 
   @override
   Widget buildResults(BuildContext context) {

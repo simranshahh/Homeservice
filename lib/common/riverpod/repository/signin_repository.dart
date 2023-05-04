@@ -35,6 +35,10 @@ class UserRepository implements IUserRepository {
       var token = json.decode(response.data)['accessToken'];
       var reftoken = json.decode(response.data)["user"]['refreshTokens'];
       var usertype = json.decode(response.data)['user']['role'];
+      var id = json.decode(response.data)['user']['_id'];
+      var address = json.decode(response.data)['user']["address"];
+      print(address);
+
       print(usertype);
       await setValue(loggedIn, "true");
       await setValue(firsttime, "false");
@@ -42,6 +46,9 @@ class UserRepository implements IUserRepository {
       await setValue(accessToken, token);
       await setValue(refreshToken, reftoken);
       await setValue(role, usertype);
+      await setValue(userId, id);
+      await setValue(userAddress, address);
+
       var roles = getStringAsync(role);
       print(roles);
 

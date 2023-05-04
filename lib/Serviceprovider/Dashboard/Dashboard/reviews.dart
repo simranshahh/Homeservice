@@ -30,6 +30,7 @@ class _ReviewState extends ConsumerState<Review> {
     ReviewModel(
         user: 'Rama Prasad', comments: 'Good Job', time: '4 months ago'),
   ];
+  
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -67,7 +68,7 @@ class _ReviewState extends ConsumerState<Review> {
                           },
                         ),
                         SizedBox(
-                          width: 130,
+                          width: 100,
                         ),
                         Text(
                           items[index].time,

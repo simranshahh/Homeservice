@@ -12,6 +12,7 @@ import 'package:homeservice/Serviceprovider/Dashboard/Dashboard/Ratings.dart';
 import 'package:homeservice/Serviceprovider/Dashboard/Dashboard/reviews.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../Customer/View/Bookings/scheduled_booking.dart';
 import '../../../common/Services/basedio.dart';
 import '../../../common/config/my_config.dart';
 import '../../../common/riverpod/models/customerprofile.dart';
@@ -252,8 +253,7 @@ class _DashboardState extends ConsumerState<Dashboard> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  ScheduledPanel()));
+                              builder: (BuildContext context) => Scheduled()));
                     },
                   ),
                   InkWell(
