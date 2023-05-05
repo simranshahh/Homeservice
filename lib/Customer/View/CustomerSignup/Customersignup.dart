@@ -68,22 +68,23 @@ class _CustomerSignupState extends ConsumerState<CustomerSignup> {
 
 // Register button validation
   Future<void> customerRegister() async {
-    // if (_signupKey.currentState!.validate()) {
-    ref.read(customerSignupNotifierProvider.notifier).CustomerRegister(
-        emailctrl.value.text,
-        passwordctrl.value.text,
-        locationCtrl.text,
-        phoneCtrl.value.text,
-        addressctrl.value.text,
-        fullnameCtrl.value.text,
-        context);
-
-    await setValue(email, emailctrl.value.text);
-    await setValue(password, passwordctrl.value.text);
-    await setValue(coordinates, locationCtrl.value.text);
-    await setValue(phone, phoneCtrl.value.text);
-    await setValue(address, addressctrl.value.text);
-    await setValue(fullname, fullnameCtrl.value.text);
+    if (_signupKey.currentState!.validate()) {
+      print(fullnameCtrl.value.text);
+      ref.read(customerSignupNotifierProvider.notifier).CustomerRegister(
+          fullnameCtrl.value.text,
+          emailctrl.value.text,
+          phoneCtrl.value.text,
+          addressctrl.value.text,
+          passwordctrl.value.text,
+          locationCtrl.text,
+          context);
+      await setValue(f, fullnameCtrl.value.text);
+      await setValue(email, emailctrl.value.text);
+      await setValue(phone, phoneCtrl.value.text);
+      await setValue(address, addressctrl.value.text);
+      await setValue(password, passwordctrl.value.text);
+      await setValue(c, locationCtrl.value.text);
+    }
   }
 
   bool pressed = false;
@@ -114,12 +115,11 @@ class _CustomerSignupState extends ConsumerState<CustomerSignup> {
   @override
   void dispose() {
     fullnameCtrl.dispose();
-    addressctrl.dispose();
-    rolectrl.dispose();
     emailctrl.dispose();
     phoneCtrl.dispose();
-    locationCtrl.dispose();
+    addressctrl.dispose();
     passwordctrl.dispose();
+    locationCtrl.dispose();
     super.dispose();
   }
 
@@ -198,164 +198,159 @@ class _CustomerSignupState extends ConsumerState<CustomerSignup> {
                           borderRadius: BorderRadius.circular(20)),
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(20.0, 20, 20, 20),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              TextFormField(
-                                controller: fullnameCtrl,
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.text,
-                                onSaved: (input) => user.fullName = input,
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.person),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15)),
-                                  labelText: 'Full Name',
-                                ),
-                                validator: FormBuilderValidators.compose([
-                                  FormBuilderValidators.required(),
-                                ]),
+                        child: Column(
+                          children: [
+                            TextFormField(
+                              controller: fullnameCtrl,
+                              textInputAction: TextInputAction.next,
+                              keyboardType: TextInputType.text,
+                              onSaved: (input) => user.fullName = input,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.person),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15)),
+                                labelText: 'Full Name',
                               ),
-                              SizedBox(
-                                height: 10,
+                              validator: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(),
+                              ]),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              controller: emailctrl,
+                              textInputAction: TextInputAction.next,
+                              keyboardType: TextInputType.emailAddress,
+                              onSaved: (input) => user.email = input,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.mail),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15)),
+                                labelText: 'Email Address',
                               ),
-                              TextFormField(
-                                controller: emailctrl,
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.emailAddress,
-                                onSaved: (input) => user.email = input,
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.mail),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15)),
-                                  labelText: 'Email Address',
-                                ),
-                                validator: FormBuilderValidators.compose([
-                                  FormBuilderValidators.required(),
-                                ]),
+                              validator: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(),
+                              ]),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              controller: phoneCtrl,
+                              textInputAction: TextInputAction.next,
+                              keyboardType: TextInputType.number,
+                              onSaved: (input) => user.phone = input,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.call),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15)),
+                                labelText: 'Phone Number',
                               ),
-                              SizedBox(
-                                height: 10,
+                              validator: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(),
+                              ]),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              controller: addressctrl,
+                              textInputAction: TextInputAction.next,
+                              keyboardType: TextInputType.text,
+                              onSaved: (input) => user.address = input,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.location_city),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15)),
+                                labelText: 'Address',
                               ),
-                              TextFormField(
-                                controller: phoneCtrl,
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.number,
-                                onSaved: (input) => user.phone = input,
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.call),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15)),
-                                  labelText: 'Phone Number',
-                                ),
-                                validator: FormBuilderValidators.compose([
-                                  FormBuilderValidators.required(),
-                                ]),
+                              validator: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(),
+                              ]),
+                            ),
+                            // SizedBox(
+                            //   height: 10,
+                            // ),
+                            // TextFormField(
+                            //   controller: rolectrl,
+                            //   textInputAction: TextInputAction.next,
+                            //   keyboardType: TextInputType.text,
+                            //   onSaved: (input) => user.role = input,
+                            //   decoration: InputDecoration(
+                            //     prefixIcon: Icon(Icons.location_city),
+                            //     border: OutlineInputBorder(
+                            //         borderRadius: BorderRadius.circular(15)),
+                            //     labelText: 'Role',
+                            //   ),
+                            //   validator: FormBuilderValidators.compose([
+                            //     FormBuilderValidators.required(),
+                            //   ]),
+                            // ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              controller: passwordctrl,
+                              textInputAction: TextInputAction.next,
+                              keyboardType: TextInputType.text,
+                              onSaved: (input) => user.password = input,
+                              decoration: InputDecoration(
+                                suffixIcon: IconButton(
+                                    icon: lockIcon,
+                                    onPressed: () => _onlockPressed1()),
+                                prefixIcon: Icon(Icons.lock),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15)),
+                                labelText: 'Password',
                               ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              TextFormField(
-                                controller: addressctrl,
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.text,
-                                onSaved: (input) => user.address = input,
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.location_city),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15)),
-                                  labelText: 'Address',
-                                ),
-                                validator: FormBuilderValidators.compose([
-                                  FormBuilderValidators.required(),
-                                ]),
-                              ),
-                              // SizedBox(
-                              //   height: 10,
-                              // ),
-                              // TextFormField(
-                              //   controller: rolectrl,
-                              //   textInputAction: TextInputAction.next,
-                              //   keyboardType: TextInputType.text,
-                              //   onSaved: (input) => user.role = input,
-                              //   decoration: InputDecoration(
-                              //     prefixIcon: Icon(Icons.location_city),
-                              //     border: OutlineInputBorder(
-                              //         borderRadius: BorderRadius.circular(15)),
-                              //     labelText: 'Role',
-                              //   ),
-                              //   validator: FormBuilderValidators.compose([
-                              //     FormBuilderValidators.required(),
-                              //   ]),
-                              // ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              TextFormField(
-                                controller: passwordctrl,
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.text,
-                                onSaved: (input) => user.password = input,
-                                decoration: InputDecoration(
-                                  suffixIcon: IconButton(
-                                      icon: lockIcon,
-                                      onPressed: () => _onlockPressed1()),
-                                  prefixIcon: Icon(Icons.lock),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15)),
-                                  labelText: 'Password',
-                                ),
-                                obscureText: offsecureText1,
-                                validator: FormBuilderValidators.compose([
-                                  FormBuilderValidators.required(),
-                                ]),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              pressed == false
-                                  ? ElevatedButton(
-                                      onPressed: getCurrentLocation,
-                                      child: Text(
-                                        'Get Location',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall,
-                                      ),
-                                    )
-                                  : TextFormField(
-                                      //initialValue: "jbsjvbc",
-                                      readOnly: true,
-                                      controller: locationCtrl,
-                                      textInputAction: TextInputAction.next,
-                                      keyboardType: TextInputType.text,
-                                      onSaved: (input) =>
-                                          user.cordinates = input,
-                                      decoration: InputDecoration(
-                                        prefixIcon: Icon(Icons.place),
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
-                                        labelText: 'Location',
-                                      ),
-                                      validator: FormBuilderValidators.compose([
-                                        FormBuilderValidators.required(),
-                                      ]),
+                              obscureText: offsecureText1,
+                              validator: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(),
+                              ]),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            pressed == false
+                                ? ElevatedButton(
+                                    onPressed: getCurrentLocation,
+                                    child: Text(
+                                      'Get Location',
+                                      style:
+                                          Theme.of(context).textTheme.bodySmall,
                                     ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              ElevatedButton(
-                                  style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                              Colors.deepPurpleAccent)),
-                                  onPressed: () {
-                                    customerRegister();
-                                  },
-                                  child: Text('Sign Up'))
-                            ],
-                          ),
+                                  )
+                                : TextFormField(
+                                    //initialValue: "jbsjvbc",
+                                    readOnly: true,
+                                    controller: locationCtrl,
+                                    textInputAction: TextInputAction.next,
+                                    keyboardType: TextInputType.text,
+                                    onSaved: (input) => user.cordinates = input,
+                                    decoration: InputDecoration(
+                                      prefixIcon: Icon(Icons.place),
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                      labelText: 'Location',
+                                    ),
+                                    validator: FormBuilderValidators.compose([
+                                      FormBuilderValidators.required(),
+                                    ]),
+                                  ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            ElevatedButton(
+                                style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(
+                                        Colors.deepPurpleAccent)),
+                                onPressed: () {
+                                  customerRegister();
+                                },
+                                child: Text('Sign Up'))
+                          ],
                         ),
                       ),
                     ),

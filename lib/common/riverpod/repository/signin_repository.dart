@@ -37,7 +37,9 @@ class UserRepository implements IUserRepository {
       var usertype = json.decode(response.data)['user']['role'];
       var id = json.decode(response.data)['user']['_id'];
       var address = json.decode(response.data)['user']["address"];
+      var p = json.decode(response.data)['user']["price"];
       print(address);
+      print(p);
 
       print(usertype);
       await setValue(loggedIn, "true");
@@ -48,6 +50,7 @@ class UserRepository implements IUserRepository {
       await setValue(role, usertype);
       await setValue(userId, id);
       await setValue(userAddress, address);
+      await setValue(cprice, p);
 
       var roles = getStringAsync(role);
       print(roles);

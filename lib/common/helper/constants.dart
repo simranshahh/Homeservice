@@ -1,5 +1,4 @@
 // ignore_for_file: constant_identifier_names
-
 const String accessToken = 'accessToken';
 const String refreshToken = 'refreshToken';
 const String firsttime = "firsttime";
@@ -9,13 +8,16 @@ const String tenantName = 'TenantName';
 const String defaultTenantName = 'Damak';
 const String defaultTenant = '1';
 const String userId = '_id';
+const String current = 'current';
+const String completed = 'completed';
 const String userAddress = 'useraddress';
+const String cprice = 'price';
 const String role = 'role';
 const String r = 'r';
 const String user = 'users';
 const String address = 'address';
-const String fullname = 'fullname';
-const String coordinates = 'coordinates';
+const String f = 'fullname';
+const String c = 'coordinates';
 const String phone = 'phone';
 const String customerid = '6446bbdf67f4eacfe7487195';
 const String customer = 'customer';

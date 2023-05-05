@@ -1,11 +1,14 @@
-// ignore_for_file: file_names, camel_case_types, prefer_const_constructors, duplicate_ignore, prefer_const_literals_to_create_immutables, sort_child_properties_last, unused_element, non_constant_identifier_names, avoid_types_as_parameter_names, unused_import
+// ignore_for_file: file_names, camel_case_types, prefer_const_constructors, duplicate_ignore, prefer_const_literals_to_create_immutables, sort_child_properties_last, unused_element, non_constant_identifier_names, avoid_types_as_parameter_names, unused_import, must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:nb_utils/nb_utils.dart';
 import 'package:timelines/timelines.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../Serviceprovider/View/Serviceman_Profile/Serviceman_Profile.dart';
 import '../../../../Serviceprovider/View/Serviceman_Profile/rate.dart';
+import '../../../../common/helper/constants.dart';
+import '../../../../common/riverpod/models/servicestatus_model.dart';
 import '../Cancel_Booking/Cancel_booking.dart';
 
 class Scheduletext {
@@ -15,7 +18,8 @@ class Scheduletext {
 }
 
 class Booking_Details extends ConsumerStatefulWidget {
-  const Booking_Details({super.key});
+  Booking_Details({this.data, super.key});
+  ServiceStatus? data;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -28,12 +32,16 @@ class _Booking_DetailsState extends ConsumerState<Booking_Details> {
     Scheduletext(text: 'Job In Process'),
     Scheduletext(text: 'Job Completed'),
   ];
+  var status;
   bool _isAccepted = false;
   bool _isRejected = false;
-  _accept() {
+  _accept() async {
     setState(() {
       _isAccepted = true;
+      status = 'current';
     });
+    await setValue(current, status);
+    print(current);
   }
 
   _decline() {
@@ -41,6 +49,8 @@ class _Booking_DetailsState extends ConsumerState<Booking_Details> {
       _isRejected = true;
     });
   }
+
+  final uadd = getStringAsync(userAddress);
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +118,7 @@ class _Booking_DetailsState extends ConsumerState<Booking_Details> {
                         'Job',
                         style: TextStyle(color: Colors.grey),
                       ),
-                      Text('Chair Mending'),
+                      Text(widget.data!.note.toString()),
                       SizedBox(
                         height: 20,
                       ),
@@ -116,7 +126,8 @@ class _Booking_DetailsState extends ConsumerState<Booking_Details> {
                         'Date',
                         style: TextStyle(color: Colors.grey),
                       ),
-                      Text('22 Dec 2022 11.00 AM'),
+                      Text(
+                          '${widget.data!.date.toString()}  ${widget.data!.time.toString()}'),
                       SizedBox(
                         height: 20,
                       ),
@@ -124,7 +135,7 @@ class _Booking_DetailsState extends ConsumerState<Booking_Details> {
                         'Address',
                         style: TextStyle(color: Colors.grey),
                       ),
-                      Text('BiratNursing Home,Biratnagar'),
+                      Text(uadd),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
@@ -190,17 +201,18 @@ class _Booking_DetailsState extends ConsumerState<Booking_Details> {
                                         )
                                       : ElevatedButton(
                                           onPressed: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (BuildContext) =>
-                                                        Serviceman_Profile()));
+                                            _accept();
+                                            // Navigator.push(
+                                            //     context,
+                                            //     MaterialPageRoute(
+                                            //         builder: (BuildContext) =>
+                                            //             Serviceman_Profile()));
                                             // setState(() {
                                             //   _isAccepted = true;
                                             //   // _isRejected = false;
                                             // });
                                           },
-                                          child: Text('Reschedule'),
+                                          child: Text('Accept'),
                                           style: ButtonStyle(
                                               backgroundColor:
                                                   MaterialStateProperty.all(
@@ -214,43 +226,43 @@ class _Booking_DetailsState extends ConsumerState<Booking_Details> {
                   ),
                 ),
               ]),
-              Text(
-                '    Job Schedule',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              Container(
-                color: Colors.white,
-                height: height * 0.3,
-                child: Timeline.tileBuilder(
-                  theme: TimelineThemeData.vertical(),
-                  builder: TimelineTileBuilder.fromStyle(
-                    connectorStyle: ConnectorStyle.solidLine,
-                    contentsAlign: ContentsAlign.alternating,
-                    contentsBuilder: (context, index) => Padding(
-                      padding: const EdgeInsets.all(24.0),
-                      child: Text(
-                        text[index].text,
-                        style: TextStyle(color: Colors.deepPurpleAccent),
-                      ),
-                    ),
-                    itemCount: 3,
-                  ),
-                ),
-              ),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext) => RateServiceman()));
-                  },
-                  child: Text('Review Now'),
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.deepPurpleAccent)),
-                ),
-              )
+              // Text(
+              //   '    Job Schedule',
+              //   style: TextStyle(fontWeight: FontWeight.bold),
+              // ),
+              // Container(
+              //   color: Colors.white,
+              //   height: height * 0.3,
+              //   child: Timeline.tileBuilder(
+              //     theme: TimelineThemeData.vertical(),
+              //     builder: TimelineTileBuilder.fromStyle(
+              //       connectorStyle: ConnectorStyle.solidLine,
+              //       contentsAlign: ContentsAlign.alternating,
+              //       contentsBuilder: (context, index) => Padding(
+              //         padding: const EdgeInsets.all(24.0),
+              //         child: Text(
+              //           text[index].text,
+              //           style: TextStyle(color: Colors.deepPurpleAccent),
+              //         ),
+              //       ),
+              //       itemCount: 3,
+              //     ),
+              //   ),
+              // ),
+              // Center(
+              //   child: ElevatedButton(
+              //     onPressed: () {
+              //       Navigator.push(
+              //           context,
+              //           MaterialPageRoute(
+              //               builder: (BuildContext) => RateServiceman()));
+              //     },
+              //     child: Text('Review Now'),
+              //     style: ButtonStyle(
+              //         backgroundColor:
+              //             MaterialStateProperty.all(Colors.deepPurpleAccent)),
+              //   ),
+              // )
             ],
           ),
         ));

@@ -20,7 +20,7 @@ class _RatingsState extends ConsumerState<Ratings> {
     return SafeArea(
       child: Scaffold(
         body: Container(
-          height: height,
+          // height: height,
           width: width,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,

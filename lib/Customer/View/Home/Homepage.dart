@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:homeservice/Customer/View/Settings/customerprofile.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nb_utils/nb_utils.dart';
 

@@ -41,9 +41,9 @@ class _DashboardState extends ConsumerState<Dashboard> {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 18, top: 15),
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 18, top: 15, right: 18),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -253,7 +253,8 @@ class _DashboardState extends ConsumerState<Dashboard> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (BuildContext context) => Scheduled()));
+                              builder: (BuildContext context) =>
+                                  ScheduledPanel()));
                     },
                   ),
                   InkWell(
@@ -301,7 +302,11 @@ class _DashboardState extends ConsumerState<Dashboard> {
               SizedBox(
                 height: 10,
               ),
-              Container(height: 100, color: Colors.red, child: Ratings()),
+              Container(
+                  height: height * 0.2,
+                  width: width,
+                  // color: Colors.red,
+                  child: Ratings()),
               SizedBox(
                 height: 20,
               ),
@@ -309,7 +314,11 @@ class _DashboardState extends ConsumerState<Dashboard> {
               SizedBox(
                 height: 10,
               ),
-              Container(height: height, child: Review())
+              Container(
+                height: height * 0.5,
+                width: width,
+                child: Review(),
+              )
             ],
           ),
         ),

@@ -3,16 +3,15 @@
 import 'package:flutter/material.dart';
 
 import '../models/customer_signup.dart';
-import '../models/customerprofile.dart';
 
 abstract class ICustomerSignupRepository {
   Future<CustomerRegister?> customerregister(
+    String fullName,
     String email,
-    String password,
-    String cordinates,
     String phone,
     String address,
-    String fullName,
+    String password,
+    String cordinates,
     BuildContext context,
   );
 }

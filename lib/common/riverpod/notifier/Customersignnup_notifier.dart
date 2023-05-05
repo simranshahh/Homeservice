@@ -3,6 +3,7 @@
 // ignore: avoid_web_libraries_in_flutter
 
 import 'package:flutter/material.dart';
+import 'package:homeservice/common/helper/constants.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../Services/localkeys.dart';
 import '../../Services/networkexception.dart';
@@ -16,19 +17,19 @@ class CustomerSignupNotifier extends StateNotifier<CustomerSignupState> {
       : super(CustomerSignupInitialState());
 
   Future<void> CustomerRegister(
+    String fullName,
     String email,
-    String password,
-    String cordinates,
     String phone,
     String address,
-    String fullName,
+    String password,
+    String cordinates,
     BuildContext context,
   ) async {
     try {
       state = CustomerSignupLoadingState();
       final sendCustomerSignupSms =
           await _iCustomerSignupRepository.customerregister(
-              email, address, cordinates, fullName, password, phone, context);
+              fullName, email, phone, address, password, cordinates, context);
       state = CustomerSignupLoadedState(sendCustomerSignupSms);
     } on NetworkException {
       state = CustomerSignupErrorState(LocaleKeys.something_went_wrong.trim());

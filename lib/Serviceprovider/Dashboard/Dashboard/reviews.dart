@@ -30,7 +30,7 @@ class _ReviewState extends ConsumerState<Review> {
     ReviewModel(
         user: 'Rama Prasad', comments: 'Good Job', time: '4 months ago'),
   ];
-  
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -42,46 +42,49 @@ class _ReviewState extends ConsumerState<Review> {
           itemCount: items.length,
           itemBuilder: (context, index) {
             return Container(
-              height: height * 0.12,
+              // height: height * 0.12,
               width: width,
               color: Colors.white,
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        RatingBar.builder(
-                          initialRating: 0,
-                          minRating: 5,
-                          direction: Axis.horizontal,
-                          allowHalfRating: false,
-                          itemCount: 5,
-                          itemSize: 20,
-                          itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
-                          itemBuilder: (context, _) => Icon(
-                            Icons.star,
-                            color: Colors.amber,
+              child: Padding(
+                padding: const EdgeInsets.all(11.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          RatingBar.builder(
+                            initialRating: 0,
+                            minRating: 5,
+                            direction: Axis.horizontal,
+                            allowHalfRating: false,
+                            itemCount: 5,
+                            itemSize: 20,
+                            itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
+                            itemBuilder: (context, _) => Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                            ),
+                            onRatingUpdate: (rating) {
+                              print(rating);
+                            },
                           ),
-                          onRatingUpdate: (rating) {
-                            print(rating);
-                          },
-                        ),
-                        SizedBox(
-                          width: 100,
-                        ),
-                        Text(
-                          items[index].time,
-                          style: TextStyle(color: Colors.grey),
-                        )
-                      ],
-                    ),
-                    Text(
-                      items[index].user,
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    Text(items[index].comments),
-                  ],
+                          SizedBox(
+                            width: 100,
+                          ),
+                          Text(
+                            items[index].time,
+                            style: TextStyle(color: Colors.grey),
+                          )
+                        ],
+                      ),
+                      Text(
+                        items[index].user,
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      Text(items[index].comments),
+                    ],
+                  ),
                 ),
               ),
             );

@@ -2,7 +2,6 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:homeservice/common/helper/constants.dart';
 import 'package:homeservice/common/riverpod/models/SignupModel.dart';
 import '../../../Services/app_navigator_service.dart';
 import '../../../Services/basedio.dart';
@@ -24,10 +23,10 @@ class SignupRepository implements ISignupRepository {
     var data = {
       "email": email,
       "password": password,
-      "cordinates": coordinates,
+      "cordinates": cordinates,
       "phone": phone,
       "address": address,
-      "full_name": fullname,
+      "full_name": fullName,
       "role": role,
       "price": price
     };

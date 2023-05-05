@@ -12,22 +12,21 @@ import '../models/customer_signup.dart';
 class CustomerSignupRepository implements ICustomerSignupRepository {
   @override
   Future<CustomerRegister?> customerregister(
+    String fullName,
     String email,
-    String password,
-    String cordinates,
     String phone,
     String address,
-    String fullName,
+    String password,
+    String cordinates,
     BuildContext context,
   ) async {
     var data = {
+      "full_name": fullName,
       "email": email,
-      "password": password,
-      "cordinates": coordinates,
       "phone": phone,
       "address": address,
-      "full_name": fullname,
-      "role": role
+      "password": password,
+      "cordinates": cordinates,
     };
     print(data);
 
@@ -38,9 +37,9 @@ class CustomerSignupRepository implements ICustomerSignupRepository {
       print(response.statusCode);
       if (response.statusCode == 201) {
         var responsedata = json.decode(response.data);
-        print(responsedata);
+        // print(responsedata);
         //  await setString(userId, a['email']["password"].toString());
-        print(response.data);
+        // print(response.data);
         AppNavigatorService.pushNamedAndRemoveUntil("Signin");
       }
     } catch (e) {

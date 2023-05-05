@@ -96,10 +96,10 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
 
       await setValue(email, emailctrl.value.text);
       await setValue(password, passwordctrl.value.text);
-      await setValue(coordinates, locationCtrl.value.text);
+      await setValue(c, locationCtrl.value.text);
       await setValue(phone, phoneCtrl.value.text);
       await setValue(address, addressctrl.value.text);
-      await setValue(fullname, fullnameCtrl.value.text);
+      await setValue(f, fullnameCtrl.value.text);
       await setValue(role, _value.toString());
     }
   }

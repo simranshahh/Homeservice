@@ -120,7 +120,7 @@ class CustomerRepository {
 //   return null;
 // }
 String scheduled = "scheduled";
-String current = "current";
+String c = getStringAsync(current);
 String completed = "completed";
 
 final customerRepositoryProvider =
@@ -146,7 +146,7 @@ final scheduledprovider =
 });
 final currentprovider =
     FutureProvider.autoDispose<List<ServiceStatus>>((ref) async {
-  return ref.read(customerRepositoryProvider).serviceStatus(current);
+  return ref.read(customerRepositoryProvider).serviceStatus(c);
 });
 final completedprovider =
     FutureProvider.autoDispose<List<ServiceStatus>>((ref) async {
