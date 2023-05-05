@@ -33,39 +33,48 @@ class UserRepository implements IUserRepository {
     print(response.statusCode);
 
     if (response.statusCode == 200) {
-      var token = json.decode(response.data)['accessToken'];
-      var reftoken = json.decode(response.data)["user"]['refreshTokens'];
-      var usertype = json.decode(response.data)['user']['role'];
-      var id = json.decode(response.data)['user']['_id'];
-      var address = json.decode(response.data)['user']["address"];
-      // var p = json.decode(response.data)['user']["price"];
-      print(address);
-      // print(p);
+      bool jsonResponse = jsonDecode(response.data)["user"]['verified'];
+      print(jsonResponse);
 
-      print(usertype);
-      await setValue(loggedIn, "true");
-      await setValue(firsttime, "false");
+      if (jsonResponse == false) {
+        Fluttertoast.showToast(msg: 'User is not Verified');
+      } else {
+        var token = json.decode(response.data)['accessToken'];
+        var reftoken = json.decode(response.data)["user"]['refreshTokens'];
+        var usertype = json.decode(response.data)['user']['role'];
+        var id = json.decode(response.data)['user']['_id'];
+        var address = json.decode(response.data)['user']["address"];
+        // var p = json.decode(response.data)['user']["price"];
+        print(address);
+        // print(p);
 
-      await setValue(accessToken, token);
-      await setValue(refreshToken, reftoken);
-      await setValue(role, usertype);
-      await setValue(userId, id);
-      await setValue(userAddress, address);
-      // await setValue(cprice, p);
+        print(usertype);
+        await setValue(loggedIn, "true");
+        await setValue(firsttime, "false");
 
-      var roles = getStringAsync(role);
-      print(roles);
-      await showLoginDialog(
+        await setValue(accessToken, token);
+        await setValue(refreshToken, reftoken);
+        await setValue(role, usertype);
+        await setValue(userId, id);
+        await setValue(userAddress, address);
+        // await setValue(cprice, p);
+
+        var roles = getStringAsync(role);
+
+        print(roles);
+        await showLoginDialog(
           context,
         );
 
-      if (roles == 'customer') {
-        AppNavigatorService.pushNamedAndRemoveUntil("bnv");
-      } else if (roles == '6446bbdf67f4eacfe7487195') {
-        AppNavigatorService.pushNamedAndRemoveUntil("bnv");
-      } else {
-        AppNavigatorService.pushNamedAndRemoveUntil("bnb");
+        if (roles == 'customer') {
+          AppNavigatorService.pushNamedAndRemoveUntil("bnv");
+        } else if (roles == '6446bbdf67f4eacfe7487195') {
+          AppNavigatorService.pushNamedAndRemoveUntil("bnv");
+        } else {
+          AppNavigatorService.pushNamedAndRemoveUntil("bnb");
+        }
       }
+
       //else if (usertype == 'users') {
       //   AppNavigatorService.pushNamed("bnv");
       // } else {
