@@ -2,6 +2,8 @@
 //
 //     final register = registerFromJson(jsonString);
 
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
 Register registerFromJson(String str) => Register.fromJson(json.decode(str));

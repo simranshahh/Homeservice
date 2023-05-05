@@ -21,7 +21,7 @@ class AddRatingRepository implements IAddRatingRepository {
     try {
       var response = await Api().post(MyConfig.addrating, data: data);
 
-      if (response.statusCode == 201) {
+      if (response.statusCode == 200) {
         AppNavigatorService.pushNamedAndRemoveUntil("bnv");
       }
     } catch (e) {

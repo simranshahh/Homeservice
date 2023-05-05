@@ -3,9 +3,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:nb_utils/nb_utils.dart';
 
-import '../../../common/helper/constants.dart';
 import '../../../common/riverpod/models/ServiceDetails.dart';
 import '../../../common/riverpod/repository/customer/CustomerRepository.dart';
 import '../../Model/Home/Featuredservices.dart';

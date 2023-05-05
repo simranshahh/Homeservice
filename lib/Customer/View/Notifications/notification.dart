@@ -1,12 +1,9 @@
 // ignore_for_file: camel_case_types, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
-import 'package:homeservice/Customer/View/BottomnavScreen/BottomNabBar.dart';
-import 'package:homeservice/Customer/Model/Notification/notification_model.dart';
-import 'package:homeservice/Customer/View/Notifications/notification_detail.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../Serviceprovider/Notifications/Customerorder.dart';
+import '../Bookings/Customerorder.dart';
 import '../../../common/riverpod/repository/customer/CustomerRepository.dart';
 
 class Notification_page extends ConsumerStatefulWidget {
@@ -115,7 +112,8 @@ class _Notification_pageState extends ConsumerState<Notification_page> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (BuildContext) =>
+                                          // ignore: non_constant_identifier_names
+                                          builder: (BuildContext context) =>
                                               Customer_Order(
                                                 data: data[index],
                                               )));

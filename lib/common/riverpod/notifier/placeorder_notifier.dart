@@ -17,9 +17,9 @@ class OrderNotifier extends StateNotifier<OrderState> {
       String? time, String? date, String? note, String? serviceId,BuildContext contex) async {
     try {
       state = OrderLoadingState();
-      final Order = await _iOrderRepository.order(time, date, note, serviceId,contex);
+      final order = await _iOrderRepository.order(time, date, note, serviceId,contex);
 
-      state = OrderLoadedState(Order);
+      state = OrderLoadedState(order);
     } on NetworkException {
       state = OrderErrorState(LocaleKeys.something_went_wrong.trim());
     }

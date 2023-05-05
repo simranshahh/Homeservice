@@ -2,6 +2,8 @@
 //
 //     final updateBookingStatus = updateBookingStatusFromJson(jsonString);
 
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
 UpdateBookingStatus updateBookingStatusFromJson(String str) => UpdateBookingStatus.fromJson(json.decode(str));

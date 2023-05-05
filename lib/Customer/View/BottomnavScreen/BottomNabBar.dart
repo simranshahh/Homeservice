@@ -6,7 +6,6 @@ import 'package:homeservice/Customer/View/Notifications/notification.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../Bookings/Bookings.dart';
-import '../Bookings/rate.dart';
 import '../Settings/customerprofile.dart';
 
 class BottomNavScreen extends ConsumerStatefulWidget {

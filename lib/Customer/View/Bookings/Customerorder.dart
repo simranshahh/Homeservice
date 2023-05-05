@@ -3,8 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../common/riverpod/models/NotificationModel.dart';
-import '../../common/riverpod/provider/updatebookingstatusprovider.dart';
+import '../../../common/riverpod/models/NotificationModel.dart';
 
 class Scheduletext {
   String text;
@@ -38,19 +37,6 @@ class _Customer_OrderState extends ConsumerState<Customer_Order> {
     setState(() {
       _isRejected = true;
     });
-  }
-
-  final _updateKey = GlobalKey<FormState>();
-
-  String id = '6454f40e76a8aa06bd26041e';
-  String? status;
-
-  Future<void> updatebookingStatus() async {
-    if (_updateKey.currentState!.validate()) {
-      ref
-          .read(updateBookingStatusNotifierProvider.notifier)
-          .UpdateBookingStatus(id, status!, context);
-    }
   }
 
   @override
@@ -176,10 +162,10 @@ class _Customer_OrderState extends ConsumerState<Customer_Order> {
                                         width: 180,
                                         child: ElevatedButton(
                                           onPressed: () {
-                                            setState(() {
-                                              status = 'current';
-                                            });
-                                            updatebookingStatus();
+                                            // setState(() {
+                                            //   status = 'current';
+                                            // });
+                                            // updatebookingStatus();
                                             // Do something when the new button is clicked
                                           },
                                           child: Text('Go to Job'),

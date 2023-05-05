@@ -2,6 +2,8 @@
 //
 //     final spServiceStatus = spServiceStatusFromJson(jsonString);
 
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
 SpServiceStatus spServiceStatusFromJson(String str) =>

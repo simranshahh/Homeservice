@@ -2,6 +2,8 @@
 //
 //     final placeOrder = placeOrderFromJson(jsonString);
 
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
 PlaceOrder placeOrderFromJson(String str) =>

@@ -1,10 +1,9 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, file_names, non_constant_identifier_names, depend_on_referenced_packages
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, file_names, non_constant_identifier_names, depend_on_referenced_packages, prefer_typing_uninitialized_variables, must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:homeservice/Serviceprovider/View/Serviceman_Profile/Serviceman_Profile.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:intl/intl.dart';
 
 import '../../../common/helper/constants.dart';
 import '../../../common/riverpod/provider/order_provider.dart';

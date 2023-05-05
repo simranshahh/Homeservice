@@ -1,6 +1,5 @@
 // ignore_for_file: file_names, avoid_print
 
-
 import 'package:flutter/material.dart';
 
 import '../../../Services/app_navigator_service.dart';
@@ -22,7 +21,7 @@ class UpdateBookingStatusRepository implements IUpdateBookingStatusRepository {
       var response = await Api().post(MyConfig.updateBookingStatus, data: data);
 
       if (response.statusCode == 200) {
-
+        print(response.data);
         AppNavigatorService.pushNamedAndRemoveUntil("bnb");
       }
     } catch (e) {

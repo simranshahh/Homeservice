@@ -27,30 +27,28 @@ class Booking_Details extends ConsumerStatefulWidget {
 }
 
 class _Booking_DetailsState extends ConsumerState<Booking_Details> {
-  List<Scheduletext> text = [
-    Scheduletext(text: 'Job Accepted'),
-    Scheduletext(text: 'Job In Process'),
-    Scheduletext(text: 'Job Completed'),
-  ];
-  var status;
-  bool _isAccepted = false;
-  bool _isRejected = false;
-  _accept() async {
-    setState(() {
-      _isAccepted = true;
-      status = 'current';
-    });
-    await setValue(current, status);
-    print(current);
-  }
+  // List<Scheduletext> text = [
+  //   Scheduletext(text: 'Job Accepted'),
+  //   Scheduletext(text: 'Job In Process'),
+  //   Scheduletext(text: 'Job Completed'),
+  // ];
+  // var status;
+  final bool _isAccepted = false;
+  final bool _isRejected = false;
+  // _accept() async {
+  //   setState(() {
+  //     _isAccepted = true;
+  //     status = 'current';
+  //   });
+  //   await setValue(current, status);
+  //   print(current);
+  // }
 
-  _decline() {
-    setState(() {
-      _isRejected = true;
-    });
-  }
-
-  final uadd = getStringAsync(userAddress);
+  // _decline() {
+  //   setState(() {
+  //     _isRejected = true;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +85,7 @@ class _Booking_DetailsState extends ConsumerState<Booking_Details> {
                         width: 15,
                       ),
                       Text(
-                        'Ram Prasad',
+                        widget.data!.user!.fullName.toString(),
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
@@ -135,7 +133,9 @@ class _Booking_DetailsState extends ConsumerState<Booking_Details> {
                         'Address',
                         style: TextStyle(color: Colors.grey),
                       ),
-                      Text(uadd),
+                      Text(
+                        widget.data!.user!.address.toString(),
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
@@ -157,24 +157,27 @@ class _Booking_DetailsState extends ConsumerState<Booking_Details> {
                                                   MaterialStateProperty.all(
                                                       Colors.deepPurpleAccent)),
                                         )
-                                      : ElevatedButton(
-                                          onPressed: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (BuildContext) =>
-                                                        Cancel_Booking()));
-                                            // setState(() {
-                                            //   _isRejected = true;
-                                            //   // _isAccepted = false;
-                                            // });
-                                          },
-                                          child: Text('Cancel'),
-                                          style: ButtonStyle(
-                                              backgroundColor:
-                                                  MaterialStateProperty.all(
-                                                      Colors.deepPurpleAccent)),
-                                        ),
+                                      : (widget.data!.status == 'scheduled')
+                                          ? ElevatedButton(
+                                              onPressed: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (BuildContext context) =>
+                                                            Cancel_Booking()));
+                                                // setState(() {
+                                                //   _isRejected = true;
+                                                //   // _isAccepted = false;
+                                                // });
+                                              },
+                                              child: Text('Cancel'),
+                                              style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all(
+                                                          Colors
+                                                              .deepPurpleAccent)),
+                                            )
+                                          : null,
                             ),
                             SizedBox(
                               width: 10,
@@ -199,24 +202,52 @@ class _Booking_DetailsState extends ConsumerState<Booking_Details> {
                                                             .deepPurpleAccent)),
                                           ),
                                         )
-                                      : ElevatedButton(
-                                          onPressed: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (BuildContext) =>
-                                                        Serviceman_Profile()));
-                                            // setState(() {
-                                            //   _isAccepted = true;
-                                            //   // _isRejected = false;
-                                            // });
-                                          },
-                                          child: Text('Reschedule'),
-                                          style: ButtonStyle(
-                                              backgroundColor:
-                                                  MaterialStateProperty.all(
-                                                      Colors.deepPurpleAccent)),
-                                        ),
+                                      : (widget.data!.status == 'current')
+                                          ? Text('Ongoing Service',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 22,
+                                                  color: Colors.deepPurple))
+                                          : ElevatedButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  if (widget.data!.status ==
+                                                      'scheduled') {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder:
+                                                                (BuildContext) =>
+                                                                    Serviceman_Profile()));
+                                                  } else if (widget
+                                                          .data!.status ==
+                                                      'completed') {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder:
+                                                                (BuildContext) =>
+                                                                    RateServiceman(
+                                                                      id: widget
+                                                                          .data!
+                                                                          .id,
+                                                                    )));
+                                                  }
+                                                });
+                                              },
+                                              child: (widget.data!.status ==
+                                                      'scheduled')
+                                                  ? Text('Reschedule')
+                                                  : (widget.data!.status ==
+                                                          'completed')
+                                                      ? Text('Review Now')
+                                                      : null,
+                                              style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all(
+                                                          Colors
+                                                              .deepPurpleAccent)),
+                                            ),
                             ),
                           ],
                         ),

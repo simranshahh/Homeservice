@@ -16,7 +16,6 @@ import '../../../Customer/View/Bookings/scheduled_booking.dart';
 import '../../../common/Services/basedio.dart';
 import '../../../common/config/my_config.dart';
 import '../../../common/riverpod/models/customerprofile.dart';
-import '../../../common/riverpod/provider/updatebookingstatusprovider.dart';
 import '../../../common/riverpod/repository/customer/CustomerRepository.dart';
 
 class Dashboard extends ConsumerStatefulWidget {
@@ -179,7 +178,7 @@ class _DashboardState extends ConsumerState<Dashboard> {
                           //   style: TextStyle(fontWeight: FontWeight.bold),
                           // ),
                           Text(
-                            'Total Bookings',
+                            'Bookings',
                             style: TextStyle(fontSize: 12),
                           )
                         ],
@@ -204,7 +203,7 @@ class _DashboardState extends ConsumerState<Dashboard> {
                             //   style: TextStyle(fontWeight: FontWeight.bold),
                             // ),
                             Text(
-                              'Total Current',
+                              'Current',
                               style: TextStyle(fontSize: 12),
                             )
                           ],

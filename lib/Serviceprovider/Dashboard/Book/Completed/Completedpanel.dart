@@ -6,7 +6,6 @@ import 'package:nb_utils/nb_utils.dart';
 
 import '../../../../common/helper/constants.dart';
 import '../../../../common/riverpod/repository/ServiceProvider/ServiceProviderRepository.dart';
-import '../../../../common/riverpod/repository/customer/CustomerRepository.dart';
 
 class CompletededPanelModel {
   String status;

@@ -2,16 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:homeservice/common/helper/constants.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:nb_utils/nb_utils.dart';
 
-import '../../../common/riverpod/models/AddRatingModel.dart';
 import '../../../common/riverpod/provider/AddRating_provider.dart';
 
 class RateServiceman extends ConsumerStatefulWidget {
-  RateServiceman({this.data, super.key});
-  AddRating? data;
+  RateServiceman({this.id, super.key});
+  String? id;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _RateServicemanState();
@@ -21,13 +18,13 @@ class _RateServicemanState extends ConsumerState<RateServiceman> {
   final _rateKey = GlobalKey<FormState>();
   final descctrl = TextEditingController();
   int? r;
-  var id = getStringAsync(serId);
+  // var id = getStringAsync(serId);
 
   Future<void> addrating() async {
     if (_rateKey.currentState!.validate()) {
       ref
           .read(addRatingNotifierProvider.notifier)
-          .AddRating(id, r!, descctrl.value.text, context);
+          .AddRating(widget.id!, r!, descctrl.value.text, context);
     }
   }
 
@@ -96,7 +93,6 @@ class _RateServicemanState extends ConsumerState<RateServiceman> {
               SizedBox(height: height * 0.01),
               TextFormField(
                 controller: descctrl,
-                
                 keyboardType: TextInputType.multiline,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),

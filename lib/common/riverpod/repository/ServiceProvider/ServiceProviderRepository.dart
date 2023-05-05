@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, avoid_print
 
 import 'dart:convert';
 
@@ -13,12 +13,14 @@ class ServiceProviderRepository {
     try {
       final sBooking = "/api/booking/getbookings?type=$servicetype";
 
-      var response = await Api().post(MyConfig.appUrl + sBooking);
+      var response = await Api().get(MyConfig.appUrl + sBooking);
       print(response.data);
       print(response.statusCode);
       if (response.statusCode == 200) {
         List<dynamic> responsedata = jsonDecode(response.data)["bookings"];
+        // var spbid = jsonDecode(response.data)["bookings"]["_id"];
         print(responsedata);
+        // print(spbid);
         return responsedata.map((e) => SBooking.fromJson(e)).toList();
       }
     } catch (e) {

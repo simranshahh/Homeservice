@@ -1,16 +1,12 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, non_constant_identifier_names, avoid_types_as_parameter_names
 
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:homeservice/Customer/View/Bookings/BookingDetails/bookingdetails.dart';
 import 'package:homeservice/Customer/View/Bookings/Cancel_Booking/Cancel_booking.dart';
-import 'package:homeservice/common/config/my_config.dart';
-import 'package:homeservice/common/riverpod/models/servicestatus_model.dart';
 import 'package:homeservice/common/riverpod/repository/customer/CustomerRepository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../common/Services/basedio.dart';
 
 class Scheduled extends ConsumerStatefulWidget {
   const Scheduled({super.key});
@@ -72,7 +68,9 @@ class _ScheduledState extends ConsumerState<Scheduled> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
-                                                Cancel_Booking(id: data[index].id,)));
+                                                Cancel_Booking(
+                                                  id: data[index].id,
+                                                )));
                                   },
                                 )
                               ],
@@ -97,7 +95,7 @@ class _ScheduledState extends ConsumerState<Scheduled> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (BuildContext) => Booking_Details(
+                            builder: (BuildContext context) => Booking_Details(
                                   data: data[index],
                                 )));
                   },
@@ -109,15 +107,5 @@ class _ScheduledState extends ConsumerState<Scheduled> {
         child: CircularProgressIndicator(),
       ),
     ));
-  }
-
-  Future<List<ServiceStatus>> getProductList() async {
-    print("comes");
-    String servicetype = 'scheduled';
-    final servicestatus = "/api/booking/mybookings?type='$servicetype'";
-
-    var response = await Api().get(MyConfig.appUrl + servicestatus);
-    List jsonResponse = json.decode(response.data);
-    return jsonResponse.map((job) => ServiceStatus.fromJson(job)).toList();
   }
 }

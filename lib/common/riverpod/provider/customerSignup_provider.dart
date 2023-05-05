@@ -2,7 +2,6 @@
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../interface/customer_signup.dart';
-import '../models/customerprofile.dart';
 import '../notifier/Customersignnup_notifier.dart';
 import '../repository/customersignup_repo.dart';
 import '../state/Customer_signup.dart';

@@ -2,6 +2,8 @@
 //
 //     final cancelBooking = cancelBookingFromJson(jsonString);
 
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
 CancelBooking cancelBookingFromJson(String str) => CancelBooking.fromJson(json.decode(str));

@@ -3,11 +3,13 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 import '../../../Dialogs.dart';
 import '../../../Services/app_navigator_service.dart';
 import '../../../Services/basedio.dart';
 import '../../../config/my_config.dart';
+import '../../../helper/constants.dart';
 import '../../interface/CancelBookingInterfacee.dart';
 import '../../models/CancelBookingModel.dart';
 
@@ -29,11 +31,20 @@ class CancelBookingRepository implements ICancelBookingRepository {
         var responsedata = json.decode(response.data);
         print(responsedata);
         canceldialog(context);
-        AppNavigatorService.pushNamedAndRemoveUntil("bnv");
+         var roles = getStringAsync(role);
+        print(roles);
+
+        if (roles == 'customer') {
+          AppNavigatorService.pushNamedAndRemoveUntil("bnv");
+        } else if (roles == '6446bbdf67f4eacfe7487195') {
+          AppNavigatorService.pushNamedAndRemoveUntil("bnv");
+        } else {
+          AppNavigatorService.pushNamedAndRemoveUntil("bnb");
+        }
       }
     } catch (e) {
       print(e.toString());
     }
     return null;
-  }
+  } 
 }
