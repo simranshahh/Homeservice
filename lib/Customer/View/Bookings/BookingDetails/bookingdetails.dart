@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, camel_case_types, prefer_const_constructors, duplicate_ignore, prefer_const_literals_to_create_immutables, sort_child_properties_last, unused_element, non_constant_identifier_names, avoid_types_as_parameter_names, unused_import, must_be_immutable
+// ignore_for_file: file_names, camel_case_types, prefer_const_constructors, duplicate_ignore, prefer_const_literals_to_create_immutables, sort_child_properties_last, unused_element, non_constant_identifier_names, avoid_types_as_parameter_names, unused_import, must_be_immutable, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

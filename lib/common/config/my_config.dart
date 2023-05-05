@@ -11,6 +11,8 @@ class MyConfig {
   static const String servicestatus = "/booking/mybookings?type=scheduled";
   static const String addrating = "/api/booking/addrating";
   static const String updateBookingStatus = "/api/booking/update";
+  static const String notification = "/api/auth/notifications";
+  static const String cancelbooking = "/api/booking/cancel";
 
   /// Dont change the code below
   MyConfig._();

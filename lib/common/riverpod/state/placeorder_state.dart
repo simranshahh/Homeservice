@@ -15,8 +15,8 @@ class OrderLoadingState extends OrderState {
 }
 
 class OrderLoadedState extends OrderState {
-  final PlaceOrder? Order;
-  OrderLoadedState(this.Order);
+  final PlaceOrder? order;
+  OrderLoadedState(this.order);
 }
 
 class OrderErrorState extends OrderState {

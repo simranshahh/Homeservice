@@ -1,131 +1,135 @@
 // To parse this JSON data, do
 //
-//     final serviceStatus = serviceStatusFromJson(jsonString);
+//     final notificationModel = notificationModelFromJson(jsonString);
 
 import 'dart:convert';
 
-List<ServiceStatus> serviceStatusFromJson(String str) =>
-    List<ServiceStatus>.from(
-        json.decode(str).map((x) => ServiceStatus.fromJson(x)));
+NotificationModel notificationModelFromJson(String str) =>
+    NotificationModel.fromJson(json.decode(str));
 
-String serviceStatusToJson(List<ServiceStatus> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String notificationModelToJson(NotificationModel data) =>
+    json.encode(data.toJson());
 
-class ServiceStatus {
+class NotificationModel {
+  List<Notifications>? notifications;
+
+  NotificationModel({
+    this.notifications,
+  });
+
+  factory NotificationModel.fromJson(Map<String, dynamic> json) =>
+      NotificationModel(
+        notifications: json["notifications"] == null
+            ? []
+            : List<Notifications>.from(
+                json["notifications"]!.map((x) => Notifications.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "notifications": notifications == null
+            ? []
+            : List<dynamic>.from(notifications!.map((x) => x.toJson())),
+      };
+}
+
+class Notifications {
   String? id;
-  Service? user;
-  Service? service;
-  String? note;
-  String? time;
-  String? date;
-  String? status;
+  NotificationUser? user;
+  String? description;
+  String? title;
   int? v;
 
-  ServiceStatus({
+  Notifications({
     this.id,
     this.user,
-    this.service,
-    this.note,
-    this.time,
-    this.date,
-    this.status,
+    this.description,
+    this.title,
     this.v,
   });
 
-  factory ServiceStatus.fromJson(Map<String, dynamic> json) => ServiceStatus(
+  factory Notifications.fromJson(Map<String, dynamic> json) => Notifications(
         id: json["_id"],
-        user: json["user"] == null ? null : Service.fromJson(json["user"]),
-        service:
-            json["service"] == null ? null : Service.fromJson(json["service"]),
-        note: json["note"],
-        time: json["time"],
-        date: json["date"],
-        status: json["status"],
+        user: json["user"] == null ? null : NotificationUser.fromJson(json["user"]),
+        description: json["description"],
+        title: json["title"],
         v: json["__v"],
       );
 
   Map<String, dynamic> toJson() => {
         "_id": id,
         "user": user?.toJson(),
-        "service": service?.toJson(),
-        "note": note,
-        "time": time,
-        "date": date,
-        "status": status,
+        "description": description,
+        "title": title,
         "__v": v,
       };
 }
 
-class Service {
+class NotificationUser {
   String? id;
   String? email;
   String? password;
+  String? refreshTokens;
   String? role;
   bool? verified;
   String? cordinates;
   String? phone;
   String? address;
   String? fullName;
-  String? price;
-  List<Rating>? ratings;
   String? picture;
   int? v;
-  String? refreshTokens;
+  List<Rating>? ratings;
 
-  Service({
+  NotificationUser({
     this.id,
     this.email,
     this.password,
+    this.refreshTokens,
     this.role,
     this.verified,
     this.cordinates,
     this.phone,
     this.address,
     this.fullName,
-    this.price,
-    this.ratings,
     this.picture,
     this.v,
-    this.refreshTokens,
+    this.ratings,
   });
 
-  factory Service.fromJson(Map<String, dynamic> json) => Service(
+  factory NotificationUser.fromJson(Map<String, dynamic> json) => NotificationUser(
         id: json["_id"],
         email: json["email"],
         password: json["password"],
+        refreshTokens: json["refreshTokens"],
         role: json["role"],
         verified: json["verified"],
         cordinates: json["cordinates"],
         phone: json["phone"],
         address: json["address"],
         fullName: json["full_name"],
-        price: json["price"],
+        picture: json["picture"],
+        v: json["__v"],
         ratings: json["ratings"] == null
             ? []
             : List<Rating>.from(
                 json["ratings"]!.map((x) => Rating.fromJson(x))),
-        picture: json["picture"],
-        v: json["__v"],
-        refreshTokens: json["refreshTokens"],
       );
 
   Map<String, dynamic> toJson() => {
         "_id": id,
         "email": email,
         "password": password,
+        "refreshTokens": refreshTokens,
         "role": role,
         "verified": verified,
         "cordinates": cordinates,
         "phone": phone,
         "address": address,
         "full_name": fullName,
-        "price": price,
+        "picture": picture,
+        "__v": v,
         "ratings": ratings == null
             ? []
             : List<dynamic>.from(ratings!.map((x) => x.toJson())),
-        "picture": picture,
-        "__v": v,
-        "refreshTokens": refreshTokens,
       };
 }
 

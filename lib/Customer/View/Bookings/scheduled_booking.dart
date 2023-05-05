@@ -1,13 +1,16 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, non_constant_identifier_names, avoid_types_as_parameter_names
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:homeservice/Customer/View/Bookings/BookingDetails/bookingdetails.dart';
 import 'package:homeservice/Customer/View/Bookings/Cancel_Booking/Cancel_booking.dart';
+import 'package:homeservice/common/config/my_config.dart';
+import 'package:homeservice/common/riverpod/models/servicestatus_model.dart';
 import 'package:homeservice/common/riverpod/repository/customer/CustomerRepository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:nb_utils/nb_utils.dart';
 
-import '../../../common/helper/constants.dart';
+import '../../../common/Services/basedio.dart';
 
 class Scheduled extends ConsumerStatefulWidget {
   const Scheduled({super.key});
@@ -17,18 +20,10 @@ class Scheduled extends ConsumerStatefulWidget {
 }
 
 class _ScheduledState extends ConsumerState<Scheduled> {
-  // var roles = getStringAsync(role);
   @override
   Widget build(BuildContext context) {
     final scheduledDetails = ref.watch(scheduledprovider);
     return Scaffold(
-        // appBar: (roles == customer || roles == customerid)
-        //     ? null
-        //     : AppBar(
-        //         title: Text("Scheduled List"),
-        //         centerTitle: true,
-        //         backgroundColor: Colors.deepPurple,
-        //       ),
         body: scheduledDetails.when(
       data: (data) => data.isEmpty
           ? Center(child: Text("NO DATA"))
@@ -77,7 +72,7 @@ class _ScheduledState extends ConsumerState<Scheduled> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
-                                                Cancel_Booking()));
+                                                Cancel_Booking(id: data[index].id,)));
                                   },
                                 )
                               ],
@@ -114,5 +109,15 @@ class _ScheduledState extends ConsumerState<Scheduled> {
         child: CircularProgressIndicator(),
       ),
     ));
+  }
+
+  Future<List<ServiceStatus>> getProductList() async {
+    print("comes");
+    String servicetype = 'scheduled';
+    final servicestatus = "/api/booking/mybookings?type='$servicetype'";
+
+    var response = await Api().get(MyConfig.appUrl + servicestatus);
+    List jsonResponse = json.decode(response.data);
+    return jsonResponse.map((job) => ServiceStatus.fromJson(job)).toList();
   }
 }

@@ -27,19 +27,6 @@ class Dashboard extends ConsumerStatefulWidget {
 }
 
 class _DashboardState extends ConsumerState<Dashboard> {
-  final _updateKey = GlobalKey<FormState>();
-
-  String id = '6454f40e76a8aa06bd26041e';
-  String status = 'current';
-
-  Future<void> updatebookingStatus() async {
-    if (_updateKey.currentState!.validate()) {
-      ref
-          .read(updateBookingStatusNotifierProvider.notifier)
-          .UpdateBookingStatus(id, status, context);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -58,130 +45,149 @@ class _DashboardState extends ConsumerState<Dashboard> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(left: 18, top: 15, right: 18),
-          child: Form(
-            key: _updateKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                info.when(
-                  data: (data) => Text(
-                    'Hello ${data!.fullName}',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
-                  error: (error, stackTrace) => Text(error.toString()),
-                  loading: () => Center(
-                    child: CircularProgressIndicator(),
-                  ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              info.when(
+                data: (data) => Text(
+                  'Hello ${data!.fullName}',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
-                Text(
-                  'Welcome to Saajha!',
-                  style: TextStyle(color: Colors.grey),
+                error: (error, stackTrace) => Text(error.toString()),
+                loading: () => Center(
+                  child: CircularProgressIndicator(),
                 ),
-                Container(
-                  height: height * 0.2,
-                  child: ListView(children: [
-                    CarouselSlider(
-                      items: [
-                        Container(
-                          margin: EdgeInsets.all(8.0),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0),
-                            image: DecorationImage(
-                              image: AssetImage("assets/swap.jpg"),
-                              // fit: BoxFit.cover,
-                            ),
+              ),
+              Text(
+                'Welcome to Saajha!',
+                style: TextStyle(color: Colors.grey),
+              ),
+              Container(
+                height: height * 0.2,
+                child: ListView(children: [
+                  CarouselSlider(
+                    items: [
+                      Container(
+                        margin: EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          image: DecorationImage(
+                            image: AssetImage("assets/swap.jpg"),
+                            // fit: BoxFit.cover,
                           ),
                         ),
-                        Container(
-                          margin: EdgeInsets.all(8.0),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0),
-                            image: DecorationImage(
-                              image: AssetImage("assets/swap1.jpg"),
-                              // fit: BoxFit.cover,
-                            ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          image: DecorationImage(
+                            image: AssetImage("assets/swap1.jpg"),
+                            // fit: BoxFit.cover,
                           ),
                         ),
-                        Container(
-                          margin: EdgeInsets.all(8.0),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0),
-                            image: DecorationImage(
-                                image: AssetImage("assets/swap.jpg")),
-                          ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          image: DecorationImage(
+                              image: AssetImage("assets/swap.jpg")),
                         ),
-                      ],
-                      options: CarouselOptions(
-                        // height: 380.0,
-                        enlargeCenterPage: true,
-                        autoPlay: true,
-                        aspectRatio: 16 / 9,
-                        autoPlayCurve: Curves.fastOutSlowIn,
-                        enableInfiniteScroll: true,
-                        autoPlayAnimationDuration: Duration(milliseconds: 800),
-                        viewportFraction: 0.8,
+                      ),
+                    ],
+                    options: CarouselOptions(
+                      // height: 380.0,
+                      enlargeCenterPage: true,
+                      autoPlay: true,
+                      aspectRatio: 16 / 9,
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                      enableInfiniteScroll: true,
+                      autoPlayAnimationDuration: Duration(milliseconds: 800),
+                      viewportFraction: 0.8,
+                    ),
+                  ),
+                ]),
+              ),
+              info.when(
+                data: (data) => Card(
+                  child: Container(
+                    height: height * 0.125,
+                    width: width * 0.9,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text('My service: '),
+                              Text(
+                                data!.role.toString(),
+                                style: TextStyle(
+                                    color: Colors.deepPurpleAccent,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              // Image.asset(
+                              //   'assets/serviceman/star.png',
+                              //   height: 20,
+                              //   width: 20,
+                              // )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text('Location: '),
+                              Text(
+                                data.address.toString(),
+                                style: TextStyle(
+                                    color: Colors.deepPurpleAccent,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                  ]),
+                  ),
                 ),
-                InkWell(
-                  child: Text('click'),
-                  onTap: () => updatebookingStatus(),
+                error: (error, stackTrace) => Text(error.toString()),
+                loading: () => Center(
+                  child: CircularProgressIndicator(),
                 ),
-                info.when(
-                  data: (data) => Card(
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Container(
+                    height: height * 0.124,
+                    width: width * 0.35,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          // Text(
+                          //   '125',
+                          //   style: TextStyle(fontWeight: FontWeight.bold),
+                          // ),
+                          Text(
+                            'Total Bookings',
+                            style: TextStyle(fontSize: 12),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  InkWell(
                     child: Container(
-                      height: height * 0.125,
-                      width: width * 0.9,
-                      color: Colors.white,
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Text('My service: '),
-                                Text(
-                                  data!.role.toString(),
-                                  style: TextStyle(
-                                      color: Colors.deepPurpleAccent,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                // Image.asset(
-                                //   'assets/serviceman/star.png',
-                                //   height: 20,
-                                //   width: 20,
-                                // )
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text('Location: '),
-                                Text(
-                                  data.address.toString(),
-                                  style: TextStyle(
-                                      color: Colors.deepPurpleAccent,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  error: (error, stackTrace) => Text(error.toString()),
-                  loading: () => Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
                       height: height * 0.124,
                       width: width * 0.35,
                       decoration: BoxDecoration(
@@ -193,154 +199,128 @@ class _DashboardState extends ConsumerState<Dashboard> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            // Text(
+                            //   '5',
+                            //   style: TextStyle(fontWeight: FontWeight.bold),
+                            // ),
                             Text(
-                              '125',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              'Total Bookings',
+                              'Total Current',
                               style: TextStyle(fontSize: 12),
                             )
                           ],
                         ),
                       ),
                     ),
-                    InkWell(
-                      child: Container(
-                        height: height * 0.124,
-                        width: width * 0.35,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '5',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                'Total Current',
-                                style: TextStyle(fontSize: 12),
-                              )
-                            ],
-                          ),
+                    onTap: (() {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  CurrentPanel()));
+                    }),
+                  )
+                ],
+              ),
+              SizedBox(height: 15),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  InkWell(
+                    child: Container(
+                      height: height * 0.124,
+                      width: width * 0.35,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            // Text(
+                            //   '15',
+                            //   style: TextStyle(fontWeight: FontWeight.bold),
+                            // ),
+                            Text(
+                              'Scheduled',
+                              style: TextStyle(fontSize: 12),
+                            )
+                          ],
                         ),
                       ),
-                      onTap: (() {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    CurrentPanel()));
-                      }),
-                    )
-                  ],
-                ),
-                SizedBox(height: 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    InkWell(
-                      child: Container(
-                        height: height * 0.124,
-                        width: width * 0.35,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '15',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                'Scheduled',
-                                style: TextStyle(fontSize: 12),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    ScheduledPanel()));
-                      },
                     ),
-                    InkWell(
-                      child: Container(
-                        height: height * 0.124,
-                        width: width * 0.35,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '25',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                'Completed',
-                                style: TextStyle(fontSize: 12),
-                              )
-                            ],
-                          ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  ScheduledPanel()));
+                    },
+                  ),
+                  InkWell(
+                    child: Container(
+                      height: height * 0.124,
+                      width: width * 0.35,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            // Text(
+                            //   '25',
+                            //   style: TextStyle(fontWeight: FontWeight.bold),
+                            // ),
+                            Text(
+                              'Completed',
+                              style: TextStyle(fontSize: 12),
+                            )
+                          ],
                         ),
                       ),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    CompletededPanel()));
-                      },
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Ratings & Reviews',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                    height: height * 0.2,
-                    width: width,
-                    // color: Colors.red,
-                    child: Ratings()),
-                SizedBox(
-                  height: 20,
-                ),
-                Text('Reviews'),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  height: height * 0.5,
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  CompletededPanel()));
+                    },
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Ratings & Reviews',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                  height: height * 0.2,
                   width: width,
-                  child: Review(),
-                )
-              ],
-            ),
+                  // color: Colors.red,
+                  child: Ratings()),
+              SizedBox(
+                height: 20,
+              ),
+              // Text('Reviews'),
+              // SizedBox(
+              //   height: 10,
+              // ),
+              // Container(
+              //   height: height * 0.5,
+              //   width: width,
+              //   child: Review(),
+              // )
+            ],
           ),
         ),
       ),

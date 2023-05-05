@@ -1,9 +1,10 @@
-// ignore_for_file: file_names, camel_case_types, prefer_const_constructors, duplicate_ignore, prefer_const_literals_to_create_immutables, sort_child_properties_last, unused_element
+// ignore_for_file: file_names, camel_case_types, prefer_const_constructors, duplicate_ignore, prefer_const_literals_to_create_immutables, sort_child_properties_last, unused_element, must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:homeservice/Serviceprovider/Notifications/CustomerLocation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:timelines/timelines.dart';
+
+import '../../common/riverpod/models/NotificationModel.dart';
+import '../../common/riverpod/provider/updatebookingstatusprovider.dart';
 
 class Scheduletext {
   String text;
@@ -12,18 +13,19 @@ class Scheduletext {
 }
 
 class Customer_Order extends ConsumerStatefulWidget {
-  const Customer_Order({super.key});
+  Customer_Order({this.data, super.key});
+  Notifications? data;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _Customer_OrderState();
 }
 
 class _Customer_OrderState extends ConsumerState<Customer_Order> {
-  List<Scheduletext> text = [
-    Scheduletext(text: 'Job Accepted'),
-    Scheduletext(text: 'Job In Process'),
-    Scheduletext(text: 'Job Completed'),
-  ];
+  // List<Scheduletext> text = [
+  //   Scheduletext(text: 'Job Accepted'),
+  //   Scheduletext(text: 'Job In Process'),
+  //   Scheduletext(text: 'Job Completed'),
+  // ];
   bool _isAccepted = false;
   bool _isRejected = false;
   _accept() {
@@ -36,6 +38,19 @@ class _Customer_OrderState extends ConsumerState<Customer_Order> {
     setState(() {
       _isRejected = true;
     });
+  }
+
+  final _updateKey = GlobalKey<FormState>();
+
+  String id = '6454f40e76a8aa06bd26041e';
+  String? status;
+
+  Future<void> updatebookingStatus() async {
+    if (_updateKey.currentState!.validate()) {
+      ref
+          .read(updateBookingStatusNotifierProvider.notifier)
+          .UpdateBookingStatus(id, status!, context);
+    }
   }
 
   @override
@@ -72,7 +87,7 @@ class _Customer_OrderState extends ConsumerState<Customer_Order> {
                       width: 15,
                     ),
                     Text(
-                      'Ram Prasad',
+                      widget.data!.user!.fullName.toString(),
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
@@ -96,7 +111,7 @@ class _Customer_OrderState extends ConsumerState<Customer_Order> {
                       'Job',
                       style: TextStyle(color: Colors.grey),
                     ),
-                    Text('Chair Mending'),
+                    Text('carpertning job'),
                     SizedBox(
                       height: 20,
                     ),
@@ -108,24 +123,11 @@ class _Customer_OrderState extends ConsumerState<Customer_Order> {
                     SizedBox(
                       height: 20,
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          'Address',
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          CustomerLocation()));
-                            },
-                            icon: Icon(Icons.location_city))
-                      ],
+                    Text(
+                      'Address',
+                      style: TextStyle(color: Colors.grey),
                     ),
-                    Text('BiratNursing Home,Biratnagar'),
+                    Text(widget.data!.user!.address.toString()),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
@@ -174,6 +176,10 @@ class _Customer_OrderState extends ConsumerState<Customer_Order> {
                                         width: 180,
                                         child: ElevatedButton(
                                           onPressed: () {
+                                            setState(() {
+                                              status = 'current';
+                                            });
+                                            updatebookingStatus();
                                             // Do something when the new button is clicked
                                           },
                                           child: Text('Go to Job'),
@@ -204,29 +210,29 @@ class _Customer_OrderState extends ConsumerState<Customer_Order> {
                 ),
               ),
             ]),
-            Text(
-              '    Job Schedule',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Container(
-              color: Colors.white,
-              height: height * 0.3,
-              child: Timeline.tileBuilder(
-                theme: TimelineThemeData.vertical(),
-                builder: TimelineTileBuilder.fromStyle(
-                  connectorStyle: ConnectorStyle.solidLine,
-                  contentsAlign: ContentsAlign.alternating,
-                  contentsBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.all(24.0),
-                    child: Text(
-                      text[index].text,
-                      style: TextStyle(color: Colors.deepPurpleAccent),
-                    ),
-                  ),
-                  itemCount: 3,
-                ),
-              ),
-            ),
+            // Text(
+            //   '    Job Schedule',
+            //   style: TextStyle(fontWeight: FontWeight.bold),
+            // ),
+            // Container(
+            //   color: Colors.white,
+            //   height: height * 0.3,
+            //   child: Timeline.tileBuilder(
+            //     theme: TimelineThemeData.vertical(),
+            //     builder: TimelineTileBuilder.fromStyle(
+            //       connectorStyle: ConnectorStyle.solidLine,
+            //       contentsAlign: ContentsAlign.alternating,
+            //       contentsBuilder: (context, index) => Padding(
+            //         padding: const EdgeInsets.all(24.0),
+            //         child: Text(
+            //           text[index].text,
+            //           style: TextStyle(color: Colors.deepPurpleAccent),
+            //         ),
+            //       ),
+            //       itemCount: 3,
+            //     ),
+            //   ),
+            // ),
           ],
         ));
   }

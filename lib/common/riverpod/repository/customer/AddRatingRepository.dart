@@ -1,6 +1,4 @@
-// ignore_for_file: file_names
-
-import 'dart:convert';
+// ignore_for_file: file_names, avoid_print
 
 import 'package:flutter/material.dart';
 
@@ -19,17 +17,11 @@ class AddRatingRepository implements IAddRatingRepository {
       "rating": rating,
       "description": description,
     };
-    print(data);
 
     try {
       var response = await Api().post(MyConfig.addrating, data: data);
 
-      var a = json.decode(response.toString());
-      print(response.statusCode);
       if (response.statusCode == 201) {
-        var responsedata = json.decode(response.data);
-        print(responsedata);
-
         AppNavigatorService.pushNamedAndRemoveUntil("bnv");
       }
     } catch (e) {

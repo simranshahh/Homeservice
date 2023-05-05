@@ -8,6 +8,7 @@ const String tenantName = 'TenantName';
 const String defaultTenantName = 'Damak';
 const String defaultTenant = '1';
 const String userId = '_id';
+const String serId = 'serId';
 const String current = 'current';
 const String completed = 'completed';
 const String userAddress = 'useraddress';

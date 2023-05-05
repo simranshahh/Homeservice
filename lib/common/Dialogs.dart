@@ -1,7 +1,6 @@
-// ignore_for_file: prefer_const_constructors, file_names
+// ignore_for_file: prefer_const_constructors, file_names, unused_local_variable
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 Future showErrorDialog(BuildContext context, String msg) {
   final height = MediaQuery.of(context).size.height;
@@ -46,7 +45,7 @@ Future showLoginDialog(BuildContext context) {
           Navigator.of(context).pop(true);
         });
         return Padding(
-          padding: const EdgeInsets.all(18.0),
+          padding: const EdgeInsets.all(7.0),
           child: SimpleDialog(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12.0)),
@@ -54,13 +53,10 @@ Future showLoginDialog(BuildContext context) {
               SizedBox(
                 height: height * 0.04,
               ),
-              SizedBox(
-                height: height * 0.06,
-              ),
               Center(
                 child: Image.asset(
                   'assets/done.png',
-                  height: height * 0.01,
+                  height: height * 0.25,
                 ),
               ),
               Center(
@@ -88,7 +84,7 @@ Future showConfirmationDialog(BuildContext context) {
           Navigator.of(context).pop(true);
         });
         return Padding(
-          padding: const EdgeInsets.all(18.0),
+          padding: const EdgeInsets.all(7.0),
           child: SimpleDialog(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12.0)),
@@ -99,7 +95,7 @@ Future showConfirmationDialog(BuildContext context) {
               Center(
                 child: Image.asset(
                   'assets/done.png',
-                  height: height * 0.01,
+                  height: height * 0.25,
                 ),
               ),
               SizedBox(
@@ -166,4 +162,75 @@ Future showPasswordDialog(BuildContext context, GlobalKey key) {
           ),
         );
       });
+}
+
+Future dialog(String name, BuildContext context) {
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return SizedBox(
+        height: 200,
+        child: AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(
+                'assets/popup.png',
+                height: 110,
+                width: 110,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                'Highly Recommended!',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 90, 36, 165)),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                '   Your ServiceProvider nearest to your area is \n                        recommended for you.',
+                style: TextStyle(fontSize: 10),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Text(
+                name.toString(),
+              )
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
+
+Future canceldialog(BuildContext context) {
+  final height = MediaQuery.of(context).size.height;
+
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              'assets/done.png',
+              height: height * 0.04,
+            ),
+            Text(
+                '     Your Service has been    \n      Cancelled successfully!'),
+            SizedBox(
+              height: 10,
+            ),
+          ],
+        ),
+      );
+    },
+  );
 }

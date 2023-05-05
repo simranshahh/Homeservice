@@ -7,8 +7,6 @@ import 'package:homeservice/Customer/View/Hire/Hirepage.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../common/riverpod/models/ServiceDetails.dart';
-import '../../Dashboard/Dashboard/Ratings.dart';
-import '../../Dashboard/Dashboard/reviews.dart';
 import 'package:intl/intl.dart';
 
 class Serviceman_Profile extends ConsumerStatefulWidget {
@@ -385,7 +383,6 @@ class _Serviceman_ProfileState extends ConsumerState<Serviceman_Profile> {
 
                         TextFormField(
                           controller: descctrl,
-                          maxLines: 3,
                           keyboardType: TextInputType.multiline,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
@@ -400,26 +397,26 @@ class _Serviceman_ProfileState extends ConsumerState<Serviceman_Profile> {
                         //   style: TextStyle(
                         //       fontWeight: FontWeight.bold, fontSize: 18),
                         // ),
-                        Text(
-                          'Ratings & Reviews',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                            height: 100, color: Colors.red, child: Ratings()),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text('Reviews'),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Container(height: height, child: Review()),
-                        SizedBox(
-                          height: 20,
-                        ),
+                        // Text(
+                        //   'Ratings & Reviews',
+                        //   style: TextStyle(fontWeight: FontWeight.bold),
+                        // ),
+                        // SizedBox(
+                        //   height: 10,
+                        // ),
+                        // Container(
+                        //     height: 100, color: Colors.red, child: Ratings()),
+                        // SizedBox(
+                        //   height: 20,
+                        // ),
+                        // Text('Reviews'),
+                        // SizedBox(
+                        //   height: 10,
+                        // ),
+                        // Container(height: height, child: Review()),
+                        // SizedBox(
+                        //   height: 20,
+                        // ),
                         // Container(
                         //   height: 200,
                         //   width: width,

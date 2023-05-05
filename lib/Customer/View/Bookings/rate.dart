@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:homeservice/common/helper/constants.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 import '../../../common/riverpod/models/AddRatingModel.dart';
 import '../../../common/riverpod/provider/AddRating_provider.dart';
@@ -19,7 +21,7 @@ class _RateServicemanState extends ConsumerState<RateServiceman> {
   final _rateKey = GlobalKey<FormState>();
   final descctrl = TextEditingController();
   int? r;
-  String id = '6450b247b0477f51a39d71bd';
+  var id = getStringAsync(serId);
 
   Future<void> addrating() async {
     if (_rateKey.currentState!.validate()) {
@@ -94,7 +96,7 @@ class _RateServicemanState extends ConsumerState<RateServiceman> {
               SizedBox(height: height * 0.01),
               TextFormField(
                 controller: descctrl,
-                maxLines: 3,
+                
                 keyboardType: TextInputType.multiline,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:homeservice/Serviceprovider/Notifications/Customerorder.dart';
+import 'package:homeservice/common/riverpod/repository/customer/CustomerRepository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class Serviceman_Notification extends ConsumerStatefulWidget {
@@ -18,67 +19,86 @@ class _Serviceman_NotificationState
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
+    final notifi = ref.watch(notificationprovider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Notifications'),
-        backgroundColor: Colors.deepPurpleAccent,
-      ),
-      body: Card(
-        child: Container(
-            height: height * 0.15,
-            width: width * 1,
-            color: Colors.white,
-            // ignore: prefer_const_constructors
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                CircleAvatar(
-                    // backgroundImage: NetworkImage(
-                    //     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8J1vZp6TEiqy5hIf7GixH0J9s-ciz6R3qTJVSHpdQQw&s')
-                    ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text('Hari Ram'),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text('Repair Chair'),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 28.0),
-                  child: Column(
-                    // // crossAxisAlignment: CrossAxisAlignment.center,
-                    // mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('22 Dec,2022 11.00 AM'),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 98.0),
-                        child: Row(
-                          children: [
-                            Text('View'),
-                            IconButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext) =>
-                                              Customer_Order()));
-                                },
-                                icon: Icon(Icons.arrow_forward_ios))
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            )),
-      ),
-    );
+        appBar: AppBar(
+          title: Text('Notifications'),
+          backgroundColor: Colors.deepPurpleAccent,
+        ),
+        body: notifi.when(
+          data: (data) => ListView.builder(
+            itemCount: data.length,
+            itemBuilder: (context, index) => Padding(
+              padding: const EdgeInsets.all(7),
+              child: Card(
+                child: SizedBox(
+                    // height: height * 0.15,
+                    width: width,
+                    // ignore: prefer_const_constructors
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          // CircleAvatar(
+                          //     // backgroundImage: NetworkImage(
+                          //     //     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8J1vZp6TEiqy5hIf7GixH0J9s-ciz6R3qTJVSHpdQQw&s')
+                          //     ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(data[index].user!.fullName.toString()),
+                              Text('22 Dec,2022'),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                            // mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(data[index].description.toString()),
+                              Text('11.00 AM'),
+                            ],
+                          ),
+                          SizedBox(height: height * 0.02),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext) => Customer_Order(
+                                            data: data[index],
+                                          )));
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  'View',
+                                  style: TextStyle(
+                                      color: Colors.deepPurple,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.deepPurple,
+                                )
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: height * 0.02),
+                        ],
+                      ),
+                    )),
+              ),
+            ),
+          ),
+          error: (err, s) => Text(err.toString()),
+          loading: () => const Center(
+            child: CircularProgressIndicator(),
+          ),
+        ));
   }
 }

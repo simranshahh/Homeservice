@@ -2,6 +2,8 @@
 
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:homeservice/common/Dialogs.dart';
 import 'package:homeservice/common/riverpod/models/ServiceDetails.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -10,24 +12,33 @@ import '../../../Services/basedio.dart';
 import '../../../config/my_config.dart';
 import '../../../helper/constants.dart';
 import '../../models/AllrolesModel.dart';
+import '../../models/NotificationModel.dart';
 import '../../models/customerprofile.dart';
 import '../../models/servicestatus_model.dart';
 
 class CustomerRepository {
-  Future<List<ServiceDetails>> serviceDetails(String? servicename) async {
+  Future<List<ServiceDetails>> serviceDetails(
+      String? servicename, BuildContext context) async {
     try {
       final serviceDetails = "/api/service/all/$servicename";
 
       var response = await Api().get(MyConfig.appUrl + serviceDetails);
       print(response.statusCode);
       if (response.statusCode == 200) {
-        var value = jsonDecode(response.data);
-        var n = jsonDecode(response.data)[0]["full_name"];
-        print(n);
-        await setValue(r, n);
-        print(value);
-        // Map<String, dynamic> responsedata = json.decode(response.data);
+        // final value = jsonDecode(response.data);
         List<dynamic> data = json.decode(response.data);
+        print(data);
+
+        var n = jsonDecode(response.data)[0]["full_name"];
+        dialog(n, context);
+
+        // var serviceId = jsonDecode(response.data)["_id"];
+
+        // print(n);
+        await setValue(r, n);
+        // await setValue(serId, serviceId);
+        // print(value);
+        // Map<String, dynamic> responsedata = json.decode(response.data);
         return data.map((e) => ServiceDetails.fromJson(e)).toList();
       }
     } catch (e) {
@@ -44,10 +55,11 @@ class CustomerRepository {
       var response = await Api().get(MyConfig.appUrl + servicestatus);
       print(response.statusCode);
       if (response.statusCode == 200) {
-        var value = jsonDecode(response.data);
+        List<dynamic> responsedata = jsonDecode(response.data);
 
-        print(value);
-        List<dynamic> responsedata = json.decode(response.data)["service"];
+        // var serviceId = jsonDecode(response.data)["_id"];
+
+        // print(n);
         // var data = json.decode(response.data);
         // List data = responsedata[0]['user'];
         return responsedata.map((e) => ServiceStatus.fromJson(e)).toList();
@@ -97,6 +109,28 @@ class CustomerRepository {
       print(e.toString());
     }
     return null;
+  }
+
+  Future<List<Notifications>> notificationinfo() async {
+    try {
+      final response = await Api().get(MyConfig.notification);
+
+      // var a = json.decode(response.toString());
+      print(response.statusCode);
+      print(json.decode(response.data)['notifications']);
+      if (response.statusCode == 200) {
+        Map<String, dynamic> responsedata = json.decode(response.data);
+        print(responsedata);
+        List<dynamic> data = responsedata["notifications"];
+        return data.map((e) => Notifications.fromJson(e)).toList();
+
+        // AppNavigatorService.pushNamedAndRemoveUntil("Signin");
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+    List<Notifications> b = [];
+    return b;
   }
 }
 // Future<User?> customerinfo() async {
@@ -152,6 +186,10 @@ final currentprovider =
 final completedprovider =
     FutureProvider.autoDispose<List<ServiceStatus>>((ref) async {
   return ref.read(customerRepositoryProvider).serviceStatus(completed);
+});
+final notificationprovider =
+    FutureProvider.autoDispose<List<Notifications>>((ref) async {
+  return ref.read(customerRepositoryProvider).notificationinfo();
 });
 // final cusprofileprovider = FutureProvider.autoDispose<User?>(
 //   (ref) async {

@@ -22,7 +22,7 @@ AppBar getSmallAppBar(BuildContext context, String text) {
               child: Row(
                 children: [
                   IconButton(
-                      icon: Icon(Icons.arrow_back_ios),
+                      icon: const Icon(Icons.arrow_back_ios),
                       color: Colors.white,
                       onPressed: (() => Navigator.pop(context))),
                   SizedBox(

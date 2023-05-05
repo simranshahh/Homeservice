@@ -1,6 +1,5 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, avoid_print
 
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
@@ -18,15 +17,11 @@ class UpdateBookingStatusRepository implements IUpdateBookingStatusRepository {
       "id": id,
       "status": status,
     };
-    print(data);
 
     try {
       var response = await Api().post(MyConfig.updateBookingStatus, data: data);
 
-      print(response.statusCode);
       if (response.statusCode == 200) {
-        var responsedata = json.decode(response.data);
-        print(responsedata);
 
         AppNavigatorService.pushNamedAndRemoveUntil("bnb");
       }

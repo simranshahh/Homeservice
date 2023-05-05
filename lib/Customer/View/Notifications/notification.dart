@@ -195,7 +195,6 @@ class _Notification_pageState extends ConsumerState<Notification_page> {
                                     Text(
                                       items[index].subtitle,
                                       overflow: TextOverflow.ellipsis,
-                                      maxLines: 3,
                                       style: TextStyle(
                                           fontWeight: FontWeight.normal,
                                           fontSize: 15),

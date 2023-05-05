@@ -43,7 +43,10 @@ class _HomepageState extends ConsumerState<Homepage> {
     ),
   ];
 
-  var d = getStringAsync(r);
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +57,9 @@ class _HomepageState extends ConsumerState<Homepage> {
     getprovider(String name) {
       final servicedetailsprovider =
           FutureProvider<List<ServiceDetails>>((ref) async {
-        return ref.read(customerRepositoryProvider).serviceDetails(name);
+        return ref
+            .read(customerRepositoryProvider)
+            .serviceDetails(name, context);
       });
 
       return servicedetailsprovider;
@@ -178,7 +183,10 @@ class _HomepageState extends ConsumerState<Homepage> {
                                           data[index].name.toString()),
                                     ),
                                   ));
-                              dialog(d);
+                              // setState(() {
+                              //   var d = getStringAsync(r);
+                              //   dialog(d.toString());
+                              // });
                             },
                             child: Card(
                               elevation: 5,
@@ -367,115 +375,70 @@ class _HomepageState extends ConsumerState<Homepage> {
       ),
     );
   }
-
-  void dialog(String name) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return SizedBox(
-          height: 200,
-          child: AlertDialog(
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(
-                  'assets/popup.png',
-                  height: 110,
-                  width: 110,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  'Highly Recommended!',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 90, 36, 165)),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  '   Your ServiceProvider nearest to your area is \n                        recommended for you.',
-                  style: TextStyle(fontSize: 10),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Text(
-                  name.toString(),
-                )
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
 }
 
-class CustomSearchDelegate extends SearchDelegate {
-  List<String> categories = [
-    'Carpenter',
-    'Plumber',
-    'Laundary',
-    'Cleaner',
-  ];
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    return [
-      IconButton(
-          onPressed: () {
-            query = '';
-          },
-          icon: const Icon(Icons.clear))
-    ];
-  }
+// class CustomSearchDelegate extends SearchDelegate {
+//   List<String> categories = [
+//     'Carpenter',
+//     'Plumber',
+//     'Laundary',
+//     'Cleaner',
+//   ];
+//   @override
+//   List<Widget>? buildActions(BuildContext context) {
+//     return [
+//       IconButton(
+//           onPressed: () {
+//             query = '';
+//           },
+//           icon: const Icon(Icons.clear))
+//     ];
+//   }
 
-  @override
-  Widget? buildLeading(BuildContext context) {
-    return IconButton(
-        onPressed: () {
-          close(context, null);
-        },
-        icon: const Icon(Icons.arrow_back));
-  }
+//   @override
+//   Widget? buildLeading(BuildContext context) {
+//     return IconButton(
+//         onPressed: () {
+//           close(context, null);
+//         },
+//         icon: const Icon(Icons.arrow_back));
+//   }
 
-  @override
-  Widget buildResults(BuildContext context) {
-    List<String> matchquery = [];
-    for (var works in categories) {
-      if (works.toLowerCase().contains(query.toLowerCase())) {
-        matchquery.add(works);
-      }
-    }
+//   @override
+//   Widget buildResults(BuildContext context) {
+//     List<String> matchquery = [];
+//     for (var works in categories) {
+//       if (works.toLowerCase().contains(query.toLowerCase())) {
+//         matchquery.add(works);
+//       }
+//     }
 
-    return ListView.builder(
-        itemCount: matchquery.length,
-        itemBuilder: (context, index) {
-          var result = matchquery[index];
-          return ListTile(
-            title: Text(result),
-          );
-        });
-  }
+//     return ListView.builder(
+//         itemCount: matchquery.length,
+//         itemBuilder: (context, index) {
+//           var result = matchquery[index];
+//           return ListTile(
+//             title: Text(result),
+//           );
+//         });
+//   }
 
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    List<String> matchquery = [];
-    for (var works in categories) {
-      if (works.toLowerCase().contains(query.toLowerCase())) {
-        matchquery.add(works);
-      }
-    }
+//   @override
+//   Widget buildSuggestions(BuildContext context) {
+//     List<String> matchquery = [];
+//     for (var works in categories) {
+//       if (works.toLowerCase().contains(query.toLowerCase())) {
+//         matchquery.add(works);
+//       }
+//     }
 
-    return ListView.builder(
-        itemCount: matchquery.length,
-        itemBuilder: (context, index) {
-          var result = matchquery[index];
-          return ListTile(
-            title: Text(result),
-          );
-        });
-  }
-}
+//     return ListView.builder(
+//         itemCount: matchquery.length,
+//         itemBuilder: (context, index) {
+//           var result = matchquery[index];
+//           return ListTile(
+//             title: Text(result),
+//           );
+//         });
+//   }
+// }
