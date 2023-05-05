@@ -118,16 +118,6 @@ class _ScheduledPanelState extends ConsumerState<ScheduledPanel> {
                                     children: [
                                       Row(
                                         children: [
-                                          Text('Address: '),
-                                          Text(
-                                            'Biratnagar ',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
                                           Text('Date & Time:'),
                                           Text(
                                               '${data[index].date} at ${data[index].time}'),
@@ -135,8 +125,14 @@ class _ScheduledPanelState extends ConsumerState<ScheduledPanel> {
                                       ),
                                       Row(
                                         children: [
-                                          Text('Customer:'),
+                                          Text('Customer Name:'),
                                           Text('Simran Sah'),
+                                          Text('Customer Address: '),
+                                          Text(
+                                            'Biratnagar ',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
                                         ],
                                       )
                                     ],
