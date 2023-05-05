@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:homeservice/common/helper/constants.dart';
+import '../../Dialogs.dart';
 import '../../Services/app_navigator_service.dart';
 import '../../Services/basedio.dart';
 import '../../config/my_config.dart';
@@ -40,6 +41,9 @@ class CustomerSignupRepository implements ICustomerSignupRepository {
         // print(responsedata);
         //  await setString(userId, a['email']["password"].toString());
         // print(response.data);
+        await showConfirmationDialog(
+          context,
+        );
         AppNavigatorService.pushNamedAndRemoveUntil("Signin");
       }
     } catch (e) {

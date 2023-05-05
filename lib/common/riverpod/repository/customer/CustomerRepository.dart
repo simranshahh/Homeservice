@@ -47,9 +47,10 @@ class CustomerRepository {
         var value = jsonDecode(response.data);
 
         print(value);
-        // Map<String, dynamic> responsedata = json.decode(response.data);
-        List<dynamic> data = json.decode(response.data);
-        return data.map((e) => ServiceStatus.fromJson(e)).toList();
+        List<dynamic> responsedata = json.decode(response.data)["service"];
+        // var data = json.decode(response.data);
+        // List data = responsedata[0]['user'];
+        return responsedata.map((e) => ServiceStatus.fromJson(e)).toList();
       }
     } catch (e) {
       print(e.toString());
@@ -120,7 +121,7 @@ class CustomerRepository {
 //   return null;
 // }
 String scheduled = "scheduled";
-String c = getStringAsync(current);
+String current = "current";
 String completed = "completed";
 
 final customerRepositoryProvider =
@@ -146,7 +147,7 @@ final scheduledprovider =
 });
 final currentprovider =
     FutureProvider.autoDispose<List<ServiceStatus>>((ref) async {
-  return ref.read(customerRepositoryProvider).serviceStatus(c);
+  return ref.read(customerRepositoryProvider).serviceStatus(current);
 });
 final completedprovider =
     FutureProvider.autoDispose<List<ServiceStatus>>((ref) async {

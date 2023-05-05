@@ -17,18 +17,18 @@ class SignupNotifier extends StateNotifier<SignupState> {
   Future<void> ServiceRegister(
     String email,
     String password,
+    String role,
     String cordinates,
     String phone,
     String address,
     String fullName,
-    String role,
     int price,
     BuildContext context,
   ) async {
     try {
       state = SignupLoadingState();
       final sendSignupSms = await _iSignupRepository.serviceregister(email,
-          password, cordinates, phone, address, fullName, role, price, context);
+          password,role,cordinates,phone,address,fullName,price, context);
       state = SignupLoadedState(sendSignupSms);
     } on NetworkException {
       state = SignupErrorState(LocaleKeys.something_went_wrong.trim());

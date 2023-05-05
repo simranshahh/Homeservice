@@ -6,14 +6,13 @@ import '../models/SignupModel.dart';
 
 abstract class ISignupRepository {
   Future<Register?> serviceregister(
-    String email,
-    String password,
-    String role,
-    String cordinates,
-    String phone,
-    String address,
-    String fullName,
-    int price,
-    BuildContext context,
-  );
+      String email,
+      String password,
+      String role,
+      String cordinates,
+      String phone,
+      String address,
+      String fullName,
+      int price,
+      BuildContext context);
 }

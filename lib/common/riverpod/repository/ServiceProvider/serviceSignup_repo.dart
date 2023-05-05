@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:homeservice/common/riverpod/models/SignupModel.dart';
+import '../../../Dialogs.dart';
 import '../../../Services/app_navigator_service.dart';
 import '../../../Services/basedio.dart';
 import '../../../config/my_config.dart';
@@ -23,11 +24,11 @@ class SignupRepository implements ISignupRepository {
     var data = {
       "email": email,
       "password": password,
+      "role": role,
       "cordinates": cordinates,
       "phone": phone,
       "address": address,
       "full_name": fullName,
-      "role": role,
       "price": price
     };
     print(data);
@@ -42,6 +43,9 @@ class SignupRepository implements ISignupRepository {
         print(responsedata);
         //  await setString(userId, a['email']["password"].toString());
         print(response.data);
+        await showConfirmationDialog(
+          context,
+        );
         AppNavigatorService.pushNamedAndRemoveUntil("Signin");
       }
     } catch (e) {

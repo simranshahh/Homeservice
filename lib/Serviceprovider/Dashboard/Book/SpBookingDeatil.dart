@@ -6,10 +6,10 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:timelines/timelines.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../Serviceprovider/View/Serviceman_Profile/Serviceman_Profile.dart';
-import '../rate.dart';
+import '../../../Customer/View/Bookings/rate.dart';
 import '../../../../common/helper/constants.dart';
 import '../../../../common/riverpod/models/servicestatus_model.dart';
-import '../Cancel_Booking/Cancel_booking.dart';
+import '../../../Customer/View/Bookings/Cancel_Booking/Cancel_booking.dart';
 
 class Scheduletext {
   String text;
@@ -17,16 +17,16 @@ class Scheduletext {
   Scheduletext({required this.text});
 }
 
-class Booking_Details extends ConsumerStatefulWidget {
-  Booking_Details({this.data, super.key});
+class SPBooking_Details extends ConsumerStatefulWidget {
+  SPBooking_Details({this.data, super.key});
   ServiceStatus? data;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      _Booking_DetailsState();
+      _SPBooking_DetailsState();
 }
 
-class _Booking_DetailsState extends ConsumerState<Booking_Details> {
+class _SPBooking_DetailsState extends ConsumerState<SPBooking_Details> {
   List<Scheduletext> text = [
     Scheduletext(text: 'Job Accepted'),
     Scheduletext(text: 'Job In Process'),
@@ -201,17 +201,18 @@ class _Booking_DetailsState extends ConsumerState<Booking_Details> {
                                         )
                                       : ElevatedButton(
                                           onPressed: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (BuildContext) =>
-                                                        Serviceman_Profile()));
+                                            _accept();
+                                            // Navigator.push(
+                                            //     context,
+                                            //     MaterialPageRoute(
+                                            //         builder: (BuildContext) =>
+                                            //             Serviceman_Profile()));
                                             // setState(() {
                                             //   _isAccepted = true;
                                             //   // _isRejected = false;
                                             // });
                                           },
-                                          child: Text('Reschedule'),
+                                          child: Text('Accept'),
                                           style: ButtonStyle(
                                               backgroundColor:
                                                   MaterialStateProperty.all(

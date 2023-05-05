@@ -86,11 +86,11 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
       ref.read(serviceSignupNotifierProvider.notifier).ServiceRegister(
           emailctrl.value.text,
           passwordctrl.value.text,
+          _value.toString(),
           locationCtrl.text,
           phoneCtrl.value.text,
           addressctrl.value.text,
           fullnameCtrl.value.text,
-          _value.toString(),
           pricectrl.value.text.toInt(),
           context);
 

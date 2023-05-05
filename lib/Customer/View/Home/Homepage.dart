@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -42,6 +44,7 @@ class _HomepageState extends ConsumerState<Homepage> {
   ];
 
   var d = getStringAsync(r);
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;

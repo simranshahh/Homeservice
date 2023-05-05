@@ -10,6 +10,7 @@ import 'package:homeservice/common/Services/basedio.dart';
 import 'package:homeservice/Customer/View/Home/Homepage.dart';
 import 'package:homeservice/Serviceprovider/Dashboard/bottomnavbar.dart';
 import 'package:nb_utils/nb_utils.dart';
+import '../../Dialogs.dart';
 import '../../Services/constants.dart';
 import '../../config/my_config.dart';
 import '../../helper/constants.dart';
@@ -37,9 +38,9 @@ class UserRepository implements IUserRepository {
       var usertype = json.decode(response.data)['user']['role'];
       var id = json.decode(response.data)['user']['_id'];
       var address = json.decode(response.data)['user']["address"];
-      var p = json.decode(response.data)['user']["price"];
+      // var p = json.decode(response.data)['user']["price"];
       print(address);
-      print(p);
+      // print(p);
 
       print(usertype);
       await setValue(loggedIn, "true");
@@ -50,10 +51,13 @@ class UserRepository implements IUserRepository {
       await setValue(role, usertype);
       await setValue(userId, id);
       await setValue(userAddress, address);
-      await setValue(cprice, p);
+      // await setValue(cprice, p);
 
       var roles = getStringAsync(role);
       print(roles);
+      await showLoginDialog(
+          context,
+        );
 
       if (roles == 'customer') {
         AppNavigatorService.pushNamedAndRemoveUntil("bnv");
