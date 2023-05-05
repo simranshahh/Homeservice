@@ -236,9 +236,10 @@ class _Serviceman_ProfileState extends ConsumerState<Serviceman_Profile> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 185, 8, 0),
+              padding: const EdgeInsets.fromLTRB(8, 200, 8, 0),
               child: Card(
                 child: Container(
+                  height: 600,
                   // height: 470,
                   width: 400,
                   decoration: BoxDecoration(

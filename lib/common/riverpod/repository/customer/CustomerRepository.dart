@@ -132,6 +132,7 @@ class CustomerRepository {
     List<Notifications> b = [];
     return b;
   }
+  
 }
 // Future<User?> customerinfo() async {
 //   try {

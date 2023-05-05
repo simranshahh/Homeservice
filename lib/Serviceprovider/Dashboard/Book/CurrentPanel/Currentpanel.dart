@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import '../../../../common/helper/constants.dart';
+import '../../../../common/riverpod/repository/ServiceProvider/ServiceProviderRepository.dart';
 import '../../../../common/riverpod/repository/customer/CustomerRepository.dart';
 
 class CurrrentPanelModel {
@@ -34,7 +35,7 @@ class CurrentPanel extends ConsumerStatefulWidget {
 class _CurrentPanelState extends ConsumerState<CurrentPanel> {
   @override
   Widget build(BuildContext context) {
-    final currentDetails = ref.watch(currentprovider);
+    final currentDetails = ref.watch(spcurrentprovider);
     final price = getStringAsync(cprice);
     return Scaffold(
         appBar: AppBar(
@@ -52,6 +53,7 @@ class _CurrentPanelState extends ConsumerState<CurrentPanel> {
               : Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ListView.builder(
+                    itemCount: data.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 18.0),
@@ -92,9 +94,12 @@ class _CurrentPanelState extends ConsumerState<CurrentPanel> {
                                         color:
                                             Color.fromARGB(255, 250, 164, 157),
                                         child: Center(
-                                          child: Text(
-                                            'Current',
-                                            style: TextStyle(fontSize: 9),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(2),
+                                            child: Text(
+                                              'Current',
+                                              style: TextStyle(fontSize: 9),
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -141,10 +146,20 @@ class _CurrentPanelState extends ConsumerState<CurrentPanel> {
                                       Row(
                                         children: [
                                           Text('Customer Name:'),
-                                          Text('Simran Sah'),
+                                          Text(data[index]
+                                              .user!
+                                              .fullName
+                                              .toString()),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
                                           Text('Customer Address: '),
                                           Text(
-                                            'Biratnagar ',
+                                            data[index]
+                                                .user!
+                                                .address
+                                                .toString(),
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),

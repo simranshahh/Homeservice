@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import '../../../../common/helper/constants.dart';
+import '../../../../common/riverpod/repository/ServiceProvider/ServiceProviderRepository.dart';
 import '../../../../common/riverpod/repository/customer/CustomerRepository.dart';
 
 class CompletededPanelModel {
@@ -35,7 +36,7 @@ class CompletededPanel extends ConsumerStatefulWidget {
 class _CompletededPanelState extends ConsumerState<CompletededPanel> {
   @override
   Widget build(BuildContext context) {
-    final completedDetails = ref.watch(completedprovider);
+    final completedDetails = ref.watch(spcompletedprovider);
     final price = getStringAsync(cprice);
     return Scaffold(
         appBar: AppBar(
@@ -53,6 +54,7 @@ class _CompletededPanelState extends ConsumerState<CompletededPanel> {
               : Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ListView.builder(
+                    itemCount: data.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 18.0),
@@ -89,13 +91,16 @@ class _CompletededPanelState extends ConsumerState<CompletededPanel> {
                                     children: [
                                       Container(
                                         height: 20,
-                                        width: 50,
+                                        // width: 50,
                                         color:
                                             Color.fromARGB(255, 250, 164, 157),
                                         child: Center(
-                                          child: Text(
-                                            'Completed',
-                                            style: TextStyle(fontSize: 9),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(2),
+                                            child: Text(
+                                              'Completed',
+                                              style: TextStyle(fontSize: 9),
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -104,7 +109,7 @@ class _CompletededPanelState extends ConsumerState<CompletededPanel> {
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
-                                      Text('Rs. ${price}/hr'),
+                                      Text('Rs. $price/hr'),
                                     ],
                                   ),
                                   // SizedBox(
@@ -134,7 +139,7 @@ class _CompletededPanelState extends ConsumerState<CompletededPanel> {
                                     children: [
                                       Row(
                                         children: [
-                                          Text('Date & Time:'),
+                                          Text('Date & Time: '),
                                           Text(
                                               '${data[index].date} at ${data[index].time}'),
                                         ],
@@ -142,10 +147,20 @@ class _CompletededPanelState extends ConsumerState<CompletededPanel> {
                                       Row(
                                         children: [
                                           Text('Customer Name:'),
-                                          Text('Simran Sah'),
+                                          Text(data[index]
+                                              .user!
+                                              .fullName
+                                              .toString()),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
                                           Text('Customer Address: '),
                                           Text(
-                                            'Biratnagar ',
+                                            data[index]
+                                                .user!
+                                                .address
+                                                .toString(),
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),

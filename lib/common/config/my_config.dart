@@ -8,7 +8,7 @@ class MyConfig {
   static const String allroles = "/api/roles/all";
   static const String logout = "/api/auth/logout";
   static const String placeorder = "/api/booking/new";
-  static const String servicestatus = "/booking/mybookings?type=scheduled";
+  // static const String servicestatus = "/booking/mybookings?type=scheduled";
   static const String addrating = "/api/booking/addrating";
   static const String updateBookingStatus = "/api/booking/update";
   static const String notification = "/api/auth/notifications";

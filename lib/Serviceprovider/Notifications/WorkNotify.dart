@@ -1,7 +1,6 @@
 // ignore_for_file: file_names, camel_case_types, prefer_const_constructors, prefer_const_literals_to_create_immutables, duplicate_ignore, non_constant_identifier_names, avoid_types_as_parameter_names
 
 import 'package:flutter/material.dart';
-import 'package:homeservice/Serviceprovider/Notifications/Customerorder.dart';
 import 'package:homeservice/common/riverpod/repository/customer/CustomerRepository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -46,48 +45,48 @@ class _Serviceman_NotificationState
                           //     // backgroundImage: NetworkImage(
                           //     //     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8J1vZp6TEiqy5hIf7GixH0J9s-ciz6R3qTJVSHpdQQw&s')
                           //     ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(data[index].user!.fullName.toString()),
-                              Text('22 Dec,2022'),
-                            ],
-                          ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //   children: [
+                          //     Text(data[index].user!.fullName.toString()),
+                          //     Text('22 Dec,2022'),
+                          //   ],
+                          // ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
                             // mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(data[index].description.toString()),
-                              Text('11.00 AM'),
+                              InkWell(
+                                onTap: () {
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (BuildContext) => Serviman_Order(
+                                  //               data: data[index],
+                                  //             )));
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      'View',
+                                      style: TextStyle(
+                                          color: Colors.deepPurple,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Icon(
+                                      Icons.arrow_forward_ios,
+                                      color: Colors.deepPurple,
+                                    )
+                                  ],
+                                ),
+                              ),
+                              // Text('11.00 AM'),
                             ],
                           ),
-                          SizedBox(height: height * 0.02),
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext) => Customer_Order(
-                                            data: data[index],
-                                          )));
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text(
-                                  'View',
-                                  style: TextStyle(
-                                      color: Colors.deepPurple,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Colors.deepPurple,
-                                )
-                              ],
-                            ),
-                          ),
+
                           SizedBox(height: height * 0.02),
                         ],
                       ),
