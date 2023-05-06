@@ -104,7 +104,7 @@ class _ScheduledPanelState extends ConsumerState<ScheduledPanel> {
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        Text('Rs. $price/hr'),
+                                        // Text('Rs. $price/hr'),
                                       ],
                                     ),
                                     // SizedBox(
@@ -135,7 +135,7 @@ class _ScheduledPanelState extends ConsumerState<ScheduledPanel> {
                                       children: [
                                         Row(
                                           children: [
-                                            Text('Date & Time:'),
+                                            Text('Date & Time: '),
                                             Text(
                                                 '${data[index].date} at ${data[index].time}'),
                                           ],

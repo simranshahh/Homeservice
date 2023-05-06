@@ -85,7 +85,7 @@ class _Booking_DetailsState extends ConsumerState<Booking_Details> {
                         width: 15,
                       ),
                       Text(
-                        widget.data!.user!.fullName.toString(),
+                        widget.data!.service!.fullName.toString(),
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
@@ -163,8 +163,11 @@ class _Booking_DetailsState extends ConsumerState<Booking_Details> {
                                                 Navigator.push(
                                                     context,
                                                     MaterialPageRoute(
-                                                        builder: (BuildContext context) =>
-                                                            Cancel_Booking()));
+                                                        builder: (BuildContext
+                                                                context) =>
+                                                            Cancel_Booking(
+                                                                id: widget.data!
+                                                                    .id)));
                                                 // setState(() {
                                                 //   _isRejected = true;
                                                 //   // _isAccepted = false;
@@ -230,7 +233,16 @@ class _Booking_DetailsState extends ConsumerState<Booking_Details> {
                                                                     RateServiceman(
                                                                       id: widget
                                                                           .data!
+                                                                          .service!
                                                                           .id,
+                                                                      name: widget
+                                                                          .data!
+                                                                          .service!
+                                                                          .fullName,
+                                                                      role: widget
+                                                                          .data!
+                                                                          .service!
+                                                                          .role,
                                                                     )));
                                                   }
                                                 });

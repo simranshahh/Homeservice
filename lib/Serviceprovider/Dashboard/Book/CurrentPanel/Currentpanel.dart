@@ -119,7 +119,7 @@ class _CurrentPanelState extends ConsumerState<CurrentPanel> {
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        Text('Rs. $price/hr'),
+                                        // Text('Rs. $price/hr'),
                                       ],
                                     ),
                                     // SizedBox(

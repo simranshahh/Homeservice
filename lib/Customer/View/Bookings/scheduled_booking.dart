@@ -1,12 +1,10 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, non_constant_identifier_names, avoid_types_as_parameter_names
 
-
 import 'package:flutter/material.dart';
 import 'package:homeservice/Customer/View/Bookings/BookingDetails/bookingdetails.dart';
 import 'package:homeservice/Customer/View/Bookings/Cancel_Booking/Cancel_booking.dart';
 import 'package:homeservice/common/riverpod/repository/customer/CustomerRepository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 
 class Scheduled extends ConsumerStatefulWidget {
   const Scheduled({super.key});
@@ -43,7 +41,7 @@ class _ScheduledState extends ConsumerState<Scheduled> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  data[index].service!.role.toString(),
+                                  data[index].service!.fullName.toString(),
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15,

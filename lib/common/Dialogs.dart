@@ -112,6 +112,9 @@ Future showConfirmationDialog(BuildContext context) {
                       SizedBox(
                         height: height * 0.02,
                       ),
+                      Text(
+                        "wait for your ID to be verified",
+                      ),
                     ],
                   ),
                 ),

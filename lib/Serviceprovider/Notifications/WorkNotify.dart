@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:homeservice/common/riverpod/repository/customer/CustomerRepository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-
 class Serviceman_Notification extends ConsumerStatefulWidget {
   const Serviceman_Notification({super.key});
 
@@ -59,29 +58,20 @@ class _Serviceman_NotificationState
                             // mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(data[index].description.toString()),
-                              InkWell(
-                                onTap: () {
-                                  // Navigator.push(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //         builder: (BuildContext context) =>
-                                  //             SPBooking_Details()));
-                                },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      'View',
-                                      style: TextStyle(
-                                          color: Colors.deepPurple,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Icon(
-                                      Icons.arrow_forward_ios,
-                                      color: Colors.deepPurple,
-                                    )
-                                  ],
-                                ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    'View',
+                                    style: TextStyle(
+                                        color: Colors.deepPurple,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  // Icon(
+                                  //   Icons.arrow_forward_ios,
+                                  //   color: Colors.deepPurple,
+                                  // )
+                                ],
                               ),
                               // Text('11.00 AM'),
                             ],

@@ -10,7 +10,8 @@ import '../../../common/riverpod/provider/order_provider.dart';
 
 class HirePage extends ConsumerStatefulWidget {
   HirePage(
-      {this.date,
+      {this.id,
+      this.date,
       this.spaddress,
       this.desc,
       this.time,
@@ -25,6 +26,7 @@ class HirePage extends ConsumerStatefulWidget {
   final String? price;
   final String? spaddress;
   final String? desc;
+  final String? id;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _HirePageState();
@@ -32,7 +34,7 @@ class HirePage extends ConsumerStatefulWidget {
 
 class _HirePageState extends ConsumerState<HirePage> {
   var userlocation = getStringAsync(userAddress);
-  var serid = getStringAsync(userId);
+  // var serid = getStringAsync(userId);
   // final String dates = "2080/01/22";
   // final String times = "10.45";
   final _orderKey = GlobalKey<FormState>();
@@ -40,7 +42,7 @@ class _HirePageState extends ConsumerState<HirePage> {
     if (_orderKey.currentState!.validate()) {
       await ref
           .read(orderNotifierProvider.notifier)
-          .order(widget.time, widget.date, widget.desc, serid, context);
+          .order(widget.time, widget.date, widget.desc, widget.id, context);
       // await setValue(emails, emailCtrl.value.text);
       // await setValue(passwords, passwordCtrl.value.text);
     }

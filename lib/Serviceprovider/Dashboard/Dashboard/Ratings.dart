@@ -29,7 +29,6 @@ class _RatingsState extends ConsumerState<Ratings> {
               return Container(
                 // height: height * 0.12,
                 width: width,
-                color: Colors.white,
                 child: Padding(
                   padding: const EdgeInsets.all(11.0),
                   child: SingleChildScrollView(

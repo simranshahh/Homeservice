@@ -108,7 +108,7 @@ class _CompletededPanelState extends ConsumerState<CompletededPanel> {
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
-                                      Text('Rs. $price/hr'),
+                                      // Text('Rs. $price/hr'),
                                     ],
                                   ),
                                   // SizedBox(

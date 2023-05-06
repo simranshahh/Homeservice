@@ -107,32 +107,20 @@ class _Notification_pageState extends ConsumerState<Notification_page> {
                             // mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(data[index].description.toString()),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          // ignore: non_constant_identifier_names
-                                          builder: (BuildContext context) =>
-                                              Customer_Order(
-                                                data: data[index],
-                                              )));
-                                },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      'View',
-                                      style: TextStyle(
-                                          color: Colors.deepPurple,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Icon(
-                                      Icons.arrow_forward_ios,
-                                      color: Colors.deepPurple,
-                                    )
-                                  ],
-                                ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    'View',
+                                    style: TextStyle(
+                                        color: Colors.deepPurple,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  // Icon(
+                                  //   Icons.arrow_forward_ios,
+                                  //   color: Colors.deepPurple,
+                                  // )
+                                ],
                               ),
                               // Text('11.00 AM'),
                             ],

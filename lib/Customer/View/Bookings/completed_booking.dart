@@ -49,7 +49,7 @@ class _CompletedState extends ConsumerState<Completed> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  data[index].service!.role.toString(),
+                                data[index].service!.fullName.toString(),
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15,

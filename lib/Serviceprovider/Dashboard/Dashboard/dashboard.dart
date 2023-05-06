@@ -303,9 +303,9 @@ class _DashboardState extends ConsumerState<Dashboard> {
                 height: 10,
               ),
               Container(
-                  height: height * 0.2,
+                  height: height * 0.3,
                   width: width,
-                  // color: Colors.red,
+                  color: Colors.red,
                   child: Ratings()),
               SizedBox(
                 height: 20,

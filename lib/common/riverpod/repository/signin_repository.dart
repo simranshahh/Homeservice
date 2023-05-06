@@ -35,17 +35,18 @@ class UserRepository implements IUserRepository {
     if (response.statusCode == 200) {
       bool jsonResponse = jsonDecode(response.data)["user"]['verified'];
       print(jsonResponse);
+      var token = json.decode(response.data)['accessToken'];
+      var reftoken = json.decode(response.data)["user"]['refreshTokens'];
+      var usertype = json.decode(response.data)['user']['role'];
+      var id = json.decode(response.data)['user']['_id'];
+      var address = json.decode(response.data)['user']["address"];
+      await setValue(role, usertype);
+      var roles = getStringAsync(role);
 
-      if (jsonResponse == false) {
-        Fluttertoast.showToast(msg: 'User is not Verified');
-      } else {
-        var token = json.decode(response.data)['accessToken'];
-        var reftoken = json.decode(response.data)["user"]['refreshTokens'];
-        var usertype = json.decode(response.data)['user']['role'];
-        var id = json.decode(response.data)['user']['_id'];
-        var address = json.decode(response.data)['user']["address"];
+      print(roles);
+      if (jsonResponse == false &&
+          (roles == '6446bbdf67f4eacfe7487195' || roles == 'customer')) {
         // var p = json.decode(response.data)['user']["price"];
-        print(address);
         // print(p);
 
         print(usertype);
@@ -54,14 +55,10 @@ class UserRepository implements IUserRepository {
 
         await setValue(accessToken, token);
         await setValue(refreshToken, reftoken);
-        await setValue(role, usertype);
         await setValue(userId, id);
         await setValue(userAddress, address);
         // await setValue(cprice, p);
 
-        var roles = getStringAsync(role);
-
-        print(roles);
         await showLoginDialog(
           context,
         );
@@ -73,6 +70,30 @@ class UserRepository implements IUserRepository {
         } else {
           AppNavigatorService.pushNamedAndRemoveUntil("bnb");
         }
+      } else if (jsonResponse == true) {
+        print(usertype);
+        await setValue(loggedIn, "true");
+        await setValue(firsttime, "false");
+
+        await setValue(accessToken, token);
+        await setValue(refreshToken, reftoken);
+        await setValue(userId, id);
+        await setValue(userAddress, address);
+        // await setValue(cprice, p);
+
+        await showLoginDialog(
+          context,
+        );
+
+        if (roles == 'customer') {
+          AppNavigatorService.pushNamedAndRemoveUntil("bnv");
+        } else if (roles == '6446bbdf67f4eacfe7487195') {
+          AppNavigatorService.pushNamedAndRemoveUntil("bnv");
+        } else {
+          AppNavigatorService.pushNamedAndRemoveUntil("bnb");
+        }
+      } else {
+        Fluttertoast.showToast(msg: 'User is not Verified');
       }
 
       //else if (usertype == 'users') {

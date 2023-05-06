@@ -17,11 +17,13 @@ class AddRatingRepository implements IAddRatingRepository {
       "rating": rating,
       "description": description,
     };
+    print(data);
 
     try {
       var response = await Api().post(MyConfig.addrating, data: data);
 
       if (response.statusCode == 200) {
+        print(response.data);
         AppNavigatorService.pushNamedAndRemoveUntil("bnv");
       }
     } catch (e) {

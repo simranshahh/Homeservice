@@ -7,7 +7,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../common/riverpod/provider/AddRating_provider.dart';
 
 class RateServiceman extends ConsumerStatefulWidget {
-  RateServiceman({this.id, super.key});
+  RateServiceman({this.name, this.role, this.id, super.key});
+  String? name;
+  String? role;
   String? id;
 
   @override
@@ -34,7 +36,7 @@ class _RateServicemanState extends ConsumerState<RateServiceman> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
+        // leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
         backgroundColor: Colors.deepPurpleAccent,
         title: Text('Review Now'),
       ),
@@ -60,10 +62,10 @@ class _RateServicemanState extends ConsumerState<RateServiceman> {
                   Column(
                     children: [
                       Text(
-                        'Shyam Ram',
+                        widget.name.toString(),
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      Text('Carpenter')
+                      Text(widget.role.toString())
                     ],
                   )
                 ],
