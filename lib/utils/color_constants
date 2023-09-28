@@ -1,0 +1,104 @@
+// ignore_for_file: use_full_hex_values_for_flutter_colors, prefer_const_constructors
+
+import 'package:flutter/material.dart';
+
+class ColorConstant {
+
+
+
+
+  static Color blue900 = Color(0xff0742a6);
+  static Color blue700 = Color(0xff1076d0);
+  static Color blue800 = Color(0xff1367b0);
+
+  static Color gray100 = Color(0xfff7f7f7);
+  static Color black9007f = Color(0xff7f000000);
+
+  static Color gray600Ed = Color(0xffed6d7278);
+
+  static Color gray5001 = Color(0xfffcfcfc);
+
+  static Color black900B2 = Color(0xffb2000000);
+
+  static Color pink900 = Color(0xff820f23);
+
+  static Color indigoA200 = Color(0xff6e7cf9);
+
+  static Color red500 = Color(0xfff04444);
+
+  static Color black9003f = Color(0xff3f000000);
+
+  static Color gray50 = Color(0xfff8f8f8);
+
+  static Color green500 = Color(0xff60ba44);
+
+  static Color black900D8 = Color(0xffd8000000);
+
+  static Color black900 = Color(0xff000000);
+
+  static Color yellow800 = Color(0xffedb423);
+
+  static Color gray50001 = Color(0xffa1a1a1);
+
+  static Color blueGray800 = Color(0xff2c3051);
+
+  static Color lightBlueA700 = Color(0xff0091ff);
+
+  static Color gray20001 = Color(0xffe9e7e7);
+
+  static Color gray50002 = Color(0xffa2a2a2);
+
+  static Color blueGray90001 = Color(0xff353535);
+
+  static Color blueGray900 = Color(0xff333333);
+
+  static Color gray600 = Color(0xff6d6d6d);
+
+  static Color whiteA7004c = Color(0xff4cffffff);
+
+  static Color gray500 = Color(0xff9f9b9b);
+
+  static Color gray60001 = Color(0xff6d7278);
+
+  static Color blueGray100 = Color(0xffd8d8d8);
+
+  static Color black9008c = Color(0xff8c070707);
+
+  static Color blueGray300 = Color(0xffa2acba);
+
+  static Color amber500 = Color(0xffebba15);
+
+  static Color indigo50 = Color(0xffd8dcff);
+
+  static Color blueGray600 = Color(0xff53588a);
+
+  static Color gray800 = Color(0xff474747);
+
+  static Color amber600 = Color(0xfff7b500);
+
+  static Color gray900 = Color(0xff12121a);
+
+  static Color blueGray60001 = Color(0xff5a6779);
+
+  static Color gray200 = Color(0xffededef);
+
+  static Color black900A3 = Color(0xffa3000000);
+
+  static Color gray300 = Color(0xffe6e6e6);
+
+  static Color teal30049 = Color(0xff4944d7b6);
+
+  static Color black900Cc = Color(0xffcc000000);
+
+  static Color black90099 = Color(0xff99000000);
+
+  static Color indigoA700 = Color(0xff274afc);
+
+  static Color blue100 = Color(0xffc1e5f3);
+
+  static Color black90019 = Color(0xff19000000);
+
+  static Color black90014 = Color(0xff14000000);
+
+  static Color whiteA700 = Color(0xffffffff);
+}

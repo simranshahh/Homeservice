@@ -6,7 +6,7 @@ import 'package:homeservice/common/helper/constants.dart';
 import 'package:http/http.dart' as http;
 
 import "package:hooks_riverpod/hooks_riverpod.dart";
-import 'package:form_builder_validators/form_builder_validators.dart';
+// import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import '../../Customer/View/CustomerSignup/Customersignup.dart';
@@ -99,10 +99,10 @@ class _SigninState extends ConsumerState<Signin> {
                     TextFormField(
                       controller: emailCtrl,
                       textInputAction: TextInputAction.next,
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(),
-                        FormBuilderValidators.email()
-                      ]),
+                      // validator: FormBuilderValidators.compose([
+                      //   FormBuilderValidators.required(),
+                      //   FormBuilderValidators.email()
+                      // ]),
                       decoration: InputDecoration(
                         labelText: "Email",
                         prefixIcon: const Icon(Icons.email),
@@ -115,10 +115,10 @@ class _SigninState extends ConsumerState<Signin> {
                     ),
                     TextFormField(
                       controller: passwordCtrl,
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(),
-                        FormBuilderValidators.minLength(6)
-                      ]),
+                      // validator: FormBuilderValidators.compose([
+                      //   FormBuilderValidators.required(),
+                      //   FormBuilderValidators.minLength(6)
+                      // ]),
                       decoration: InputDecoration(
                         suffixIcon: IconButton(
                             icon: lockIcon, onPressed: () => _onlockPressed1()),

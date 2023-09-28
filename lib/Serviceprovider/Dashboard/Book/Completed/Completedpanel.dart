@@ -2,9 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:nb_utils/nb_utils.dart';
 
-import '../../../../common/helper/constants.dart';
 import '../../../../common/riverpod/repository/ServiceProvider/ServiceProviderRepository.dart';
 
 class CompletededPanelModel {
@@ -36,7 +34,6 @@ class _CompletededPanelState extends ConsumerState<CompletededPanel> {
   @override
   Widget build(BuildContext context) {
     final completedDetails = ref.watch(spcompletedprovider);
-    final price = getStringAsync(cprice);
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepPurpleAccent,

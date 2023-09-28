@@ -45,7 +45,7 @@ dependencies:
   introduction_screen: ^3.1.1
   flutter_onboarding_slider: ^1.0.8
   flutter_form_builder: ^7.7.0
-  form_builder_validators: ^8.4.0
+  # form_builder_validators: ^8.4.0
   http: ^0.13.5
   carousel_slider: ^4.2.1
   flutter_carousel_widget: ^2.0.0+1

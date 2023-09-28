@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, file_names, non_constant_identifier_names, unused_import, unused_field, prefer_final_fields, unused_local_variable, unnecessary_null_comparison, avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
+// import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:homeservice/common/Services/constants.dart';
@@ -231,9 +231,9 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
                                     borderRadius: BorderRadius.circular(15)),
                                 labelText: 'Full Name',
                               ),
-                              validator: FormBuilderValidators.compose([
-                                FormBuilderValidators.required(),
-                              ]),
+                              // validator: FormBuilderValidators.compose([
+                              //   FormBuilderValidators.required(),
+                              // ]),
                             ),
                             SizedBox(
                               height: 10,
@@ -249,9 +249,9 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
                                     borderRadius: BorderRadius.circular(15)),
                                 labelText: 'Email Address',
                               ),
-                              validator: FormBuilderValidators.compose([
-                                FormBuilderValidators.required(),
-                              ]),
+                              // validator: FormBuilderValidators.compose([
+                              //   FormBuilderValidators.required(),
+                              // ]),
                             ),
                             SizedBox(
                               height: 10,
@@ -352,13 +352,13 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
                                 labelText: 'Password',
                               ),
                               obscureText: offsecureText1,
-                              validator: FormBuilderValidators.compose([
-                                FormBuilderValidators.required(),
-                                FormBuilderValidators.minLength(6,
-                                    errorText:
-                                        "Password should be minimum 6 characters"),
-                                // FormBuilderValidators.email(),
-                              ]),
+                              // validator: FormBuilderValidators.compose([
+                              //   FormBuilderValidators.required(),
+                              //   FormBuilderValidators.minLength(6,
+                              //       errorText:
+                              //           "Password should be minimum 6 characters"),
+                              // FormBuilderValidators.email(),
+                              //  ]),
                             ),
                             SizedBox(
                               height: 10,
@@ -376,9 +376,9 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
                                     borderRadius: BorderRadius.circular(15)),
                                 labelText: 'Address',
                               ),
-                              validator: FormBuilderValidators.compose([
-                                FormBuilderValidators.required(),
-                              ]),
+                              // validator: FormBuilderValidators.compose([
+                              //   FormBuilderValidators.required(),
+                              // ]),
                             ),
                             SizedBox(
                               height: 10,
@@ -406,9 +406,9 @@ class _ServicemanSignupState extends ConsumerState<ServicemanSignup> {
                                               BorderRadius.circular(15)),
                                       labelText: 'Location',
                                     ),
-                                    validator: FormBuilderValidators.compose([
-                                      FormBuilderValidators.required(),
-                                    ]),
+                                    // validator: FormBuilderValidators.compose([
+                                    //   FormBuilderValidators.required(),
+                                    // ]),
                                   ),
                             SizedBox(
                               height: 10,

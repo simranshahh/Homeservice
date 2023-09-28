@@ -1,5 +1,5 @@
 class MyConfig {
-  static const String appUrl = "http://192.168.1.70:5000";
+  static const String appUrl = "http://192.168.10.32:5000";
 
   // static const apiBaseUrl = 'https://localhost:27017/sajha';
   static const String register = "/api/auth/register";

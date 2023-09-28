@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, file_names
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, file_names, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:homeservice/common/helper/constants.dart';

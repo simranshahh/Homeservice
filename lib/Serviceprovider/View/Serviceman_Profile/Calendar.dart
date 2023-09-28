@@ -43,7 +43,7 @@ class _CalendarState extends State<Calendar> with RestorationMixin {
               subtitle1: TextStyle(color: Colors.black),
               button: TextStyle(color: Colors.black),
             ),
-            accentColor: Colors.black,
+            // accentColor: Colors.black,
             colorScheme: ColorScheme.light(
                 primary: Colors.deepPurpleAccent,
                 primaryVariant: Colors.black,

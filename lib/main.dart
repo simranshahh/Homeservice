@@ -5,6 +5,7 @@ import 'package:homeservice/Customer/View/CustomerSignup/Customersignup.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'Customer/View/BottomnavScreen/BottomNabBar.dart';
+import 'Serviceprovider/ServiceProviderSignup/ServicemanSignup.dart';
 import 'Try/si.dart';
 import 'common/auth/signin.dart';
 import 'common/routes/routes.dart';

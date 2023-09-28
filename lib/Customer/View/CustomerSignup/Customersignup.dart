@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, file_names, non_constant_identifier_names, unused_import, avoid_print, unused_local_variable, unnecessary_null_comparison
 
 import 'package:flutter/material.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
+// import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:homeservice/common/auth/signin.dart';
@@ -211,9 +211,9 @@ class _CustomerSignupState extends ConsumerState<CustomerSignup> {
                                     borderRadius: BorderRadius.circular(15)),
                                 labelText: 'Full Name',
                               ),
-                              validator: FormBuilderValidators.compose([
-                                FormBuilderValidators.required(),
-                              ]),
+                              // validator: FormBuilderValidators.compose([
+                              //   FormBuilderValidators.required(),
+                              // ]),
                             ),
                             SizedBox(
                               height: 10,
@@ -229,9 +229,9 @@ class _CustomerSignupState extends ConsumerState<CustomerSignup> {
                                     borderRadius: BorderRadius.circular(15)),
                                 labelText: 'Email Address',
                               ),
-                              validator: FormBuilderValidators.compose([
-                                FormBuilderValidators.required(),
-                              ]),
+                              // validator: FormBuilderValidators.compose([
+                              //   FormBuilderValidators.required(),
+                              // ]),
                             ),
                             SizedBox(
                               height: 10,
@@ -247,9 +247,9 @@ class _CustomerSignupState extends ConsumerState<CustomerSignup> {
                                     borderRadius: BorderRadius.circular(15)),
                                 labelText: 'Phone Number',
                               ),
-                              validator: FormBuilderValidators.compose([
-                                FormBuilderValidators.required(),
-                              ]),
+                              // validator: FormBuilderValidators.compose([
+                              //   FormBuilderValidators.required(),
+                              // ]),
                             ),
                             SizedBox(
                               height: 10,
@@ -265,9 +265,9 @@ class _CustomerSignupState extends ConsumerState<CustomerSignup> {
                                     borderRadius: BorderRadius.circular(15)),
                                 labelText: 'Address',
                               ),
-                              validator: FormBuilderValidators.compose([
-                                FormBuilderValidators.required(),
-                              ]),
+                              // validator: FormBuilderValidators.compose([
+                              //   FormBuilderValidators.required(),
+                              // ]),
                             ),
                             // SizedBox(
                             //   height: 10,
@@ -305,9 +305,9 @@ class _CustomerSignupState extends ConsumerState<CustomerSignup> {
                                 labelText: 'Password',
                               ),
                               obscureText: offsecureText1,
-                              validator: FormBuilderValidators.compose([
-                                FormBuilderValidators.required(),
-                              ]),
+                              // validator: FormBuilderValidators.compose([
+                              //   FormBuilderValidators.required(),
+                              // ]),
                             ),
                             SizedBox(
                               height: 10,
@@ -335,9 +335,9 @@ class _CustomerSignupState extends ConsumerState<CustomerSignup> {
                                               BorderRadius.circular(15)),
                                       labelText: 'Location',
                                     ),
-                                    validator: FormBuilderValidators.compose([
-                                      FormBuilderValidators.required(),
-                                    ]),
+                                    // validator: FormBuilderValidators.compose([
+                                    //   FormBuilderValidators.required(),
+                                    // ]),
                                   ),
                             SizedBox(
                               height: 10,
